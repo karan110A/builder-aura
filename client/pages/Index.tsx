@@ -150,7 +150,18 @@ export default function Index() {
             </div>
 
             <div className="relative">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8">
+              {/* 3D Animation */}
+              <div className="absolute inset-0 -z-10">
+                <Scene3D
+                  className="w-full h-full"
+                  enableControls={true}
+                  camera={{ position: [4, 2, 6], fov: 60 }}
+                >
+                  <FloatingBooks />
+                </Scene3D>
+              </div>
+
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8">
                 <div className="flex items-center mb-6">
                   <GraduationCap className="h-12 w-12 text-blue-600" />
                   <div className="ml-4">
