@@ -142,30 +142,30 @@ export default function Index() {
             </div>
 
             <div className="relative">
-              <div className="bg-white rounded-2xl shadow-2xl p-8">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8">
                 <div className="flex items-center mb-6">
                   <GraduationCap className="h-12 w-12 text-blue-600" />
                   <div className="ml-4">
-                    <h3 className="text-lg font-semibold">Quality Education</h3>
-                    <p className="text-gray-600">Trusted by thousands</p>
+                    <h3 className="text-lg font-semibold dark:text-white">Quality Education</h3>
+                    <p className="text-gray-600 dark:text-gray-300">Trusted by thousands</p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>Experienced Faculty</span>
+                    <span className="dark:text-gray-200">Experienced Faculty</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>Small Batch Sizes</span>
+                    <span className="dark:text-gray-200">Small Batch Sizes</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>Regular Assessments</span>
+                    <span className="dark:text-gray-200">Regular Assessments</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span>Doubt Clearing Sessions</span>
+                    <span className="dark:text-gray-200">Doubt Clearing Sessions</span>
                   </div>
                 </div>
               </div>
