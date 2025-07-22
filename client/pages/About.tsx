@@ -70,17 +70,17 @@ export default function About() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
               About PadhaiHub
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Empowering Students Since
               <span className="text-blue-600"> 2014</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Founded with a vision to transform education, PadhaiHub has been a
               beacon of academic excellence, helping thousands of students
               achieve their dreams through quality education and personalized
@@ -114,7 +114,7 @@ export default function About() {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -150,7 +150,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-xl p-8">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
               <h3 className="text-xl font-bold text-gray-900 mb-6">
                 Our Mission
               </h3>
@@ -194,7 +194,7 @@ export default function About() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Our Core Values
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               These fundamental principles guide everything we do at PadhaiHub
             </p>
           </div>
