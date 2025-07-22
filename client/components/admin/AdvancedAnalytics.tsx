@@ -277,34 +277,8 @@ export default function AdvancedAnalytics() {
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={enrollmentTrends}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis
-                    dataKey="month"
-                    axisLine={true}
-                    tickLine={true}
-                    tickMargin={5}
-                    tick={true}
-                    allowDecimals={true}
-                    allowDuplicatedCategory={true}
-                    angle={0}
-                    height={60}
-                    interval="preserveStartEnd"
-                    minTickGap={5}
-                    orientation="bottom"
-                    reversed={false}
-                    tickCount={5}
-                    type="category"
-                  />
-                  <YAxis
-                    axisLine={true}
-                    tickLine={true}
-                    tickMargin={5}
-                    tick={true}
-                    allowDecimals={true}
-                    allowDuplicatedCategory={false}
-                    orientation="left"
-                    type="number"
-                    width={60}
-                  />
+                  <XAxis dataKey="month" />
+                  <YAxis />
                   <Tooltip />
                   <Line type="monotone" dataKey="newEnrollments" stroke="#3b82f6" strokeWidth={2} />
                   <Line type="monotone" dataKey="retention" stroke="#10b981" strokeWidth={2} />
