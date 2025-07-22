@@ -59,6 +59,15 @@ export default function QuickActions() {
       color: "bg-red-500 hover:bg-red-600",
       action: () => console.log("View fees"),
     },
+    {
+      title: "Submit Review",
+      description: "Share your experience and feedback",
+      icon: Star,
+      color: "bg-yellow-500 hover:bg-yellow-600",
+      action: () => console.log("Submit review"),
+      isLink: true,
+      href: "/reviews",
+    },
   ];
 
   return (
