@@ -19,6 +19,8 @@ export const XAxis: React.FC<XAxisProps> = ({
   tickCount = 5,
   type = "category",
   width = 0,
+  xAxisId,
+  yAxisId,
   ...props
 }) => (
   <RechartsXAxis
@@ -37,6 +39,7 @@ export const XAxis: React.FC<XAxisProps> = ({
     tickCount={tickCount}
     type={type}
     width={width}
+    xAxisId={xAxisId}
     {...props}
   />
 );
