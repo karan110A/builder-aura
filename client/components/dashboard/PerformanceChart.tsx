@@ -10,6 +10,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
+import ChartWrapper from "./ChartWrapper";
 
 interface PerformanceChartProps {
   type?: "line" | "bar";
