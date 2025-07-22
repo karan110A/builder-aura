@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Scene3D from "@/components/3D/Scene3D";
+import AtomAnimation from "@/components/3D/AtomAnimation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
