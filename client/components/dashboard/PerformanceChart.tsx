@@ -84,6 +84,17 @@ export default function PerformanceChart({
             axisLine={true}
             tickLine={true}
             tickMargin={5}
+            tick={true}
+            allowDecimals={true}
+            allowDuplicatedCategory={true}
+            angle={0}
+            height={60}
+            interval="preserveStartEnd"
+            minTickGap={5}
+            orientation="bottom"
+            reversed={false}
+            tickCount={5}
+            type="category"
           />
           <YAxis axisLine={true} tickLine={true} tickMargin={5} />
           <Tooltip />
