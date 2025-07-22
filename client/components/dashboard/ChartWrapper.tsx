@@ -6,21 +6,39 @@ interface ChartWrapperProps {
 
 export default function ChartWrapper({ children }: ChartWrapperProps) {
   useEffect(() => {
-    // Temporarily suppress React defaultProps warnings for Recharts
+    // Suppress React defaultProps warnings for Recharts components
     const originalWarn = console.warn;
+    const originalError = console.error;
+
     console.warn = (...args) => {
-      // Filter out specific Recharts defaultProps warnings
+      const message = args[0]?.toString?.() || "";
       if (
-        args[0]?.includes?.("Support for defaultProps will be removed") &&
-        (args[1]?.includes?.("XAxis") || args[1]?.includes?.("YAxis"))
+        message.includes("Support for defaultProps will be removed") &&
+        (message.includes("XAxis") || message.includes("YAxis") ||
+         message.includes("CartesianGrid") || message.includes("Tooltip") ||
+         message.includes("Legend") || message.includes("ResponsiveContainer"))
       ) {
         return; // Suppress these specific warnings
       }
       originalWarn(...args);
     };
 
+    console.error = (...args) => {
+      const message = args[0]?.toString?.() || "";
+      if (
+        message.includes("Support for defaultProps will be removed") &&
+        (message.includes("XAxis") || message.includes("YAxis") ||
+         message.includes("CartesianGrid") || message.includes("Tooltip") ||
+         message.includes("Legend") || message.includes("ResponsiveContainer"))
+      ) {
+        return; // Suppress these specific errors as well
+      }
+      originalError(...args);
+    };
+
     return () => {
-      console.warn = originalWarn; // Restore original console.warn
+      console.warn = originalWarn;
+      console.error = originalError;
     };
   }, []);
 
