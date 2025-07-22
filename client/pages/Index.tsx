@@ -10,6 +10,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Scene3D from "@/components/3D/Scene3D";
+import FloatingBooks from "@/components/3D/FloatingBooks";
 import {
   BookOpen,
   Users,
