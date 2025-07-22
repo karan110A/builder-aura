@@ -96,18 +96,18 @@ export default function Index() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <Badge variant="secondary" className="mb-4">
                 #1 Tuition Center in the City
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
                 Excel in Your
                 <span className="text-blue-600"> Academic Journey</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8">
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 Join PadhaiHub and unlock your potential with expert guidance,
                 personalized learning, and proven teaching methods that
                 guarantee success.
@@ -128,15 +128,15 @@ export default function Index() {
               <div className="grid grid-cols-3 gap-6 mt-12">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">1000+</div>
-                  <div className="text-sm text-gray-600">Students Taught</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Students Taught</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">95%</div>
-                  <div className="text-sm text-gray-600">Success Rate</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Success Rate</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">10+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
                 </div>
               </div>
             </div>
