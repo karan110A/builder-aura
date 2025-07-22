@@ -136,7 +136,7 @@ export default function Index() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 mt-12">
+              <div className="grid grid-cols-3 gap-6 mt-12 animate-fade-in-up animation-delay-600">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">1000+</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">
