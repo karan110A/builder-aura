@@ -297,6 +297,32 @@ export default function Dashboard() {
               <StudyTimer />
             </div>
 
+            {/* Quick Actions */}
+            <QuickActions />
+
+            {/* Performance Charts */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardContent className="p-6">
+                  <PerformanceChart
+                    title="Monthly Performance Trend"
+                    data={performanceData}
+                    type="line"
+                  />
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <PerformanceChart
+                    title="Subject-wise Performance"
+                    data={subjectPerformance}
+                    type="bar"
+                  />
+                </CardContent>
+              </Card>
+            </div>
+
             {/* Recent Activity */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Recent Assignments */}
