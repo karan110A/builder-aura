@@ -14,6 +14,7 @@ export default function Header() {
     { name: "Courses", href: "/courses" },
     { name: "Teachers", href: "/teachers" },
     { name: "Dashboard", href: "/dashboard" },
+    { name: "Reviews", href: "/reviews" },
     { name: "Contact", href: "/contact" },
   ];
 
