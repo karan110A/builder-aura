@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Teachers from "./pages/Teachers";
 import Contact from "./pages/Contact";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
