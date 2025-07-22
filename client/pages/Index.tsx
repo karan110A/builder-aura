@@ -319,6 +319,67 @@ export default function Index() {
         </div>
       </section>
 
+      {/* 3D Interactive Showcase */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Interactive Learning Experience
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              Explore our subjects through engaging 3D visualizations
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Mathematics/Physics */}
+            <div className="text-center">
+              <div className="h-64 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
+                <Scene3D
+                  className="w-full h-full"
+                  enableControls={true}
+                  camera={{ position: [3, 3, 5], fov: 60 }}
+                >
+                  <AtomAnimation />
+                </Scene3D>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Physics & Chemistry</h3>
+              <p className="text-gray-600 dark:text-gray-300">Interactive atomic models and molecular structures</p>
+            </div>
+
+            {/* Biology */}
+            <div className="text-center">
+              <div className="h-64 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
+                <Scene3D
+                  className="w-full h-full"
+                  enableControls={true}
+                  camera={{ position: [3, 0, 4], fov: 50 }}
+                >
+                  <DNAHelix />
+                </Scene3D>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Biology</h3>
+              <p className="text-gray-600 dark:text-gray-300">3D models of DNA, cells, and biological processes</p>
+            </div>
+
+            {/* General Education */}
+            <div className="text-center">
+              <div className="h-64 mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
+                <Scene3D
+                  className="w-full h-full"
+                  enableControls={true}
+                  camera={{ position: [6, 3, 8], fov: 75 }}
+                >
+                  <GeometricShapes />
+                </Scene3D>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Mathematics</h3>
+              <p className="text-gray-600 dark:text-gray-300">3D geometric shapes and mathematical concepts</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
