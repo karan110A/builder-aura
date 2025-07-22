@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Play, Pause, Square, Clock } from 'lucide-react';
+import { Play, Pause, Square, Clock } from "lucide-react";
 
 export default function StudyTimer() {
   const [time, setTime] = useState(25 * 60); // 25 minutes in seconds
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [mode, setMode] = useState<'study' | 'break'>('study');
+  const [mode, setMode] = useState<"study" | "break">("study");
 
   useEffect(() => {
     let interval: number | null = null;
@@ -20,10 +20,10 @@ export default function StudyTimer() {
             setIsActive(false);
             setIsPaused(false);
             // Switch mode when timer completes
-            const newMode = mode === 'study' ? 'break' : 'study';
+            const newMode = mode === "study" ? "break" : "study";
             setMode(newMode);
-            setTime(newMode === 'study' ? 25 * 60 : 5 * 60);
-            return newMode === 'study' ? 25 * 60 : 5 * 60;
+            setTime(newMode === "study" ? 25 * 60 : 5 * 60);
+            return newMode === "study" ? 25 * 60 : 5 * 60;
           }
           return time - 1;
         });
@@ -49,16 +49,16 @@ export default function StudyTimer() {
   const handleReset = () => {
     setIsActive(false);
     setIsPaused(false);
-    setTime(mode === 'study' ? 25 * 60 : 5 * 60);
+    setTime(mode === "study" ? 25 * 60 : 5 * 60);
   };
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const maxTime = mode === 'study' ? 25 * 60 : 5 * 60;
+  const maxTime = mode === "study" ? 25 * 60 : 5 * 60;
   const progress = ((maxTime - time) / maxTime) * 100;
 
   return (
@@ -71,11 +71,13 @@ export default function StudyTimer() {
       </CardHeader>
       <CardContent className="text-center space-y-6">
         <div>
-          <div className={`text-4xl font-bold mb-2 ${mode === 'study' ? 'text-blue-600' : 'text-green-600'}`}>
+          <div
+            className={`text-4xl font-bold mb-2 ${mode === "study" ? "text-blue-600" : "text-green-600"}`}
+          >
             {formatTime(time)}
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {mode === 'study' ? 'Study Time' : 'Break Time'}
+            {mode === "study" ? "Study Time" : "Break Time"}
           </p>
         </div>
 
@@ -88,19 +90,27 @@ export default function StudyTimer() {
               Start
             </Button>
           ) : (
-            <Button onClick={handlePause} variant="outline" className="flex items-center">
+            <Button
+              onClick={handlePause}
+              variant="outline"
+              className="flex items-center"
+            >
               <Pause className="h-4 w-4 mr-1" />
-              {isPaused ? 'Resume' : 'Pause'}
+              {isPaused ? "Resume" : "Pause"}
             </Button>
           )}
-          <Button onClick={handleReset} variant="outline" className="flex items-center">
+          <Button
+            onClick={handleReset}
+            variant="outline"
+            className="flex items-center"
+          >
             <Square className="h-4 w-4 mr-1" />
             Reset
           </Button>
         </div>
 
         <div className="text-sm text-gray-600 dark:text-gray-400">
-          <p>{mode === 'study' ? '25 min study session' : '5 min break'}</p>
+          <p>{mode === "study" ? "25 min study session" : "5 min break"}</p>
         </div>
       </CardContent>
     </Card>

@@ -11,7 +11,7 @@ import {
   Upload,
   CreditCard,
   Zap,
-} from 'lucide-react';
+} from "lucide-react";
 
 export default function QuickActions() {
   const actions = [
@@ -77,7 +77,9 @@ export default function QuickActions() {
               onClick={action.action}
             >
               <div className="flex items-center w-full mb-2">
-                <div className={`w-8 h-8 rounded-lg ${action.color} flex items-center justify-center mr-3`}>
+                <div
+                  className={`w-8 h-8 rounded-lg ${action.color} flex items-center justify-center mr-3`}
+                >
                   <action.icon className="h-4 w-4 text-white" />
                 </div>
                 <span className="font-medium text-sm">{action.title}</span>
