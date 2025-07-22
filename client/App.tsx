@@ -14,6 +14,7 @@ import Courses from "./pages/Courses";
 import Teachers from "./pages/Teachers";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
+import Reviews from "./pages/Reviews";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
