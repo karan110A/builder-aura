@@ -41,11 +41,7 @@ export default function PerformanceChart({
               tickLine={true}
               tickMargin={5}
             />
-            <YAxis
-              axisLine={true}
-              tickLine={true}
-              tickMargin={5}
-            />
+            <YAxis axisLine={true} tickLine={true} tickMargin={5} />
             <Tooltip />
             <Bar dataKey="value" fill="#3b82f6" />
           </BarChart>
@@ -68,11 +64,7 @@ export default function PerformanceChart({
             tickLine={true}
             tickMargin={5}
           />
-          <YAxis
-            axisLine={true}
-            tickLine={true}
-            tickMargin={5}
-          />
+          <YAxis axisLine={true} tickLine={true} tickMargin={5} />
           <Tooltip />
           <Line
             type="monotone"
