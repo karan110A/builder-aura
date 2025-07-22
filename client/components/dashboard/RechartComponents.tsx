@@ -44,7 +44,7 @@ export const XAxis: React.FC<XAxisProps> = ({
   />
 );
 
-// Custom YAxis wrapper with explicit default props  
+// Custom YAxis wrapper with explicit default props
 export const YAxis: React.FC<YAxisProps> = ({
   axisLine = true,
   tickLine = true,
@@ -56,6 +56,8 @@ export const YAxis: React.FC<YAxisProps> = ({
   type = "number",
   width = 60,
   height = 0,
+  xAxisId,
+  yAxisId,
   ...props
 }) => (
   <RechartsYAxis
@@ -69,6 +71,7 @@ export const YAxis: React.FC<YAxisProps> = ({
     type={type}
     width={width}
     height={height}
+    yAxisId={yAxisId}
     {...props}
   />
 );
