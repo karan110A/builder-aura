@@ -149,7 +149,7 @@ export default function Contact() {
           <Badge variant="secondary" className="mb-4">
             Contact Us
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
             Get in
             <span className="text-blue-600"> Touch</span>
           </h1>
