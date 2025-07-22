@@ -35,8 +35,17 @@ export default function PerformanceChart({
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
+            <XAxis
+              dataKey="name"
+              axisLine={true}
+              tickLine={true}
+              tickMargin={5}
+            />
+            <YAxis
+              axisLine={true}
+              tickLine={true}
+              tickMargin={5}
+            />
             <Tooltip />
             <Bar dataKey="value" fill="#3b82f6" />
           </BarChart>
