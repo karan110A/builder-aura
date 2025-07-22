@@ -326,7 +326,7 @@ export default function Contact() {
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Navigation className="h-5 w-5 mr-2 text-blue-600" />
-                    Find Us
+                    Find Us Globally
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
