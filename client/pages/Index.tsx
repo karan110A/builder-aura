@@ -16,6 +16,7 @@ import AtomAnimation from "@/components/3D/AtomAnimation";
 import DNAHelix from "@/components/3D/DNAHelix";
 import GeometricShapes from "@/components/3D/GeometricShapes";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import GradientBackground from "@/components/GradientBackground";
 import {
   BookOpen,
   Users,
