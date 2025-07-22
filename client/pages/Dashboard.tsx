@@ -25,6 +25,9 @@ import {
   Users,
   BookMarked,
 } from "lucide-react";
+import PerformanceChart from "@/components/dashboard/PerformanceChart";
+import StudyTimer from "@/components/dashboard/StudyTimer";
+import QuickActions from "@/components/dashboard/QuickActions";
 
 export default function Dashboard() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
