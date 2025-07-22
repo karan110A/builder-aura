@@ -1,21 +1,27 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { 
-  BookOpen, 
-  Users, 
-  Award, 
-  Clock, 
-  Star, 
+import {
+  BookOpen,
+  Users,
+  Award,
+  Clock,
+  Star,
   TrendingUp,
   CheckCircle,
   ArrowRight,
   GraduationCap,
   Target,
-  Brain
+  Brain,
 } from "lucide-react";
 
 export default function Index() {
@@ -23,33 +29,33 @@ export default function Index() {
     {
       icon: BookOpen,
       title: "Expert Faculty",
-      description: "Learn from experienced teachers with proven track records"
+      description: "Learn from experienced teachers with proven track records",
     },
     {
       icon: Users,
       title: "Small Batches",
-      description: "Personalized attention with limited students per class"
+      description: "Personalized attention with limited students per class",
     },
     {
       icon: Clock,
       title: "Flexible Timings",
-      description: "Morning and evening batches to suit your schedule"
+      description: "Morning and evening batches to suit your schedule",
     },
     {
       icon: Award,
       title: "Proven Results",
-      description: "95% of our students achieve their target scores"
+      description: "95% of our students achieve their target scores",
     },
     {
       icon: Target,
       title: "Goal-Oriented",
-      description: "Focused preparation for boards, competitive exams"
+      description: "Focused preparation for boards, competitive exams",
     },
     {
       icon: Brain,
       title: "Modern Teaching",
-      description: "Interactive lessons with digital tools and resources"
-    }
+      description: "Interactive lessons with digital tools and resources",
+    },
   ];
 
   const subjects = [
@@ -58,34 +64,37 @@ export default function Index() {
     { name: "Chemistry", students: "400+", rating: 4.9 },
     { name: "Biology", students: "250+", rating: 4.7 },
     { name: "English", students: "300+", rating: 4.8 },
-    { name: "Computer Science", students: "200+", rating: 4.9 }
+    { name: "Computer Science", students: "200+", rating: 4.9 },
   ];
 
   const testimonials = [
     {
       name: "Priya Sharma",
       class: "Class 12, PCM",
-      content: "PadhaiHub helped me score 96% in boards. The teachers are amazing!",
-      rating: 5
+      content:
+        "PadhaiHub helped me score 96% in boards. The teachers are amazing!",
+      rating: 5,
     },
     {
       name: "Arjun Patel",
       class: "JEE Aspirant",
-      content: "Got selected in IIT Delhi thanks to the excellent coaching here.",
-      rating: 5
+      content:
+        "Got selected in IIT Delhi thanks to the excellent coaching here.",
+      rating: 5,
     },
     {
       name: "Sneha Gupta",
       class: "NEET Aspirant",
-      content: "The biology faculty is outstanding. Highly recommend PadhaiHub!",
-      rating: 5
-    }
+      content:
+        "The biology faculty is outstanding. Highly recommend PadhaiHub!",
+      rating: 5,
+    },
   ];
 
   return (
     <div className="min-h-screen">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,8 +108,9 @@ export default function Index() {
                 <span className="text-blue-600"> Academic Journey</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Join PadhaiHub and unlock your potential with expert guidance, 
-                personalized learning, and proven teaching methods that guarantee success.
+                Join PadhaiHub and unlock your potential with expert guidance,
+                personalized learning, and proven teaching methods that
+                guarantee success.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
@@ -113,7 +123,7 @@ export default function Index() {
                   <Link to="/courses">View Courses</Link>
                 </Button>
               </div>
-              
+
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 mt-12">
                 <div className="text-center">
@@ -130,7 +140,7 @@ export default function Index() {
                 </div>
               </div>
             </div>
-            
+
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl p-8">
                 <div className="flex items-center mb-6">
@@ -172,13 +182,17 @@ export default function Index() {
               Why Choose PadhaiHub?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide comprehensive learning solutions designed to help students achieve their academic goals
+              We provide comprehensive learning solutions designed to help
+              students achieve their academic goals
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <Card
+                key={index}
+                className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow"
+              >
                 <CardHeader>
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <feature.icon className="h-8 w-8 text-blue-600" />
@@ -207,7 +221,7 @@ export default function Index() {
               Comprehensive coaching for all major subjects
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {subjects.map((subject, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
@@ -216,7 +230,9 @@ export default function Index() {
                     <CardTitle className="text-lg">{subject.name}</CardTitle>
                     <div className="flex items-center">
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
-                      <span className="text-sm font-medium">{subject.rating}</span>
+                      <span className="text-sm font-medium">
+                        {subject.rating}
+                      </span>
                     </div>
                   </div>
                   <CardDescription>
@@ -245,14 +261,17 @@ export default function Index() {
               Success stories from our proud students
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="border-0 shadow-lg">
                 <CardHeader>
                   <div className="flex items-center mb-2">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      <Star
+                        key={i}
+                        className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                      />
                     ))}
                   </div>
                   <CardTitle className="text-lg">{testimonial.name}</CardTitle>
@@ -276,7 +295,8 @@ export default function Index() {
             Ready to Start Your Journey?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join thousands of successful students. Enroll now and transform your academic future.
+            Join thousands of successful students. Enroll now and transform your
+            academic future.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
@@ -285,7 +305,12 @@ export default function Index() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-white border-white hover:bg-white hover:text-blue-600"
+              asChild
+            >
               <Link to="/courses">View All Courses</Link>
             </Button>
           </div>

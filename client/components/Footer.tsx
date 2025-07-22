@@ -13,8 +13,9 @@ export default function Footer() {
               <span className="text-xl font-bold">PadhaiHub</span>
             </Link>
             <p className="text-gray-300 mb-4 max-w-md">
-              Empowering students with quality education and personalized learning experiences. 
-              Join thousands of successful students who achieved their academic goals with us.
+              Empowering students with quality education and personalized
+              learning experiences. Join thousands of successful students who
+              achieved their academic goals with us.
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-gray-300">
@@ -37,22 +38,34 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
+                <Link
+                  to="/about"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/courses" className="text-gray-300 hover:text-white transition-colors">
+                <Link
+                  to="/courses"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   Our Courses
                 </Link>
               </li>
               <li>
-                <Link to="/teachers" className="text-gray-300 hover:text-white transition-colors">
+                <Link
+                  to="/teachers"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   Our Faculty
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
+                <Link
+                  to="/contact"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   Contact Us
                 </Link>
               </li>
@@ -80,7 +93,8 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2024 PadhaiHub. All rights reserved. | Designed with ❤️ for better education
+            © 2024 PadhaiHub. All rights reserved. | Designed with ❤️ for
+            better education
           </p>
         </div>
       </div>

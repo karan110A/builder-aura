@@ -2,24 +2,36 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
+import {
+  MapPin,
+  Phone,
+  Mail,
   Clock,
   Send,
   MessageSquare,
   Navigation,
   Calendar,
   Users,
-  GraduationCap
+  GraduationCap,
 } from "lucide-react";
 
 export default function Contact() {
@@ -30,7 +42,7 @@ export default function Contact() {
     phone: "",
     subject: "",
     class: "",
-    message: ""
+    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -45,12 +57,12 @@ export default function Contact() {
       phone: "",
       subject: "",
       class: "",
-      message: ""
+      message: "",
     });
   };
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const contactInfo = [
@@ -58,26 +70,26 @@ export default function Contact() {
       icon: MapPin,
       title: "Visit Us",
       content: "123 Education Street, Learning City, LC 12345",
-      description: "Come visit our modern campus"
+      description: "Come visit our modern campus",
     },
     {
       icon: Phone,
       title: "Call Us",
       content: "+91 98765 43210",
-      description: "Mon-Sat: 9:00 AM - 8:00 PM"
+      description: "Mon-Sat: 9:00 AM - 8:00 PM",
     },
     {
       icon: Mail,
       title: "Email Us",
       content: "info@padhaihub.com",
-      description: "We reply within 24 hours"
+      description: "We reply within 24 hours",
     },
     {
       icon: Clock,
       title: "Office Hours",
       content: "Mon-Sat: 9:00 AM - 8:00 PM",
-      description: "Sunday: 10:00 AM - 6:00 PM"
-    }
+      description: "Sunday: 10:00 AM - 6:00 PM",
+    },
   ];
 
   const branches = [
@@ -86,47 +98,51 @@ export default function Contact() {
       address: "123 Education Street, Learning City",
       phone: "+91 98765 43210",
       timing: "6:00 AM - 10:30 PM",
-      facilities: ["Library", "Lab", "Cafeteria", "Parking"]
+      facilities: ["Library", "Lab", "Cafeteria", "Parking"],
     },
     {
       name: "East Branch",
       address: "456 Knowledge Road, East District",
       phone: "+91 98765 43211",
       timing: "7:00 AM - 9:00 PM",
-      facilities: ["Library", "Lab", "Parking"]
+      facilities: ["Library", "Lab", "Parking"],
     },
     {
       name: "West Branch",
       address: "789 Study Avenue, West Zone",
       phone: "+91 98765 43212",
       timing: "6:30 AM - 9:30 PM",
-      facilities: ["Library", "Cafeteria", "Parking"]
-    }
+      facilities: ["Library", "Cafeteria", "Parking"],
+    },
   ];
 
   const faqs = [
     {
       question: "What are the admission requirements?",
-      answer: "Students from Class 9-12 can join. No specific requirements, just enthusiasm to learn!"
+      answer:
+        "Students from Class 9-12 can join. No specific requirements, just enthusiasm to learn!",
     },
     {
       question: "Do you provide study materials?",
-      answer: "Yes, we provide comprehensive study materials, practice papers, and digital resources."
+      answer:
+        "Yes, we provide comprehensive study materials, practice papers, and digital resources.",
     },
     {
       question: "What is the batch size?",
-      answer: "We maintain small batches of 12-25 students for personalized attention."
+      answer:
+        "We maintain small batches of 12-25 students for personalized attention.",
     },
     {
       question: "Do you offer online classes?",
-      answer: "Yes, we offer both offline and online classes with interactive digital platforms."
-    }
+      answer:
+        "Yes, we offer both offline and online classes with interactive digital platforms.",
+    },
   ];
 
   return (
     <div className="min-h-screen">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -138,8 +154,9 @@ export default function Contact() {
             <span className="text-blue-600"> Touch</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to start your academic journey? We're here to help you choose the right 
-            course and answer all your questions. Reach out to us today!
+            Ready to start your academic journey? We're here to help you choose
+            the right course and answer all your questions. Reach out to us
+            today!
           </p>
         </div>
       </section>
@@ -149,7 +166,10 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <Card
+                key={index}
+                className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow"
+              >
                 <CardHeader>
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <info.icon className="h-8 w-8 text-blue-600" />
@@ -157,7 +177,9 @@ export default function Contact() {
                   <CardTitle className="text-lg">{info.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-semibold text-gray-900 mb-2">{info.content}</p>
+                  <p className="font-semibold text-gray-900 mb-2">
+                    {info.content}
+                  </p>
                   <CardDescription>{info.description}</CardDescription>
                 </CardContent>
               </Card>
@@ -178,7 +200,8 @@ export default function Contact() {
                   Send us a Message
                 </CardTitle>
                 <CardDescription>
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  Fill out the form below and we'll get back to you as soon as
+                  possible.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -189,7 +212,9 @@ export default function Contact() {
                       <Input
                         id="name"
                         value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("name", e.target.value)
+                        }
                         placeholder="Enter your name"
                         required
                       />
@@ -200,27 +225,35 @@ export default function Contact() {
                         id="email"
                         type="email"
                         value={formData.email}
-                        onChange={(e) => handleInputChange("email", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
                         placeholder="Enter your email"
                         required
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="phone">Phone Number *</Label>
                       <Input
                         id="phone"
                         value={formData.phone}
-                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("phone", e.target.value)
+                        }
                         placeholder="Enter your phone"
                         required
                       />
                     </div>
                     <div>
                       <Label htmlFor="class">Class/Course Interest</Label>
-                      <Select onValueChange={(value) => handleInputChange("class", value)}>
+                      <Select
+                        onValueChange={(value) =>
+                          handleInputChange("class", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select your class" />
                         </SelectTrigger>
@@ -236,10 +269,14 @@ export default function Contact() {
                       </Select>
                     </div>
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="subject">Subject of Interest</Label>
-                    <Select onValueChange={(value) => handleInputChange("subject", value)}>
+                    <Select
+                      onValueChange={(value) =>
+                        handleInputChange("subject", value)
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select subject" />
                       </SelectTrigger>
@@ -249,23 +286,29 @@ export default function Contact() {
                         <SelectItem value="chemistry">Chemistry</SelectItem>
                         <SelectItem value="biology">Biology</SelectItem>
                         <SelectItem value="english">English</SelectItem>
-                        <SelectItem value="computer">Computer Science</SelectItem>
-                        <SelectItem value="multiple">Multiple Subjects</SelectItem>
+                        <SelectItem value="computer">
+                          Computer Science
+                        </SelectItem>
+                        <SelectItem value="multiple">
+                          Multiple Subjects
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="message">Message</Label>
                     <Textarea
                       id="message"
                       value={formData.message}
-                      onChange={(e) => handleInputChange("message", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("message", e.target.value)
+                      }
                       placeholder="Tell us about your requirements..."
                       rows={4}
                     />
                   </div>
-                  
+
                   <Button type="submit" className="w-full" size="lg">
                     <Send className="h-4 w-4 mr-2" />
                     Send Message
@@ -289,7 +332,9 @@ export default function Contact() {
                     <div className="text-center text-gray-600">
                       <MapPin className="h-12 w-12 mx-auto mb-2" />
                       <p>Interactive Map</p>
-                      <p className="text-sm">123 Education Street, Learning City</p>
+                      <p className="text-sm">
+                        123 Education Street, Learning City
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -331,10 +376,13 @@ export default function Contact() {
               Multiple branches for your convenience
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {branches.map((branch, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <Card
+                key={index}
+                className="border-0 shadow-lg hover:shadow-xl transition-shadow"
+              >
                 <CardHeader>
                   <CardTitle className="text-lg">{branch.name}</CardTitle>
                   <CardDescription className="flex items-start">
@@ -382,7 +430,7 @@ export default function Contact() {
               Quick answers to common questions
             </p>
           </div>
-          
+
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <Card key={index} className="border-0 shadow-lg">

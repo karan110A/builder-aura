@@ -1,10 +1,16 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  GraduationCap, 
+import {
+  GraduationCap,
   Award,
   BookOpen,
   Star,
@@ -12,7 +18,7 @@ import {
   Calendar,
   MapPin,
   Mail,
-  Phone
+  Phone,
 } from "lucide-react";
 
 export default function Teachers() {
@@ -31,8 +37,8 @@ export default function Teachers() {
       achievements: [
         "Former IIT Delhi faculty",
         "Author of 3 mathematics books",
-        "100+ IIT selections"
-      ]
+        "100+ IIT selections",
+      ],
     },
     {
       id: 2,
@@ -48,8 +54,8 @@ export default function Teachers() {
       achievements: [
         "Best Teacher Award 2023",
         "85% success rate in JEE",
-        "Research in Quantum Physics"
-      ]
+        "Research in Quantum Physics",
+      ],
     },
     {
       id: 3,
@@ -65,8 +71,8 @@ export default function Teachers() {
       achievements: [
         "Former research scientist",
         "50+ research publications",
-        "90% NEET success rate"
-      ]
+        "90% NEET success rate",
+      ],
     },
     {
       id: 4,
@@ -82,8 +88,8 @@ export default function Teachers() {
       achievements: [
         "NEET topper mentor",
         "Innovative teaching methods",
-        "Student-friendly approach"
-      ]
+        "Student-friendly approach",
+      ],
     },
     {
       id: 5,
@@ -99,8 +105,8 @@ export default function Teachers() {
       achievements: [
         "Published poet",
         "Communication skills expert",
-        "Board exam specialist"
-      ]
+        "Board exam specialist",
+      ],
     },
     {
       id: 6,
@@ -116,22 +122,22 @@ export default function Teachers() {
       achievements: [
         "Ex-Google engineer",
         "Open source contributor",
-        "Coding competition mentor"
-      ]
-    }
+        "Coding competition mentor",
+      ],
+    },
   ];
 
   const stats = [
     { label: "Expert Faculty", value: "20+", icon: Users },
     { label: "Combined Experience", value: "200+ Years", icon: Calendar },
     { label: "Students Taught", value: "10,000+", icon: GraduationCap },
-    { label: "Success Rate", value: "95%", icon: Award }
+    { label: "Success Rate", value: "95%", icon: Award },
   ];
 
   return (
     <div className="min-h-screen">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -143,8 +149,9 @@ export default function Teachers() {
             <span className="text-blue-600"> Expert Teachers</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Learn from the best educators who are passionate about teaching and committed 
-            to your academic success. Our faculty brings years of experience and proven results.
+            Learn from the best educators who are passionate about teaching and
+            committed to your academic success. Our faculty brings years of
+            experience and proven results.
           </p>
         </div>
       </section>
@@ -183,10 +190,13 @@ export default function Teachers() {
               Dedicated educators committed to your success
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teachers.map((teacher) => (
-              <Card key={teacher.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <Card
+                key={teacher.id}
+                className="border-0 shadow-lg hover:shadow-xl transition-shadow"
+              >
                 <CardHeader className="text-center">
                   <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <GraduationCap className="h-12 w-12 text-gray-400" />
@@ -197,45 +207,64 @@ export default function Teachers() {
                   </CardDescription>
                   <div className="flex items-center justify-center mt-2">
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
-                    <span className="text-sm font-medium">{teacher.rating}</span>
+                    <span className="text-sm font-medium">
+                      {teacher.rating}
+                    </span>
                     <span className="text-gray-400 mx-2">•</span>
-                    <span className="text-sm text-gray-600">{teacher.students}+ students</span>
+                    <span className="text-sm text-gray-600">
+                      {teacher.students}+ students
+                    </span>
                   </div>
                 </CardHeader>
-                
+
                 <CardContent className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-sm mb-2">Qualification:</h4>
-                    <p className="text-sm text-gray-600">{teacher.qualification}</p>
+                    <h4 className="font-semibold text-sm mb-2">
+                      Qualification:
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      {teacher.qualification}
+                    </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold text-sm mb-2">Experience:</h4>
-                    <p className="text-sm text-gray-600">{teacher.experience}</p>
+                    <p className="text-sm text-gray-600">
+                      {teacher.experience}
+                    </p>
                   </div>
-                  
+
                   <div>
-                    <h4 className="font-semibold text-sm mb-2">Specialization:</h4>
-                    <p className="text-sm text-gray-600">{teacher.specialization}</p>
+                    <h4 className="font-semibold text-sm mb-2">
+                      Specialization:
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      {teacher.specialization}
+                    </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold text-sm mb-2">About:</h4>
                     <p className="text-sm text-gray-600">{teacher.bio}</p>
                   </div>
-                  
+
                   <div>
-                    <h4 className="font-semibold text-sm mb-2">Key Achievements:</h4>
+                    <h4 className="font-semibold text-sm mb-2">
+                      Key Achievements:
+                    </h4>
                     <ul className="space-y-1">
                       {teacher.achievements.map((achievement, index) => (
-                        <li key={index} className="text-sm text-gray-600 flex items-start">
+                        <li
+                          key={index}
+                          className="text-sm text-gray-600 flex items-start"
+                        >
                           <Award className="h-3 w-3 text-yellow-500 mr-2 mt-1 flex-shrink-0" />
                           {achievement}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  
+
                   <Button variant="outline" className="w-full">
                     <Mail className="h-4 w-4 mr-2" />
                     Contact Teacher
@@ -257,51 +286,63 @@ export default function Teachers() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  At PadhaiHub, we believe that every student has the potential to excel. 
-                  Our teachers are not just educators but mentors who guide students through 
-                  their academic journey with patience, expertise, and dedication.
+                  At PadhaiHub, we believe that every student has the potential
+                  to excel. Our teachers are not just educators but mentors who
+                  guide students through their academic journey with patience,
+                  expertise, and dedication.
                 </p>
                 <p>
-                  We follow a student-centric approach where each teacher adapts their 
-                  methodology to suit different learning styles. Our small batch sizes 
-                  ensure personalized attention for every student.
+                  We follow a student-centric approach where each teacher adapts
+                  their methodology to suit different learning styles. Our small
+                  batch sizes ensure personalized attention for every student.
                 </p>
                 <p>
-                  Our faculty undergoes continuous training to stay updated with the latest 
-                  examination patterns, teaching techniques, and educational technology.
+                  Our faculty undergoes continuous training to stay updated with
+                  the latest examination patterns, teaching techniques, and
+                  educational technology.
                 </p>
               </div>
             </div>
-            
+
             <div className="bg-blue-50 rounded-2xl p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">What Makes Our Teachers Special</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-6">
+                What Makes Our Teachers Special
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-start">
                   <BookOpen className="h-5 w-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Subject Matter Experts</h4>
-                    <p className="text-gray-600 text-sm">Deep knowledge and passion for their subjects</p>
+                    <p className="text-gray-600 text-sm">
+                      Deep knowledge and passion for their subjects
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Users className="h-5 w-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Student-Friendly Approach</h4>
-                    <p className="text-gray-600 text-sm">Approachable and understanding of student needs</p>
+                    <p className="text-gray-600 text-sm">
+                      Approachable and understanding of student needs
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Award className="h-5 w-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Proven Track Record</h4>
-                    <p className="text-gray-600 text-sm">Consistent results and student success stories</p>
+                    <p className="text-gray-600 text-sm">
+                      Consistent results and student success stories
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Calendar className="h-5 w-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Always Available</h4>
-                    <p className="text-gray-600 text-sm">Regular doubt sessions and guidance</p>
+                    <p className="text-gray-600 text-sm">
+                      Regular doubt sessions and guidance
+                    </p>
                   </div>
                 </div>
               </div>
@@ -317,14 +358,19 @@ export default function Teachers() {
             Learn from the Best
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join our expert faculty and experience the difference quality teaching makes
+            Join our expert faculty and experience the difference quality
+            teaching makes
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary">
               <Phone className="h-4 w-4 mr-2" />
               Schedule a Demo Class
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600">
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-white border-white hover:bg-white hover:text-blue-600"
+            >
               <MapPin className="h-4 w-4 mr-2" />
               Visit Our Center
             </Button>
