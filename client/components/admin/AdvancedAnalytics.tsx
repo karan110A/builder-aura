@@ -12,6 +12,8 @@ import {
   PieChart,
   Pie,
   Cell,
+  XAxis,
+  YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
@@ -19,7 +21,6 @@ import {
   Area,
   AreaChart
 } from "recharts";
-import { XAxis, YAxis } from "../dashboard/RechartComponents";
 import { 
   TrendingUp, 
   Users, 
