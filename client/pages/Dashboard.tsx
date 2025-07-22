@@ -293,46 +293,8 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              {/* Progress Overview */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <TrendingUp className="h-5 w-5 mr-2" />
-                    Progress Overview
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span>Course Completion</span>
-                      <span>{Math.round((studentData.completedCredits / studentData.totalCredits) * 100)}%</span>
-                    </div>
-                    <Progress value={(studentData.completedCredits / studentData.totalCredits) * 100} />
-                  </div>
-                  
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span>Attendance Rate</span>
-                      <span>{studentData.attendance}%</span>
-                    </div>
-                    <Progress value={studentData.attendance} />
-                  </div>
-
-                  <div className="pt-4 border-t">
-                    <h4 className="font-semibold mb-3">Quick Actions</h4>
-                    <div className="space-y-2">
-                      <Button variant="outline" className="w-full justify-start">
-                        <BookOpen className="h-4 w-4 mr-2" />
-                        View Study Materials
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start">
-                        <Users className="h-4 w-4 mr-2" />
-                        Join Study Group
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              {/* Study Timer */}
+              <StudyTimer />
             </div>
 
             {/* Recent Activity */}
