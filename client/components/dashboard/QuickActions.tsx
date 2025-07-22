@@ -80,26 +80,44 @@ export default function QuickActions() {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 gap-3">
-          {actions.map((action, index) => (
-            <Button
-              key={index}
-              variant="outline"
-              className="h-auto p-3 flex flex-col items-start text-left hover:shadow-md transition-shadow"
-              onClick={action.action}
-            >
-              <div className="flex items-center w-full mb-2">
-                <div
-                  className={`w-8 h-8 rounded-lg ${action.color} flex items-center justify-center mr-3`}
-                >
-                  <action.icon className="h-4 w-4 text-white" />
+          {actions.map((action, index) => {
+            const content = (
+              <>
+                <div className="flex items-center w-full mb-2">
+                  <div
+                    className={`w-8 h-8 rounded-lg ${action.color} flex items-center justify-center mr-3`}
+                  >
+                    <action.icon className="h-4 w-4 text-white" />
+                  </div>
+                  <span className="font-medium text-sm">{action.title}</span>
                 </div>
-                <span className="font-medium text-sm">{action.title}</span>
-              </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
-                {action.description}
-              </p>
-            </Button>
-          ))}
+                <p className="text-xs text-gray-600 dark:text-gray-400">
+                  {action.description}
+                </p>
+              </>
+            );
+
+            if (action.isLink && action.href) {
+              return (
+                <Button key={index} variant="outline" className="h-auto p-3 flex flex-col items-start text-left hover:shadow-md transition-shadow" asChild>
+                  <Link to={action.href}>
+                    {content}
+                  </Link>
+                </Button>
+              );
+            }
+
+            return (
+              <Button
+                key={index}
+                variant="outline"
+                className="h-auto p-3 flex flex-col items-start text-left hover:shadow-md transition-shadow"
+                onClick={action.action}
+              >
+                {content}
+              </Button>
+            );
+          })}
         </div>
       </CardContent>
     </Card>
