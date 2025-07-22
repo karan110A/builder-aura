@@ -158,7 +158,7 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative animate-float-gentle">
               {/* 3D Animation */}
               <div className="absolute inset-0 -z-10">
                 <Scene3D
