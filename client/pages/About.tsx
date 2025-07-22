@@ -151,7 +151,7 @@ export default function About() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
                 Our Mission
               </h3>
               <div className="space-y-4">
