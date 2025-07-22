@@ -25,7 +25,9 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <GraduationCap className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-            <span className="text-xl font-bold text-gray-900 dark:text-white">PadhaiHub</span>
+            <span className="text-xl font-bold text-gray-900 dark:text-white">
+              PadhaiHub
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

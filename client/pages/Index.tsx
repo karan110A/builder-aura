@@ -128,15 +128,21 @@ export default function Index() {
               <div className="grid grid-cols-3 gap-6 mt-12">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">1000+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Students Taught</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    Students Taught
+                  </div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">95%</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Success Rate</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    Success Rate
+                  </div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">10+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    Years Experience
+                  </div>
                 </div>
               </div>
             </div>
@@ -146,26 +152,38 @@ export default function Index() {
                 <div className="flex items-center mb-6">
                   <GraduationCap className="h-12 w-12 text-blue-600" />
                   <div className="ml-4">
-                    <h3 className="text-lg font-semibold dark:text-white">Quality Education</h3>
-                    <p className="text-gray-600 dark:text-gray-300">Trusted by thousands</p>
+                    <h3 className="text-lg font-semibold dark:text-white">
+                      Quality Education
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Trusted by thousands
+                    </p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span className="dark:text-gray-200">Experienced Faculty</span>
+                    <span className="dark:text-gray-200">
+                      Experienced Faculty
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span className="dark:text-gray-200">Small Batch Sizes</span>
+                    <span className="dark:text-gray-200">
+                      Small Batch Sizes
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span className="dark:text-gray-200">Regular Assessments</span>
+                    <span className="dark:text-gray-200">
+                      Regular Assessments
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                    <span className="dark:text-gray-200">Doubt Clearing Sessions</span>
+                    <span className="dark:text-gray-200">
+                      Doubt Clearing Sessions
+                    </span>
                   </div>
                 </div>
               </div>
