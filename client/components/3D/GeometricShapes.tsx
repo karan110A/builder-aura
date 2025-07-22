@@ -1,12 +1,12 @@
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Sphere, Box, Octahedron, Torus } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Sphere, Box, Octahedron, Torus } from "@react-three/drei";
+import * as THREE from "three";
 
 interface ShapeProps {
   position: [number, number, number];
   color: string;
-  type: 'sphere' | 'box' | 'octahedron' | 'torus';
+  type: "sphere" | "box" | "octahedron" | "torus";
 }
 
 function Shape({ position, color, type }: ShapeProps) {
@@ -16,19 +16,20 @@ function Shape({ position, color, type }: ShapeProps) {
     if (meshRef.current) {
       meshRef.current.rotation.x += 0.01;
       meshRef.current.rotation.y += 0.01;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 2 + position[0]) * 0.2;
+      meshRef.current.position.y =
+        position[1] + Math.sin(state.clock.elapsedTime * 2 + position[0]) * 0.2;
     }
   });
 
   const shapeComponent = () => {
     switch (type) {
-      case 'sphere':
+      case "sphere":
         return <Sphere ref={meshRef} args={[0.5, 32, 32]} />;
-      case 'box':
+      case "box":
         return <Box ref={meshRef} args={[0.8, 0.8, 0.8]} />;
-      case 'octahedron':
+      case "octahedron":
         return <Octahedron ref={meshRef} args={[0.6]} />;
-      case 'torus':
+      case "torus":
         return <Torus ref={meshRef} args={[0.5, 0.2, 16, 32]} />;
       default:
         return <Sphere ref={meshRef} args={[0.5, 32, 32]} />;
@@ -45,11 +46,31 @@ function Shape({ position, color, type }: ShapeProps) {
 
 export default function GeometricShapes() {
   const shapes = [
-    { position: [-3, 0, 0] as [number, number, number], color: "#3b82f6", type: 'sphere' as const },
-    { position: [-1, 1, -2] as [number, number, number], color: "#ef4444", type: 'box' as const },
-    { position: [1, -1, 1] as [number, number, number], color: "#10b981", type: 'octahedron' as const },
-    { position: [3, 0.5, -1] as [number, number, number], color: "#f59e0b", type: 'torus' as const },
-    { position: [0, -2, 0] as [number, number, number], color: "#8b5cf6", type: 'sphere' as const },
+    {
+      position: [-3, 0, 0] as [number, number, number],
+      color: "#3b82f6",
+      type: "sphere" as const,
+    },
+    {
+      position: [-1, 1, -2] as [number, number, number],
+      color: "#ef4444",
+      type: "box" as const,
+    },
+    {
+      position: [1, -1, 1] as [number, number, number],
+      color: "#10b981",
+      type: "octahedron" as const,
+    },
+    {
+      position: [3, 0.5, -1] as [number, number, number],
+      color: "#f59e0b",
+      type: "torus" as const,
+    },
+    {
+      position: [0, -2, 0] as [number, number, number],
+      color: "#8b5cf6",
+      type: "sphere" as const,
+    },
   ];
 
   return (

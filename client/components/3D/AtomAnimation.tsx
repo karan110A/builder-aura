@@ -1,7 +1,7 @@
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Sphere, Torus } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Sphere, Torus } from "@react-three/drei";
+import * as THREE from "three";
 
 interface ElectronProps {
   radius: number;
@@ -23,12 +23,22 @@ function Electron({ radius, speed, color, offset }: ElectronProps) {
 
   return (
     <Sphere ref={electronRef} args={[0.1, 16, 16]} position={[radius, 0, 0]}>
-      <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.3} />
+      <meshStandardMaterial
+        color={color}
+        emissive={color}
+        emissiveIntensity={0.3}
+      />
     </Sphere>
   );
 }
 
-function ElectronOrbit({ radius, rotationAxis }: { radius: number; rotationAxis: [number, number, number] }) {
+function ElectronOrbit({
+  radius,
+  rotationAxis,
+}: {
+  radius: number;
+  rotationAxis: [number, number, number];
+}) {
   const orbitRef = useRef<THREE.Mesh>(null);
 
   useFrame(() => {
@@ -61,15 +71,22 @@ export default function AtomAnimation() {
     <>
       <ambientLight intensity={0.3} />
       <pointLight position={[10, 10, 10]} intensity={1} />
-      
+
       {/* Nucleus */}
       <Sphere ref={nucleusRef} args={[0.3, 32, 32]} position={[0, 0, 0]}>
-        <meshStandardMaterial color="#ff6b6b" emissive="#ff3333" emissiveIntensity={0.2} />
+        <meshStandardMaterial
+          color="#ff6b6b"
+          emissive="#ff3333"
+          emissiveIntensity={0.2}
+        />
       </Sphere>
 
       {/* Electron Orbits */}
       <ElectronOrbit radius={1} rotationAxis={[0, 0, 0]} />
-      <ElectronOrbit radius={1.5} rotationAxis={[Math.PI / 3, 0, Math.PI / 4]} />
+      <ElectronOrbit
+        radius={1.5}
+        rotationAxis={[Math.PI / 3, 0, Math.PI / 4]}
+      />
       <ElectronOrbit radius={2} rotationAxis={[0, Math.PI / 3, Math.PI / 6]} />
 
       {/* Electrons */}
@@ -77,18 +94,38 @@ export default function AtomAnimation() {
         <Electron radius={1} speed={2} color="#4ecdc4" offset={0} />
         <Electron radius={1} speed={2} color="#4ecdc4" offset={Math.PI} />
       </group>
-      
+
       <group rotation={[Math.PI / 3, 0, Math.PI / 4]}>
         <Electron radius={1.5} speed={1.5} color="#45b7d1" offset={0} />
-        <Electron radius={1.5} speed={1.5} color="#45b7d1" offset={Math.PI / 2} />
+        <Electron
+          radius={1.5}
+          speed={1.5}
+          color="#45b7d1"
+          offset={Math.PI / 2}
+        />
         <Electron radius={1.5} speed={1.5} color="#45b7d1" offset={Math.PI} />
-        <Electron radius={1.5} speed={1.5} color="#45b7d1" offset={3 * Math.PI / 2} />
+        <Electron
+          radius={1.5}
+          speed={1.5}
+          color="#45b7d1"
+          offset={(3 * Math.PI) / 2}
+        />
       </group>
-      
+
       <group rotation={[0, Math.PI / 3, Math.PI / 6]}>
         <Electron radius={2} speed={1} color="#96ceb4" offset={0} />
-        <Electron radius={2} speed={1} color="#96ceb4" offset={2 * Math.PI / 3} />
-        <Electron radius={2} speed={1} color="#96ceb4" offset={4 * Math.PI / 3} />
+        <Electron
+          radius={2}
+          speed={1}
+          color="#96ceb4"
+          offset={(2 * Math.PI) / 3}
+        />
+        <Electron
+          radius={2}
+          speed={1}
+          color="#96ceb4"
+          offset={(4 * Math.PI) / 3}
+        />
       </group>
     </>
   );

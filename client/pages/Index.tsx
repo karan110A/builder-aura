@@ -346,8 +346,12 @@ export default function Index() {
                   <AtomAnimation />
                 </Scene3D>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Physics & Chemistry</h3>
-              <p className="text-gray-600 dark:text-gray-300">Interactive atomic models and molecular structures</p>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                Physics & Chemistry
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Interactive atomic models and molecular structures
+              </p>
             </div>
 
             {/* Biology */}
@@ -361,8 +365,12 @@ export default function Index() {
                   <DNAHelix />
                 </Scene3D>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Biology</h3>
-              <p className="text-gray-600 dark:text-gray-300">3D models of DNA, cells, and biological processes</p>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                Biology
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                3D models of DNA, cells, and biological processes
+              </p>
             </div>
 
             {/* General Education */}
@@ -376,8 +384,12 @@ export default function Index() {
                   <GeometricShapes />
                 </Scene3D>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Mathematics</h3>
-              <p className="text-gray-600 dark:text-gray-300">3D geometric shapes and mathematical concepts</p>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                Mathematics
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                3D geometric shapes and mathematical concepts
+              </p>
             </div>
           </div>
         </div>

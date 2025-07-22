@@ -1,7 +1,7 @@
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Sphere, Cylinder } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Sphere, Cylinder } from "@react-three/drei";
+import * as THREE from "three";
 
 interface BasePairProps {
   position: [number, number, number];
@@ -24,17 +24,17 @@ function BasePair({ position, rotation, height }: BasePairProps) {
       <Sphere args={[0.08, 16, 16]} position={[-0.8, 0, 0]}>
         <meshStandardMaterial color="#e74c3c" />
       </Sphere>
-      
+
       {/* Right base */}
       <Sphere args={[0.08, 16, 16]} position={[0.8, 0, 0]}>
         <meshStandardMaterial color="#3498db" />
       </Sphere>
-      
+
       {/* Connecting cylinder */}
       <Cylinder args={[0.02, 0.02, 1.6]} rotation={[0, 0, Math.PI / 2]}>
         <meshStandardMaterial color="#95a5a6" />
       </Cylinder>
-      
+
       {/* Backbone spheres */}
       <Sphere args={[0.05, 12, 12]} position={[-1, 0, 0]}>
         <meshStandardMaterial color="#f39c12" />
@@ -61,16 +61,16 @@ export default function DNAHelix() {
   const helixHeight = numPairs * spacing;
 
   for (let i = 0; i < numPairs; i++) {
-    const y = (i * spacing) - (helixHeight / 2);
+    const y = i * spacing - helixHeight / 2;
     const rotation = (i / numPairs) * Math.PI * 4; // Two full rotations
-    
+
     basePairs.push(
       <BasePair
         key={i}
         position={[0, y, 0]}
         rotation={rotation}
         height={spacing}
-      />
+      />,
     );
   }
 
