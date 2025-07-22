@@ -45,8 +45,9 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex">
+          {/* CTA Button and Theme Toggle */}
+          <div className="hidden md:flex items-center space-x-2">
+            <ThemeToggle />
             <Button asChild>
               <Link to="/contact">Enroll Now</Link>
             </Button>
