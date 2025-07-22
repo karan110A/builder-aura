@@ -276,8 +276,35 @@ export default function AdvancedAnalytics() {
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={performanceData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="subject" angle={-45} textAnchor="end" height={80} />
-                  <YAxis />
+                  <XAxis
+                    dataKey="subject"
+                    angle={-45}
+                    textAnchor="end"
+                    height={80}
+                    axisLine={true}
+                    tickLine={true}
+                    tickMargin={5}
+                    tick={true}
+                    allowDecimals={true}
+                    allowDuplicatedCategory={true}
+                    interval="preserveStartEnd"
+                    minTickGap={5}
+                    orientation="bottom"
+                    reversed={false}
+                    tickCount={5}
+                    type="category"
+                  />
+                  <YAxis
+                    axisLine={true}
+                    tickLine={true}
+                    tickMargin={5}
+                    tick={true}
+                    allowDecimals={true}
+                    allowDuplicatedCategory={false}
+                    orientation="left"
+                    type="number"
+                    width={60}
+                  />
                   <Tooltip />
                   <Bar dataKey="avgScore" fill="#10b981" />
                 </BarChart>
