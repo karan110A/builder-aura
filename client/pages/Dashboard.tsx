@@ -151,6 +151,22 @@ export default function Dashboard() {
     },
   ];
 
+  const performanceData = [
+    { name: 'Jan', value: 85 },
+    { name: 'Feb', value: 88 },
+    { name: 'Mar', value: 82 },
+    { name: 'Apr', value: 91 },
+    { name: 'May', value: 89 },
+    { name: 'Jun', value: 94 },
+  ];
+
+  const subjectPerformance = [
+    { name: 'Math', value: 95 },
+    { name: 'Physics', value: 88 },
+    { name: 'Chemistry', value: 92 },
+    { name: 'English', value: 86 },
+  ];
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed":
