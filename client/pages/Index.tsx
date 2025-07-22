@@ -123,7 +123,7 @@ export default function Index() {
                 personalized learning, and proven teaching methods that
                 guarantee success.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-400">
                 <Button size="lg" asChild>
                   <Link to="/contact">
                     Start Learning Today
