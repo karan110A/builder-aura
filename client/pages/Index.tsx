@@ -118,7 +118,7 @@ export default function Index() {
                 Excel in Your
                 <span className="text-blue-600"> Academic Journey</span>
               </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 animate-fade-in-up animation-delay-200">
                 Join PadhaiHub and unlock your potential with expert guidance,
                 personalized learning, and proven teaching methods that
                 guarantee success.
