@@ -330,14 +330,22 @@ export default function Contact() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
-                    <div className="text-center text-gray-600">
-                      <MapPin className="h-12 w-12 mx-auto mb-2" />
-                      <p>Interactive Map</p>
-                      <p className="text-sm">
-                        123 Education Street, Learning City
-                      </p>
-                    </div>
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 h-64 rounded-lg overflow-hidden">
+                    <Scene3D
+                      className="w-full h-full"
+                      enableControls={true}
+                      camera={{ position: [3, 1, 4], fov: 60 }}
+                    >
+                      <Globe />
+                    </Scene3D>
+                  </div>
+                  <div className="text-center mt-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      Interactive 3D Globe - Drag to explore
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      123 Education Street, Learning City
+                    </p>
                   </div>
                 </CardContent>
               </Card>
