@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Sphere, Torus } from "@react-three/drei";
 import * as THREE from "three";
