@@ -1,22 +1,34 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  Star, 
-  Send, 
-  User, 
-  BookOpen, 
-  ThumbsUp, 
+import {
+  Star,
+  Send,
+  User,
+  BookOpen,
+  ThumbsUp,
   MessageSquare,
   Award,
-  TrendingUp 
+  TrendingUp,
 } from "lucide-react";
 
 interface ReviewFormData {
@@ -49,11 +61,11 @@ export default function StudentReviewForm() {
 
   const subjects = [
     "Mathematics",
-    "Physics", 
+    "Physics",
     "Chemistry",
     "Biology",
     "English",
-    "Computer Science"
+    "Computer Science",
   ];
 
   const teachers = [
@@ -62,7 +74,7 @@ export default function StudentReviewForm() {
     "Dr. Amit Verma (Chemistry)",
     "Dr. Priya Nair (Biology)",
     "Prof. Vikram Singh (English)",
-    "Mr. Arjun Khanna (Computer Science)"
+    "Mr. Arjun Khanna (Computer Science)",
   ];
 
   const improvementAreas = [
@@ -73,15 +85,15 @@ export default function StudentReviewForm() {
     "Doubt clearing sessions",
     "Practical sessions",
     "Test preparation",
-    "Individual attention"
+    "Individual attention",
   ];
 
-  const StarRating = ({ 
-    rating, 
-    onRatingChange, 
-    label 
-  }: { 
-    rating: number; 
+  const StarRating = ({
+    rating,
+    onRatingChange,
+    label,
+  }: {
+    rating: number;
     onRatingChange: (rating: number) => void;
     label: string;
   }) => {
@@ -115,7 +127,7 @@ export default function StudentReviewForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validation
     if (!formData.subject || !formData.teacher || !formData.reviewText) {
       toast({
@@ -137,7 +149,8 @@ export default function StudentReviewForm() {
 
     toast({
       title: "Review Submitted!",
-      description: "Thank you for your feedback. Your review helps us improve our services.",
+      description:
+        "Thank you for your feedback. Your review helps us improve our services.",
     });
 
     // Reset form
@@ -156,11 +169,11 @@ export default function StudentReviewForm() {
   };
 
   const handleImprovementChange = (area: string, checked: boolean) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      improvements: checked 
+      improvements: checked
         ? [...prev.improvements, area]
-        : prev.improvements.filter(item => item !== area)
+        : prev.improvements.filter((item) => item !== area),
     }));
   };
 
@@ -172,17 +185,22 @@ export default function StudentReviewForm() {
           Student Review Form
         </CardTitle>
         <CardDescription>
-          Share your experience and help us improve our teaching quality. Your feedback is valuable to us.
+          Share your experience and help us improve our teaching quality. Your
+          feedback is valuable to us.
         </CardDescription>
       </CardHeader>
-      
+
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <Label htmlFor="subject">Subject *</Label>
-              <Select onValueChange={(value) => setFormData(prev => ({ ...prev, subject: value }))}>
+              <Select
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, subject: value }))
+                }
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select a subject" />
                 </SelectTrigger>
@@ -198,7 +216,11 @@ export default function StudentReviewForm() {
 
             <div>
               <Label htmlFor="teacher">Teacher *</Label>
-              <Select onValueChange={(value) => setFormData(prev => ({ ...prev, teacher: value }))}>
+              <Select
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, teacher: value }))
+                }
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select your teacher" />
                 </SelectTrigger>
@@ -219,29 +241,37 @@ export default function StudentReviewForm() {
               <Award className="h-5 w-5 mr-2 text-orange-500" />
               Rate Your Experience
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <StarRating
                 rating={formData.overallRating}
-                onRatingChange={(rating) => setFormData(prev => ({ ...prev, overallRating: rating }))}
+                onRatingChange={(rating) =>
+                  setFormData((prev) => ({ ...prev, overallRating: rating }))
+                }
                 label="Overall Experience *"
               />
-              
+
               <StarRating
                 rating={formData.teachingQuality}
-                onRatingChange={(rating) => setFormData(prev => ({ ...prev, teachingQuality: rating }))}
+                onRatingChange={(rating) =>
+                  setFormData((prev) => ({ ...prev, teachingQuality: rating }))
+                }
                 label="Teaching Quality"
               />
-              
+
               <StarRating
                 rating={formData.courseContent}
-                onRatingChange={(rating) => setFormData(prev => ({ ...prev, courseContent: rating }))}
+                onRatingChange={(rating) =>
+                  setFormData((prev) => ({ ...prev, courseContent: rating }))
+                }
                 label="Course Content"
               />
-              
+
               <StarRating
                 rating={formData.supportiveness}
-                onRatingChange={(rating) => setFormData(prev => ({ ...prev, supportiveness: rating }))}
+                onRatingChange={(rating) =>
+                  setFormData((prev) => ({ ...prev, supportiveness: rating }))
+                }
                 label="Teacher Supportiveness"
               />
             </div>
@@ -253,12 +283,14 @@ export default function StudentReviewForm() {
               <ThumbsUp className="h-5 w-5 mr-2 text-green-500" />
               Recommendation
             </h3>
-            
+
             <div>
               <Label>Would you recommend this course to other students?</Label>
-              <RadioGroup 
-                value={formData.wouldRecommend} 
-                onValueChange={(value) => setFormData(prev => ({ ...prev, wouldRecommend: value }))}
+              <RadioGroup
+                value={formData.wouldRecommend}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, wouldRecommend: value }))
+                }
                 className="flex space-x-6 mt-2"
               >
                 <div className="flex items-center space-x-2">
@@ -290,14 +322,16 @@ export default function StudentReviewForm() {
             <p className="text-sm text-gray-600">
               Select areas where you think we can improve (optional):
             </p>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {improvementAreas.map((area) => (
                 <div key={area} className="flex items-center space-x-2">
                   <Checkbox
                     id={area}
                     checked={formData.improvements.includes(area)}
-                    onCheckedChange={(checked) => handleImprovementChange(area, checked as boolean)}
+                    onCheckedChange={(checked) =>
+                      handleImprovementChange(area, checked as boolean)
+                    }
                   />
                   <Label htmlFor={area} className="text-sm">
                     {area}
@@ -314,12 +348,15 @@ export default function StudentReviewForm() {
               id="review"
               placeholder="Share your detailed experience, what you liked, what could be improved, and any suggestions you have..."
               value={formData.reviewText}
-              onChange={(e) => setFormData(prev => ({ ...prev, reviewText: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, reviewText: e.target.value }))
+              }
               rows={6}
               className="resize-none"
             />
             <p className="text-xs text-gray-500">
-              Minimum 50 characters required. Be honest and constructive in your feedback.
+              Minimum 50 characters required. Be honest and constructive in your
+              feedback.
             </p>
           </div>
 
@@ -328,7 +365,12 @@ export default function StudentReviewForm() {
             <Checkbox
               id="anonymous"
               checked={formData.anonymousReview}
-              onCheckedChange={(checked) => setFormData(prev => ({ ...prev, anonymousReview: checked as boolean }))}
+              onCheckedChange={(checked) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  anonymousReview: checked as boolean,
+                }))
+              }
             />
             <Label htmlFor="anonymous" className="text-sm">
               Submit this review anonymously
@@ -337,21 +379,23 @@ export default function StudentReviewForm() {
 
           {/* Submit Button */}
           <div className="flex justify-end space-x-4">
-            <Button 
-              type="button" 
+            <Button
+              type="button"
               variant="outline"
-              onClick={() => setFormData({
-                subject: "",
-                teacher: "",
-                overallRating: 0,
-                teachingQuality: 0,
-                courseContent: 0,
-                supportiveness: 0,
-                wouldRecommend: "",
-                improvements: [],
-                reviewText: "",
-                anonymousReview: false,
-              })}
+              onClick={() =>
+                setFormData({
+                  subject: "",
+                  teacher: "",
+                  overallRating: 0,
+                  teachingQuality: 0,
+                  courseContent: 0,
+                  supportiveness: 0,
+                  wouldRecommend: "",
+                  improvements: [],
+                  reviewText: "",
+                  anonymousReview: false,
+                })
+              }
             >
               Clear Form
             </Button>

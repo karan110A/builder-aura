@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import StudentReviewForm from "@/components/dashboard/StudentReviewForm";
-import { 
-  Star, 
-  MessageSquare, 
-  ThumbsUp, 
-  User, 
+import {
+  Star,
+  MessageSquare,
+  ThumbsUp,
+  User,
   Filter,
   TrendingUp,
   Award,
   BookOpen,
-  Calendar
+  Calendar,
 } from "lucide-react";
 
 export default function Reviews() {
@@ -33,7 +39,8 @@ export default function Reviews() {
       courseContent: 4,
       supportiveness: 5,
       wouldRecommend: "definitely",
-      reviewText: "Absolutely excellent teaching! Dr. Kumar explains complex calculus concepts in such a simple way. His problem-solving techniques have helped me improve tremendously. The doubt clearing sessions are very helpful.",
+      reviewText:
+        "Absolutely excellent teaching! Dr. Kumar explains complex calculus concepts in such a simple way. His problem-solving techniques have helped me improve tremendously. The doubt clearing sessions are very helpful.",
       date: "2024-01-10",
       anonymous: false,
       verified: true,
@@ -48,7 +55,8 @@ export default function Reviews() {
       courseContent: 4,
       supportiveness: 4,
       wouldRecommend: "definitely",
-      reviewText: "Great physics teacher with excellent practical knowledge. The lab sessions are very well organized. Sometimes the pace is a bit fast, but overall a fantastic learning experience.",
+      reviewText:
+        "Great physics teacher with excellent practical knowledge. The lab sessions are very well organized. Sometimes the pace is a bit fast, but overall a fantastic learning experience.",
       date: "2024-01-08",
       anonymous: true,
       verified: true,
@@ -63,7 +71,8 @@ export default function Reviews() {
       courseContent: 5,
       supportiveness: 4,
       wouldRecommend: "definitely",
-      reviewText: "Dr. Verma makes organic chemistry so interesting! His systematic approach and mnemonics help a lot. The practice problems are challenging but very helpful for JEE preparation.",
+      reviewText:
+        "Dr. Verma makes organic chemistry so interesting! His systematic approach and mnemonics help a lot. The practice problems are challenging but very helpful for JEE preparation.",
       date: "2024-01-05",
       anonymous: false,
       verified: true,
@@ -78,7 +87,8 @@ export default function Reviews() {
       courseContent: 5,
       supportiveness: 5,
       wouldRecommend: "probably",
-      reviewText: "Very knowledgeable teacher with great depth in botany and zoology. The diagrams and visual aids are excellent. Would love more NEET-focused practice sessions.",
+      reviewText:
+        "Very knowledgeable teacher with great depth in botany and zoology. The diagrams and visual aids are excellent. Would love more NEET-focused practice sessions.",
       date: "2024-01-03",
       anonymous: false,
       verified: true,
@@ -92,11 +102,20 @@ export default function Reviews() {
     { label: "Verified Reviews", value: "89%", icon: Award },
   ];
 
-  const subjectFilters = ["all", "Mathematics", "Physics", "Chemistry", "Biology", "English", "Computer Science"];
+  const subjectFilters = [
+    "all",
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "English",
+    "Computer Science",
+  ];
 
-  const filteredReviews = filter === "all" 
-    ? existingReviews 
-    : existingReviews.filter(review => review.subject === filter);
+  const filteredReviews =
+    filter === "all"
+      ? existingReviews
+      : existingReviews.filter((review) => review.subject === filter);
 
   const renderStars = (rating: number) => {
     return (
@@ -131,7 +150,7 @@ export default function Reviews() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -143,8 +162,9 @@ export default function Reviews() {
             <span className="text-blue-600"> Matters</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Share your experience and read what other students have to say about 
-            our courses and teachers. Your feedback helps us continuously improve.
+            Share your experience and read what other students have to say about
+            our courses and teachers. Your feedback helps us continuously
+            improve.
           </p>
         </div>
       </section>
@@ -176,8 +196,12 @@ export default function Reviews() {
         {/* Main Content Tabs */}
         <Tabs defaultValue="submit" className="space-y-6">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="submit" className="text-lg">Submit Review</TabsTrigger>
-            <TabsTrigger value="browse" className="text-lg">Browse Reviews</TabsTrigger>
+            <TabsTrigger value="submit" className="text-lg">
+              Submit Review
+            </TabsTrigger>
+            <TabsTrigger value="browse" className="text-lg">
+              Browse Reviews
+            </TabsTrigger>
           </TabsList>
 
           {/* Submit Review Tab */}
@@ -214,7 +238,10 @@ export default function Reviews() {
             {/* Reviews List */}
             <div className="space-y-6">
               {filteredReviews.map((review) => (
-                <Card key={review.id} className="hover:shadow-lg transition-shadow">
+                <Card
+                  key={review.id}
+                  className="hover:shadow-lg transition-shadow"
+                >
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
@@ -224,7 +251,10 @@ export default function Reviews() {
                             <span className="font-medium">
                               {review.student}
                               {review.verified && (
-                                <Badge variant="secondary" className="ml-2 text-xs">
+                                <Badge
+                                  variant="secondary"
+                                  className="ml-2 text-xs"
+                                >
                                   Verified
                                 </Badge>
                               )}
@@ -232,60 +262,88 @@ export default function Reviews() {
                           </div>
                           <div className="flex items-center space-x-1">
                             <Calendar className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-500">{review.date}</span>
+                            <span className="text-sm text-gray-500">
+                              {review.date}
+                            </span>
                           </div>
                         </div>
-                        
+
                         <div className="flex items-center space-x-4 mb-3">
                           <div className="flex items-center space-x-2">
                             <BookOpen className="h-4 w-4 text-blue-600" />
-                            <span className="font-medium">{review.subject}</span>
+                            <span className="font-medium">
+                              {review.subject}
+                            </span>
                           </div>
                           <span className="text-gray-400">•</span>
-                          <span className="text-gray-600">{review.teacher}</span>
+                          <span className="text-gray-600">
+                            {review.teacher}
+                          </span>
                         </div>
                       </div>
-                      
+
                       <div className="text-right">
                         <div className="flex items-center space-x-2 mb-2">
                           {renderStars(review.overallRating)}
-                          <span className="font-bold">{review.overallRating}/5</span>
+                          <span className="font-bold">
+                            {review.overallRating}/5
+                          </span>
                         </div>
-                        <Badge className={getRecommendationColor(review.wouldRecommend)}>
-                          {review.wouldRecommend === "definitely" ? "Highly Recommends" :
-                           review.wouldRecommend === "probably" ? "Recommends" :
-                           review.wouldRecommend === "not-sure" ? "Unsure" : "Not Recommended"}
+                        <Badge
+                          className={getRecommendationColor(
+                            review.wouldRecommend,
+                          )}
+                        >
+                          {review.wouldRecommend === "definitely"
+                            ? "Highly Recommends"
+                            : review.wouldRecommend === "probably"
+                              ? "Recommends"
+                              : review.wouldRecommend === "not-sure"
+                                ? "Unsure"
+                                : "Not Recommended"}
                         </Badge>
                       </div>
                     </div>
                   </CardHeader>
-                  
+
                   <CardContent>
                     <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                       "{review.reviewText}"
                     </p>
-                    
+
                     {/* Detailed Ratings */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Teaching Quality:</span>
+                        <span className="text-sm text-gray-600">
+                          Teaching Quality:
+                        </span>
                         <div className="flex items-center space-x-1">
                           {renderStars(review.teachingQuality)}
-                          <span className="text-sm font-medium">{review.teachingQuality}/5</span>
+                          <span className="text-sm font-medium">
+                            {review.teachingQuality}/5
+                          </span>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Course Content:</span>
+                        <span className="text-sm text-gray-600">
+                          Course Content:
+                        </span>
                         <div className="flex items-center space-x-1">
                           {renderStars(review.courseContent)}
-                          <span className="text-sm font-medium">{review.courseContent}/5</span>
+                          <span className="text-sm font-medium">
+                            {review.courseContent}/5
+                          </span>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Supportiveness:</span>
+                        <span className="text-sm text-gray-600">
+                          Supportiveness:
+                        </span>
                         <div className="flex items-center space-x-1">
                           {renderStars(review.supportiveness)}
-                          <span className="text-sm font-medium">{review.supportiveness}/5</span>
+                          <span className="text-sm font-medium">
+                            {review.supportiveness}/5
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -302,7 +360,8 @@ export default function Reviews() {
                     No reviews found
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    No reviews available for the selected filter. Try selecting a different subject.
+                    No reviews available for the selected filter. Try selecting
+                    a different subject.
                   </p>
                 </CardContent>
               </Card>

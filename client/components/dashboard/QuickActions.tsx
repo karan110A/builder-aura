@@ -99,10 +99,13 @@ export default function QuickActions() {
 
             if (action.isLink && action.href) {
               return (
-                <Button key={index} variant="outline" className="h-auto p-3 flex flex-col items-start text-left hover:shadow-md transition-shadow" asChild>
-                  <Link to={action.href}>
-                    {content}
-                  </Link>
+                <Button
+                  key={index}
+                  variant="outline"
+                  className="h-auto p-3 flex flex-col items-start text-left hover:shadow-md transition-shadow"
+                  asChild
+                >
+                  <Link to={action.href}>{content}</Link>
                 </Button>
               );
             }

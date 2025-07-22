@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 interface ChartWrapperProps {
   children: React.ReactNode;
@@ -11,8 +11,8 @@ export default function ChartWrapper({ children }: ChartWrapperProps) {
     console.warn = (...args) => {
       // Filter out specific Recharts defaultProps warnings
       if (
-        args[0]?.includes?.('Support for defaultProps will be removed') &&
-        (args[1]?.includes?.('XAxis') || args[1]?.includes?.('YAxis'))
+        args[0]?.includes?.("Support for defaultProps will be removed") &&
+        (args[1]?.includes?.("XAxis") || args[1]?.includes?.("YAxis"))
       ) {
         return; // Suppress these specific warnings
       }
