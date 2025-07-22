@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <GraduationCap className="h-8 w-8 text-blue-400" />
+              <GraduationCap className="h-8 w-8 text-blue-400 dark:text-blue-300" />
               <span className="text-xl font-bold">PadhaiHub</span>
             </Link>
             <p className="text-gray-300 mb-4 max-w-md">
