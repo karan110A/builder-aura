@@ -15,6 +15,7 @@ import Teachers from "./pages/Teachers";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import Reviews from "./pages/Reviews";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
