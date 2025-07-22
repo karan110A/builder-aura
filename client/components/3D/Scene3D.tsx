@@ -1,6 +1,6 @@
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
-import { Suspense } from "react";
 
 interface Scene3DProps {
   children: React.ReactNode;
