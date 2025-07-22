@@ -141,8 +141,19 @@ export default function Teachers() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20 relative overflow-hidden">
+        {/* 3D DNA Helix Animation */}
+        <div className="absolute top-0 left-10 w-32 h-full opacity-25">
+          <Scene3D
+            className="w-full h-full"
+            enableControls={false}
+            camera={{ position: [3, 0, 4], fov: 50 }}
+          >
+            <DNAHelix />
+          </Scene3D>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Badge variant="secondary" className="mb-4">
             Our Faculty
           </Badge>
