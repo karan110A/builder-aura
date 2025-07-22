@@ -33,8 +33,55 @@ export default function PerformanceChart({
         <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
           {title}
         </h3>
+        <ChartWrapper>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="name"
+                axisLine={true}
+                tickLine={true}
+                tickMargin={5}
+                tick={true}
+                allowDecimals={true}
+                allowDuplicatedCategory={true}
+                angle={0}
+                height={60}
+                interval="preserveStartEnd"
+                minTickGap={5}
+                orientation="bottom"
+                reversed={false}
+                tickCount={5}
+                type="category"
+              />
+              <YAxis
+                axisLine={true}
+                tickLine={true}
+                tickMargin={5}
+                tick={true}
+                allowDecimals={true}
+                allowDuplicatedCategory={false}
+                orientation="left"
+                type="number"
+                width={60}
+              />
+              <Tooltip />
+              <Bar dataKey="value" fill="#3b82f6" />
+            </BarChart>
+          </ResponsiveContainer>
+        </ChartWrapper>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full h-64">
+      <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+        {title}
+      </h3>
+      <ChartWrapper>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data}>
+          <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="name"
@@ -65,58 +112,15 @@ export default function PerformanceChart({
               width={60}
             />
             <Tooltip />
-            <Bar dataKey="value" fill="#3b82f6" />
-          </BarChart>
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke="#3b82f6"
+              strokeWidth={2}
+            />
+          </LineChart>
         </ResponsiveContainer>
-      </div>
-    );
-  }
-
-  return (
-    <div className="w-full h-64">
-      <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
-        {title}
-      </h3>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="name"
-            axisLine={true}
-            tickLine={true}
-            tickMargin={5}
-            tick={true}
-            allowDecimals={true}
-            allowDuplicatedCategory={true}
-            angle={0}
-            height={60}
-            interval="preserveStartEnd"
-            minTickGap={5}
-            orientation="bottom"
-            reversed={false}
-            tickCount={5}
-            type="category"
-          />
-          <YAxis
-            axisLine={true}
-            tickLine={true}
-            tickMargin={5}
-            tick={true}
-            allowDecimals={true}
-            allowDuplicatedCategory={false}
-            orientation="left"
-            type="number"
-            width={60}
-          />
-          <Tooltip />
-          <Line
-            type="monotone"
-            dataKey="value"
-            stroke="#3b82f6"
-            strokeWidth={2}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+      </ChartWrapper>
     </div>
   );
 }
