@@ -153,7 +153,7 @@ export default function Contact() {
             Get in
             <span className="text-blue-600"> Touch</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Ready to start your academic journey? We're here to help you choose
             the right course and answer all your questions. Reach out to us
             today!
