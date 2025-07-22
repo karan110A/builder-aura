@@ -114,7 +114,7 @@ export default function Index() {
               <Badge variant="secondary" className="mb-4">
                 #1 Tuition Center in the City
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up">
                 Excel in Your
                 <span className="text-blue-600"> Academic Journey</span>
               </h1>
