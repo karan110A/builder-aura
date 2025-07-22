@@ -1,5 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Scene3D from "@/components/3D/Scene3D";
+import DNAHelix from "@/components/3D/DNAHelix";
 import {
   Card,
   CardContent,
