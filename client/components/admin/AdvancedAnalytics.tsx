@@ -226,34 +226,8 @@ export default function AdvancedAnalytics() {
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart data={revenueData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis
-                    dataKey="month"
-                    axisLine={true}
-                    tickLine={true}
-                    tickMargin={5}
-                    tick={true}
-                    allowDecimals={true}
-                    allowDuplicatedCategory={true}
-                    angle={0}
-                    height={60}
-                    interval="preserveStartEnd"
-                    minTickGap={5}
-                    orientation="bottom"
-                    reversed={false}
-                    tickCount={5}
-                    type="category"
-                  />
-                  <YAxis
-                    axisLine={true}
-                    tickLine={true}
-                    tickMargin={5}
-                    tick={true}
-                    allowDecimals={true}
-                    allowDuplicatedCategory={false}
-                    orientation="left"
-                    type="number"
-                    width={60}
-                  />
+                  <XAxis dataKey="month" />
+                  <YAxis />
                   <Tooltip />
                   <Area type="monotone" dataKey="revenue" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.3} />
                 </AreaChart>
