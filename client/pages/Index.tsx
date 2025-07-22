@@ -178,10 +178,10 @@ export default function Index() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Why Choose PadhaiHub?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               We provide comprehensive learning solutions designed to help
               students achieve their academic goals
             </p>
@@ -211,13 +211,13 @@ export default function Index() {
       </section>
 
       {/* Subjects Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Popular Subjects
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Comprehensive coaching for all major subjects
             </p>
           </div>
@@ -254,10 +254,10 @@ export default function Index() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               What Our Students Say
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Success stories from our proud students
             </p>
           </div>
@@ -278,7 +278,7 @@ export default function Index() {
                   <CardDescription>{testimonial.class}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 italic">
+                  <p className="text-gray-600 dark:text-gray-300 italic">
                     "{testimonial.content}"
                   </p>
                 </CardContent>
