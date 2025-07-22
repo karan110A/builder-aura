@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { 
-  Users, 
-  BookOpen, 
-  GraduationCap, 
-  FileText, 
+import {
+  Users,
+  BookOpen,
+  GraduationCap,
+  FileText,
   TrendingUp,
   UserPlus,
   Plus,
@@ -29,65 +35,182 @@ import {
   Filter,
   Shield,
   Bell,
-  Activity
+  Activity,
 } from "lucide-react";
 
 export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   // Mock admin data
   const adminStats = [
-    { title: "Total Students", value: "1,247", change: "+12%", icon: Users, color: "text-blue-600", bgColor: "bg-blue-100" },
-    { title: "Active Teachers", value: "24", change: "+2", icon: GraduationCap, color: "text-green-600", bgColor: "bg-green-100" },
-    { title: "Running Courses", value: "18", change: "+3", icon: BookOpen, color: "text-purple-600", bgColor: "bg-purple-100" },
-    { title: "Pending Reviews", value: "47", change: "-5", icon: MessageSquare, color: "text-orange-600", bgColor: "bg-orange-100" },
+    {
+      title: "Total Students",
+      value: "1,247",
+      change: "+12%",
+      icon: Users,
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
+    },
+    {
+      title: "Active Teachers",
+      value: "24",
+      change: "+2",
+      icon: GraduationCap,
+      color: "text-green-600",
+      bgColor: "bg-green-100",
+    },
+    {
+      title: "Running Courses",
+      value: "18",
+      change: "+3",
+      icon: BookOpen,
+      color: "text-purple-600",
+      bgColor: "bg-purple-100",
+    },
+    {
+      title: "Pending Reviews",
+      value: "47",
+      change: "-5",
+      icon: MessageSquare,
+      color: "text-orange-600",
+      bgColor: "bg-orange-100",
+    },
   ];
 
   const recentActivities = [
-    { type: "student", action: "New student enrolled", details: "Rohit Sharma - Class 12 PCM", time: "2 min ago", icon: UserPlus },
-    { type: "teacher", action: "Teacher updated profile", details: "Dr. Rajesh Kumar - Mathematics", time: "15 min ago", icon: Users },
-    { type: "course", action: "New course created", details: "Advanced Physics - JEE Preparation", time: "1 hour ago", icon: BookOpen },
-    { type: "test", action: "Test results published", details: "Mathematics Unit Test - Class 11", time: "2 hours ago", icon: FileText },
-    { type: "review", action: "New review submitted", details: "5-star review for Chemistry course", time: "3 hours ago", icon: MessageSquare },
+    {
+      type: "student",
+      action: "New student enrolled",
+      details: "Rohit Sharma - Class 12 PCM",
+      time: "2 min ago",
+      icon: UserPlus,
+    },
+    {
+      type: "teacher",
+      action: "Teacher updated profile",
+      details: "Dr. Rajesh Kumar - Mathematics",
+      time: "15 min ago",
+      icon: Users,
+    },
+    {
+      type: "course",
+      action: "New course created",
+      details: "Advanced Physics - JEE Preparation",
+      time: "1 hour ago",
+      icon: BookOpen,
+    },
+    {
+      type: "test",
+      action: "Test results published",
+      details: "Mathematics Unit Test - Class 11",
+      time: "2 hours ago",
+      icon: FileText,
+    },
+    {
+      type: "review",
+      action: "New review submitted",
+      details: "5-star review for Chemistry course",
+      time: "3 hours ago",
+      icon: MessageSquare,
+    },
   ];
 
   const systemAlerts = [
-    { type: "warning", message: "Server backup scheduled for tonight at 2 AM", priority: "medium" },
-    { type: "info", message: "5 new teacher applications pending approval", priority: "low" },
-    { type: "error", message: "Payment gateway connection issue reported", priority: "high" },
-    { type: "success", message: "Monthly report generated successfully", priority: "low" },
+    {
+      type: "warning",
+      message: "Server backup scheduled for tonight at 2 AM",
+      priority: "medium",
+    },
+    {
+      type: "info",
+      message: "5 new teacher applications pending approval",
+      priority: "low",
+    },
+    {
+      type: "error",
+      message: "Payment gateway connection issue reported",
+      priority: "high",
+    },
+    {
+      type: "success",
+      message: "Monthly report generated successfully",
+      priority: "low",
+    },
   ];
 
   const quickActions = [
-    { title: "Add New Teacher", description: "Register a new faculty member", icon: UserPlus, action: "add-teacher", color: "bg-blue-500" },
-    { title: "Create Course", description: "Set up a new course offering", icon: Plus, action: "add-course", color: "bg-green-500" },
-    { title: "Schedule Test", description: "Create and schedule assessments", icon: Calendar, action: "add-test", color: "bg-purple-500" },
-    { title: "Send Announcement", description: "Broadcast message to all users", icon: Bell, action: "send-announcement", color: "bg-orange-500" },
-    { title: "Generate Report", description: "Create detailed analytics report", icon: BarChart3, action: "generate-report", color: "bg-indigo-500" },
-    { title: "Manage Settings", description: "Configure system preferences", icon: Settings, action: "settings", color: "bg-gray-500" },
+    {
+      title: "Add New Teacher",
+      description: "Register a new faculty member",
+      icon: UserPlus,
+      action: "add-teacher",
+      color: "bg-blue-500",
+    },
+    {
+      title: "Create Course",
+      description: "Set up a new course offering",
+      icon: Plus,
+      action: "add-course",
+      color: "bg-green-500",
+    },
+    {
+      title: "Schedule Test",
+      description: "Create and schedule assessments",
+      icon: Calendar,
+      action: "add-test",
+      color: "bg-purple-500",
+    },
+    {
+      title: "Send Announcement",
+      description: "Broadcast message to all users",
+      icon: Bell,
+      action: "send-announcement",
+      color: "bg-orange-500",
+    },
+    {
+      title: "Generate Report",
+      description: "Create detailed analytics report",
+      icon: BarChart3,
+      action: "generate-report",
+      color: "bg-indigo-500",
+    },
+    {
+      title: "Manage Settings",
+      description: "Configure system preferences",
+      icon: Settings,
+      action: "settings",
+      color: "bg-gray-500",
+    },
   ];
 
   const getAlertIcon = (type: string) => {
     switch (type) {
-      case "error": return <AlertTriangle className="h-4 w-4 text-red-500" />;
-      case "warning": return <Clock className="h-4 w-4 text-yellow-500" />;
-      case "success": return <CheckCircle className="h-4 w-4 text-green-500" />;
-      default: return <Bell className="h-4 w-4 text-blue-500" />;
+      case "error":
+        return <AlertTriangle className="h-4 w-4 text-red-500" />;
+      case "warning":
+        return <Clock className="h-4 w-4 text-yellow-500" />;
+      case "success":
+        return <CheckCircle className="h-4 w-4 text-green-500" />;
+      default:
+        return <Bell className="h-4 w-4 text-blue-500" />;
     }
   };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case "high": return "border-l-red-500 bg-red-50";
-      case "medium": return "border-l-yellow-500 bg-yellow-50";
-      default: return "border-l-blue-500 bg-blue-50";
+      case "high":
+        return "border-l-red-500 bg-red-50";
+      case "medium":
+        return "border-l-yellow-500 bg-yellow-50";
+      default:
+        return "border-l-blue-500 bg-blue-50";
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
-      
+
       {/* Admin Header */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -106,7 +229,10 @@ export default function AdminDashboard() {
                 <Download className="h-4 w-4 mr-2" />
                 Export Data
               </Button>
-              <Button variant="outline" className="text-white border-white hover:bg-white hover:text-purple-600">
+              <Button
+                variant="outline"
+                className="text-white border-white hover:bg-white hover:text-purple-600"
+              >
                 <Activity className="h-4 w-4 mr-2" />
                 System Status
               </Button>
@@ -135,7 +261,9 @@ export default function AdminDashboard() {
                       </Badge>
                     </div>
                   </div>
-                  <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
+                  <div
+                    className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}
+                  >
                     <stat.icon className={`h-6 w-6 ${stat.color}`} />
                   </div>
                 </div>
@@ -172,7 +300,9 @@ export default function AdminDashboard() {
                       className="h-auto p-4 flex flex-col items-start text-left hover:shadow-lg transition-all"
                     >
                       <div className="flex items-center w-full mb-2">
-                        <div className={`w-10 h-10 ${action.color} rounded-lg flex items-center justify-center mr-3`}>
+                        <div
+                          className={`w-10 h-10 ${action.color} rounded-lg flex items-center justify-center mr-3`}
+                        >
                           <action.icon className="h-5 w-5 text-white" />
                         </div>
                         <span className="font-semibold">{action.title}</span>
@@ -198,14 +328,23 @@ export default function AdminDashboard() {
                 <CardContent>
                   <div className="space-y-4">
                     {recentActivities.map((activity, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div
+                        key={index}
+                        className="flex items-start space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                      >
                         <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                           <activity.icon className="h-4 w-4 text-blue-600" />
                         </div>
                         <div className="flex-1">
-                          <p className="font-medium text-sm">{activity.action}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">{activity.details}</p>
-                          <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                          <p className="font-medium text-sm">
+                            {activity.action}
+                          </p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            {activity.details}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {activity.time}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -224,10 +363,15 @@ export default function AdminDashboard() {
                 <CardContent>
                   <div className="space-y-3">
                     {systemAlerts.map((alert, index) => (
-                      <div key={index} className={`p-3 border-l-4 rounded-r ${getPriorityColor(alert.priority)}`}>
+                      <div
+                        key={index}
+                        className={`p-3 border-l-4 rounded-r ${getPriorityColor(alert.priority)}`}
+                      >
                         <div className="flex items-start">
                           {getAlertIcon(alert.type)}
-                          <p className="ml-2 text-sm font-medium">{alert.message}</p>
+                          <p className="ml-2 text-sm font-medium">
+                            {alert.message}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -244,7 +388,9 @@ export default function AdminDashboard() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle>Student Management</CardTitle>
-                    <CardDescription>Manage all student data and enrollments</CardDescription>
+                    <CardDescription>
+                      Manage all student data and enrollments
+                    </CardDescription>
                   </div>
                   <div className="flex space-x-2">
                     <Button>
@@ -280,7 +426,10 @@ export default function AdminDashboard() {
                 <div className="text-center py-8 text-gray-500">
                   <Database className="h-12 w-12 mx-auto mb-4 text-gray-400" />
                   <p>Student management interface will be implemented here</p>
-                  <p className="text-sm">Features: Add, Edit, Delete, Bulk Operations, Enrollment Management</p>
+                  <p className="text-sm">
+                    Features: Add, Edit, Delete, Bulk Operations, Enrollment
+                    Management
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -293,7 +442,9 @@ export default function AdminDashboard() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle>Teacher Management</CardTitle>
-                    <CardDescription>Manage faculty profiles and assignments</CardDescription>
+                    <CardDescription>
+                      Manage faculty profiles and assignments
+                    </CardDescription>
                   </div>
                   <Button>
                     <UserPlus className="h-4 w-4 mr-2" />
@@ -305,7 +456,10 @@ export default function AdminDashboard() {
                 <div className="text-center py-8 text-gray-500">
                   <GraduationCap className="h-12 w-12 mx-auto mb-4 text-gray-400" />
                   <p>Teacher management interface will be implemented here</p>
-                  <p className="text-sm">Features: Profile Management, Subject Assignment, Schedule Management</p>
+                  <p className="text-sm">
+                    Features: Profile Management, Subject Assignment, Schedule
+                    Management
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -318,7 +472,9 @@ export default function AdminDashboard() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle>Course Management</CardTitle>
-                    <CardDescription>Create and manage course offerings</CardDescription>
+                    <CardDescription>
+                      Create and manage course offerings
+                    </CardDescription>
                   </div>
                   <Button>
                     <Plus className="h-4 w-4 mr-2" />
@@ -330,7 +486,10 @@ export default function AdminDashboard() {
                 <div className="text-center py-8 text-gray-500">
                   <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-400" />
                   <p>Course management interface will be implemented here</p>
-                  <p className="text-sm">Features: Course Creation, Curriculum Design, Resource Management</p>
+                  <p className="text-sm">
+                    Features: Course Creation, Curriculum Design, Resource
+                    Management
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -343,7 +502,9 @@ export default function AdminDashboard() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle>Test & Assessment Management</CardTitle>
-                    <CardDescription>Create, schedule and manage tests</CardDescription>
+                    <CardDescription>
+                      Create, schedule and manage tests
+                    </CardDescription>
                   </div>
                   <Button>
                     <Plus className="h-4 w-4 mr-2" />
@@ -355,7 +516,10 @@ export default function AdminDashboard() {
                 <div className="text-center py-8 text-gray-500">
                   <FileText className="h-12 w-12 mx-auto mb-4 text-gray-400" />
                   <p>Test management interface will be implemented here</p>
-                  <p className="text-sm">Features: Test Creation, Scheduling, Auto-grading, Results Analysis</p>
+                  <p className="text-sm">
+                    Features: Test Creation, Scheduling, Auto-grading, Results
+                    Analysis
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -366,13 +530,18 @@ export default function AdminDashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>Analytics & Reports</CardTitle>
-                <CardDescription>Comprehensive data analysis and reporting</CardDescription>
+                <CardDescription>
+                  Comprehensive data analysis and reporting
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8 text-gray-500">
                   <BarChart3 className="h-12 w-12 mx-auto mb-4 text-gray-400" />
                   <p>Analytics dashboard will be implemented here</p>
-                  <p className="text-sm">Features: Performance Analytics, Revenue Reports, User Engagement Metrics</p>
+                  <p className="text-sm">
+                    Features: Performance Analytics, Revenue Reports, User
+                    Engagement Metrics
+                  </p>
                 </div>
               </CardContent>
             </Card>

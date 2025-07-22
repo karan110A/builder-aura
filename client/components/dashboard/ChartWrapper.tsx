@@ -11,9 +11,12 @@ const suppressRechartsWarnings = () => {
     const message = String(args[0] || "");
     if (
       message.includes("Support for defaultProps will be removed") &&
-      (message.includes("XAxis") || message.includes("YAxis") ||
-       message.includes("CartesianGrid") || message.includes("Tooltip") ||
-       message.includes("Legend") || message.includes("ResponsiveContainer"))
+      (message.includes("XAxis") ||
+        message.includes("YAxis") ||
+        message.includes("CartesianGrid") ||
+        message.includes("Tooltip") ||
+        message.includes("Legend") ||
+        message.includes("ResponsiveContainer"))
     ) {
       return; // Suppress these specific warnings
     }
@@ -22,7 +25,7 @@ const suppressRechartsWarnings = () => {
 };
 
 // Apply suppression immediately
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   suppressRechartsWarnings();
 }
 

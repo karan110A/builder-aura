@@ -1,23 +1,35 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  UserPlus, 
-  Edit, 
-  Trash2, 
-  Mail, 
-  Phone, 
+import {
+  UserPlus,
+  Edit,
+  Trash2,
+  Mail,
+  Phone,
   GraduationCap,
   Award,
   Calendar,
   Save,
-  X
+  X,
 } from "lucide-react";
 
 interface Teacher {
@@ -39,7 +51,7 @@ export default function TeacherManagement() {
   const { toast } = useToast();
   const [isAddingTeacher, setIsAddingTeacher] = useState(false);
   const [editingTeacher, setEditingTeacher] = useState<Teacher | null>(null);
-  
+
   // Mock teacher data
   const [teachers, setTeachers] = useState<Teacher[]>([
     {
@@ -54,7 +66,7 @@ export default function TeacherManagement() {
       status: "active",
       joinDate: "2020-01-15",
       rating: 4.9,
-      studentsCount: 120
+      studentsCount: 120,
     },
     {
       id: 2,
@@ -68,7 +80,7 @@ export default function TeacherManagement() {
       status: "active",
       joinDate: "2020-03-20",
       rating: 4.8,
-      studentsCount: 95
+      studentsCount: 95,
     },
     {
       id: 3,
@@ -82,8 +94,8 @@ export default function TeacherManagement() {
       status: "active",
       joinDate: "2021-06-01",
       rating: 4.9,
-      studentsCount: 110
-    }
+      studentsCount: 110,
+    },
   ]);
 
   const [newTeacher, setNewTeacher] = useState({
@@ -93,10 +105,17 @@ export default function TeacherManagement() {
     subject: "",
     qualification: "",
     experience: 0,
-    salary: 0
+    salary: 0,
   });
 
-  const subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "English", "Computer Science"];
+  const subjects = [
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "English",
+    "Computer Science",
+  ];
 
   const handleAddTeacher = () => {
     if (!newTeacher.name || !newTeacher.email || !newTeacher.subject) {
@@ -112,9 +131,9 @@ export default function TeacherManagement() {
       id: teachers.length + 1,
       ...newTeacher,
       status: "active",
-      joinDate: new Date().toISOString().split('T')[0],
+      joinDate: new Date().toISOString().split("T")[0],
       rating: 0,
-      studentsCount: 0
+      studentsCount: 0,
     };
 
     setTeachers([...teachers, teacher]);
@@ -125,7 +144,7 @@ export default function TeacherManagement() {
       subject: "",
       qualification: "",
       experience: 0,
-      salary: 0
+      salary: 0,
     });
     setIsAddingTeacher(false);
 
@@ -141,9 +160,11 @@ export default function TeacherManagement() {
 
   const handleUpdateTeacher = () => {
     if (editingTeacher) {
-      setTeachers(teachers.map(t => t.id === editingTeacher.id ? editingTeacher : t));
+      setTeachers(
+        teachers.map((t) => (t.id === editingTeacher.id ? editingTeacher : t)),
+      );
       setEditingTeacher(null);
-      
+
       toast({
         title: "Teacher Updated",
         description: "Teacher information has been updated successfully.",
@@ -152,9 +173,9 @@ export default function TeacherManagement() {
   };
 
   const handleDeleteTeacher = (id: number) => {
-    const teacher = teachers.find(t => t.id === id);
-    setTeachers(teachers.filter(t => t.id !== id));
-    
+    const teacher = teachers.find((t) => t.id === id);
+    setTeachers(teachers.filter((t) => t.id !== id));
+
     toast({
       title: "Teacher Removed",
       description: `${teacher?.name} has been removed from the faculty.`,
@@ -162,9 +183,13 @@ export default function TeacherManagement() {
   };
 
   const toggleTeacherStatus = (id: number) => {
-    setTeachers(teachers.map(t => 
-      t.id === id ? { ...t, status: t.status === "active" ? "inactive" : "active" } : t
-    ));
+    setTeachers(
+      teachers.map((t) =>
+        t.id === id
+          ? { ...t, status: t.status === "active" ? "inactive" : "active" }
+          : t,
+      ),
+    );
   };
 
   return (
@@ -173,7 +198,9 @@ export default function TeacherManagement() {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold">Teacher Management</h2>
-          <p className="text-gray-600">Manage faculty profiles and assignments</p>
+          <p className="text-gray-600">
+            Manage faculty profiles and assignments
+          </p>
         </div>
         <Button onClick={() => setIsAddingTeacher(true)}>
           <UserPlus className="h-4 w-4 mr-2" />
@@ -186,7 +213,9 @@ export default function TeacherManagement() {
         <Card>
           <CardHeader>
             <CardTitle>Add New Teacher</CardTitle>
-            <CardDescription>Enter teacher details to add them to the faculty</CardDescription>
+            <CardDescription>
+              Enter teacher details to add them to the faculty
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -195,7 +224,9 @@ export default function TeacherManagement() {
                 <Input
                   id="name"
                   value={newTeacher.name}
-                  onChange={(e) => setNewTeacher({...newTeacher, name: e.target.value})}
+                  onChange={(e) =>
+                    setNewTeacher({ ...newTeacher, name: e.target.value })
+                  }
                   placeholder="Enter full name"
                 />
               </div>
@@ -205,7 +236,9 @@ export default function TeacherManagement() {
                   id="email"
                   type="email"
                   value={newTeacher.email}
-                  onChange={(e) => setNewTeacher({...newTeacher, email: e.target.value})}
+                  onChange={(e) =>
+                    setNewTeacher({ ...newTeacher, email: e.target.value })
+                  }
                   placeholder="Enter email address"
                 />
               </div>
@@ -214,13 +247,19 @@ export default function TeacherManagement() {
                 <Input
                   id="phone"
                   value={newTeacher.phone}
-                  onChange={(e) => setNewTeacher({...newTeacher, phone: e.target.value})}
+                  onChange={(e) =>
+                    setNewTeacher({ ...newTeacher, phone: e.target.value })
+                  }
                   placeholder="Enter phone number"
                 />
               </div>
               <div>
                 <Label htmlFor="subject">Subject *</Label>
-                <Select onValueChange={(value) => setNewTeacher({...newTeacher, subject: value})}>
+                <Select
+                  onValueChange={(value) =>
+                    setNewTeacher({ ...newTeacher, subject: value })
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select subject" />
                   </SelectTrigger>
@@ -239,7 +278,12 @@ export default function TeacherManagement() {
                   id="experience"
                   type="number"
                   value={newTeacher.experience}
-                  onChange={(e) => setNewTeacher({...newTeacher, experience: parseInt(e.target.value) || 0})}
+                  onChange={(e) =>
+                    setNewTeacher({
+                      ...newTeacher,
+                      experience: parseInt(e.target.value) || 0,
+                    })
+                  }
                   placeholder="Years of experience"
                 />
               </div>
@@ -249,7 +293,12 @@ export default function TeacherManagement() {
                   id="salary"
                   type="number"
                   value={newTeacher.salary}
-                  onChange={(e) => setNewTeacher({...newTeacher, salary: parseInt(e.target.value) || 0})}
+                  onChange={(e) =>
+                    setNewTeacher({
+                      ...newTeacher,
+                      salary: parseInt(e.target.value) || 0,
+                    })
+                  }
                   placeholder="Monthly salary"
                 />
               </div>
@@ -258,14 +307,22 @@ export default function TeacherManagement() {
                 <Textarea
                   id="qualification"
                   value={newTeacher.qualification}
-                  onChange={(e) => setNewTeacher({...newTeacher, qualification: e.target.value})}
+                  onChange={(e) =>
+                    setNewTeacher({
+                      ...newTeacher,
+                      qualification: e.target.value,
+                    })
+                  }
                   placeholder="Enter educational qualifications"
                   rows={3}
                 />
               </div>
             </div>
             <div className="flex justify-end space-x-2 mt-6">
-              <Button variant="outline" onClick={() => setIsAddingTeacher(false)}>
+              <Button
+                variant="outline"
+                onClick={() => setIsAddingTeacher(false)}
+              >
                 <X className="h-4 w-4 mr-2" />
                 Cancel
               </Button>
@@ -291,12 +348,16 @@ export default function TeacherManagement() {
                     {teacher.subject}
                   </CardDescription>
                 </div>
-                <Badge variant={teacher.status === "active" ? "default" : "secondary"}>
+                <Badge
+                  variant={
+                    teacher.status === "active" ? "default" : "secondary"
+                  }
+                >
                   {teacher.status}
                 </Badge>
               </div>
             </CardHeader>
-            
+
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <div className="flex items-center text-sm">
@@ -319,34 +380,44 @@ export default function TeacherManagement() {
 
               <div className="grid grid-cols-2 gap-4 pt-4 border-t">
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-blue-600">{teacher.rating}</p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {teacher.rating}
+                  </p>
                   <p className="text-xs text-gray-500">Rating</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-green-600">{teacher.studentsCount}</p>
+                  <p className="text-2xl font-bold text-green-600">
+                    {teacher.studentsCount}
+                  </p>
                   <p className="text-xs text-gray-500">Students</p>
                 </div>
               </div>
 
               <div className="pt-4 border-t">
                 <p className="text-sm text-gray-600 mb-2">Qualification:</p>
-                <p className="text-xs text-gray-500 line-clamp-2">{teacher.qualification}</p>
+                <p className="text-xs text-gray-500 line-clamp-2">
+                  {teacher.qualification}
+                </p>
               </div>
 
               <div className="flex space-x-2 pt-4">
-                <Button size="sm" variant="outline" onClick={() => handleEditTeacher(teacher)}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleEditTeacher(teacher)}
+                >
                   <Edit className="h-3 w-3 mr-1" />
                   Edit
                 </Button>
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   variant="outline"
                   onClick={() => toggleTeacherStatus(teacher.id)}
                 >
                   {teacher.status === "active" ? "Deactivate" : "Activate"}
                 </Button>
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   variant="destructive"
                   onClick={() => handleDeleteTeacher(teacher.id)}
                 >
@@ -369,9 +440,7 @@ export default function TeacherManagement() {
               <Button variant="outline" onClick={() => setEditingTeacher(null)}>
                 Cancel
               </Button>
-              <Button onClick={handleUpdateTeacher}>
-                Update Teacher
-              </Button>
+              <Button onClick={handleUpdateTeacher}>Update Teacher</Button>
             </div>
           </CardContent>
         </Card>

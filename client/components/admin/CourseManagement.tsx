@@ -1,16 +1,28 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  Plus, 
-  Edit, 
-  Trash2, 
+import {
+  Plus,
+  Edit,
+  Trash2,
   BookOpen,
   Users,
   Clock,
@@ -19,7 +31,7 @@ import {
   Save,
   X,
   Star,
-  TrendingUp
+  TrendingUp,
 } from "lucide-react";
 
 interface Course {
@@ -43,14 +55,15 @@ interface Course {
 export default function CourseManagement() {
   const { toast } = useToast();
   const [isAddingCourse, setIsAddingCourse] = useState(false);
-  
+
   // Mock course data
   const [courses, setCourses] = useState<Course[]>([
     {
       id: 1,
       title: "Advanced Mathematics for JEE",
       subject: "Mathematics",
-      description: "Comprehensive mathematics course covering all JEE topics with problem-solving techniques.",
+      description:
+        "Comprehensive mathematics course covering all JEE topics with problem-solving techniques.",
       teacher: "Dr. Rajesh Kumar",
       duration: "12 months",
       price: 15000,
@@ -61,13 +74,14 @@ export default function CourseManagement() {
       schedule: "Mon, Wed, Fri - 10:00 AM",
       status: "active",
       rating: 4.9,
-      level: "advanced"
+      level: "advanced",
     },
     {
       id: 2,
       title: "Physics for NEET Preparation",
       subject: "Physics",
-      description: "Complete physics preparation for NEET with extensive practice sessions.",
+      description:
+        "Complete physics preparation for NEET with extensive practice sessions.",
       teacher: "Prof. Sunita Sharma",
       duration: "10 months",
       price: 12000,
@@ -78,13 +92,14 @@ export default function CourseManagement() {
       schedule: "Tue, Thu, Sat - 2:00 PM",
       status: "active",
       rating: 4.8,
-      level: "intermediate"
+      level: "intermediate",
     },
     {
       id: 3,
       title: "Organic Chemistry Mastery",
       subject: "Chemistry",
-      description: "Deep dive into organic chemistry with reaction mechanisms and problem solving.",
+      description:
+        "Deep dive into organic chemistry with reaction mechanisms and problem solving.",
       teacher: "Dr. Amit Verma",
       duration: "8 months",
       price: 10000,
@@ -95,8 +110,8 @@ export default function CourseManagement() {
       schedule: "Mon, Wed - 4:00 PM",
       status: "active",
       rating: 4.9,
-      level: "advanced"
-    }
+      level: "advanced",
+    },
   ]);
 
   const [newCourse, setNewCourse] = useState({
@@ -110,11 +125,23 @@ export default function CourseManagement() {
     startDate: "",
     endDate: "",
     schedule: "",
-    level: "beginner" as const
+    level: "beginner" as const,
   });
 
-  const subjects = ["Mathematics", "Physics", "Chemistry", "Biology", "English", "Computer Science"];
-  const teachers = ["Dr. Rajesh Kumar", "Prof. Sunita Sharma", "Dr. Amit Verma", "Dr. Priya Nair"];
+  const subjects = [
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "English",
+    "Computer Science",
+  ];
+  const teachers = [
+    "Dr. Rajesh Kumar",
+    "Prof. Sunita Sharma",
+    "Dr. Amit Verma",
+    "Dr. Priya Nair",
+  ];
   const levels = ["beginner", "intermediate", "advanced"];
 
   const handleAddCourse = () => {
@@ -132,7 +159,7 @@ export default function CourseManagement() {
       ...newCourse,
       enrolledStudents: 0,
       status: "upcoming",
-      rating: 0
+      rating: 0,
     };
 
     setCourses([...courses, course]);
@@ -147,7 +174,7 @@ export default function CourseManagement() {
       startDate: "",
       endDate: "",
       schedule: "",
-      level: "beginner"
+      level: "beginner",
     });
     setIsAddingCourse(false);
 
@@ -158,9 +185,9 @@ export default function CourseManagement() {
   };
 
   const handleDeleteCourse = (id: number) => {
-    const course = courses.find(c => c.id === id);
-    setCourses(courses.filter(c => c.id !== id));
-    
+    const course = courses.find((c) => c.id === id);
+    setCourses(courses.filter((c) => c.id !== id));
+
     toast({
       title: "Course Deleted",
       description: `${course?.title} has been removed from the catalog.`,
@@ -168,29 +195,41 @@ export default function CourseManagement() {
   };
 
   const toggleCourseStatus = (id: number) => {
-    setCourses(courses.map(c => 
-      c.id === id ? { 
-        ...c, 
-        status: c.status === "active" ? "inactive" : "active" 
-      } : c
-    ));
+    setCourses(
+      courses.map((c) =>
+        c.id === id
+          ? {
+              ...c,
+              status: c.status === "active" ? "inactive" : "active",
+            }
+          : c,
+      ),
+    );
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active": return "bg-green-100 text-green-800";
-      case "inactive": return "bg-red-100 text-red-800";
-      case "upcoming": return "bg-blue-100 text-blue-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "active":
+        return "bg-green-100 text-green-800";
+      case "inactive":
+        return "bg-red-100 text-red-800";
+      case "upcoming":
+        return "bg-blue-100 text-blue-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
   const getLevelColor = (level: string) => {
     switch (level) {
-      case "beginner": return "bg-green-100 text-green-800";
-      case "intermediate": return "bg-yellow-100 text-yellow-800";
-      case "advanced": return "bg-red-100 text-red-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "beginner":
+        return "bg-green-100 text-green-800";
+      case "intermediate":
+        return "bg-yellow-100 text-yellow-800";
+      case "advanced":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
@@ -213,7 +252,9 @@ export default function CourseManagement() {
         <Card>
           <CardHeader>
             <CardTitle>Create New Course</CardTitle>
-            <CardDescription>Enter course details to add it to the catalog</CardDescription>
+            <CardDescription>
+              Enter course details to add it to the catalog
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -222,14 +263,20 @@ export default function CourseManagement() {
                 <Input
                   id="title"
                   value={newCourse.title}
-                  onChange={(e) => setNewCourse({...newCourse, title: e.target.value})}
+                  onChange={(e) =>
+                    setNewCourse({ ...newCourse, title: e.target.value })
+                  }
                   placeholder="Enter course title"
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="subject">Subject *</Label>
-                <Select onValueChange={(value) => setNewCourse({...newCourse, subject: value})}>
+                <Select
+                  onValueChange={(value) =>
+                    setNewCourse({ ...newCourse, subject: value })
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select subject" />
                   </SelectTrigger>
@@ -245,7 +292,11 @@ export default function CourseManagement() {
 
               <div>
                 <Label htmlFor="teacher">Assigned Teacher *</Label>
-                <Select onValueChange={(value) => setNewCourse({...newCourse, teacher: value})}>
+                <Select
+                  onValueChange={(value) =>
+                    setNewCourse({ ...newCourse, teacher: value })
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select teacher" />
                   </SelectTrigger>
@@ -264,14 +315,20 @@ export default function CourseManagement() {
                 <Input
                   id="duration"
                   value={newCourse.duration}
-                  onChange={(e) => setNewCourse({...newCourse, duration: e.target.value})}
+                  onChange={(e) =>
+                    setNewCourse({ ...newCourse, duration: e.target.value })
+                  }
                   placeholder="e.g., 12 months, 6 weeks"
                 />
               </div>
 
               <div>
                 <Label htmlFor="level">Level</Label>
-                <Select onValueChange={(value: any) => setNewCourse({...newCourse, level: value})}>
+                <Select
+                  onValueChange={(value: any) =>
+                    setNewCourse({ ...newCourse, level: value })
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select level" />
                   </SelectTrigger>
@@ -291,7 +348,12 @@ export default function CourseManagement() {
                   id="price"
                   type="number"
                   value={newCourse.price}
-                  onChange={(e) => setNewCourse({...newCourse, price: parseInt(e.target.value) || 0})}
+                  onChange={(e) =>
+                    setNewCourse({
+                      ...newCourse,
+                      price: parseInt(e.target.value) || 0,
+                    })
+                  }
                   placeholder="Course price"
                 />
               </div>
@@ -302,7 +364,12 @@ export default function CourseManagement() {
                   id="maxStudents"
                   type="number"
                   value={newCourse.maxStudents}
-                  onChange={(e) => setNewCourse({...newCourse, maxStudents: parseInt(e.target.value) || 0})}
+                  onChange={(e) =>
+                    setNewCourse({
+                      ...newCourse,
+                      maxStudents: parseInt(e.target.value) || 0,
+                    })
+                  }
                   placeholder="Maximum enrollment"
                 />
               </div>
@@ -313,7 +380,9 @@ export default function CourseManagement() {
                   id="startDate"
                   type="date"
                   value={newCourse.startDate}
-                  onChange={(e) => setNewCourse({...newCourse, startDate: e.target.value})}
+                  onChange={(e) =>
+                    setNewCourse({ ...newCourse, startDate: e.target.value })
+                  }
                 />
               </div>
 
@@ -323,7 +392,9 @@ export default function CourseManagement() {
                   id="endDate"
                   type="date"
                   value={newCourse.endDate}
-                  onChange={(e) => setNewCourse({...newCourse, endDate: e.target.value})}
+                  onChange={(e) =>
+                    setNewCourse({ ...newCourse, endDate: e.target.value })
+                  }
                 />
               </div>
 
@@ -332,7 +403,9 @@ export default function CourseManagement() {
                 <Input
                   id="schedule"
                   value={newCourse.schedule}
-                  onChange={(e) => setNewCourse({...newCourse, schedule: e.target.value})}
+                  onChange={(e) =>
+                    setNewCourse({ ...newCourse, schedule: e.target.value })
+                  }
                   placeholder="e.g., Mon, Wed, Fri - 10:00 AM"
                 />
               </div>
@@ -342,15 +415,20 @@ export default function CourseManagement() {
                 <Textarea
                   id="description"
                   value={newCourse.description}
-                  onChange={(e) => setNewCourse({...newCourse, description: e.target.value})}
+                  onChange={(e) =>
+                    setNewCourse({ ...newCourse, description: e.target.value })
+                  }
                   placeholder="Enter detailed course description"
                   rows={4}
                 />
               </div>
             </div>
-            
+
             <div className="flex justify-end space-x-2 mt-6">
-              <Button variant="outline" onClick={() => setIsAddingCourse(false)}>
+              <Button
+                variant="outline"
+                onClick={() => setIsAddingCourse(false)}
+              >
                 <X className="h-4 w-4 mr-2" />
                 Cancel
               </Button>
@@ -383,7 +461,7 @@ export default function CourseManagement() {
                 </div>
               </div>
             </CardHeader>
-            
+
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -400,7 +478,7 @@ export default function CourseManagement() {
                     <span>{course.duration}</span>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <div className="flex items-center text-sm">
                     <DollarSign className="h-4 w-4 mr-2 text-gray-500" />
@@ -419,15 +497,19 @@ export default function CourseManagement() {
 
               <div className="pt-4 border-t">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium">Enrollment Progress</span>
+                  <span className="text-sm font-medium">
+                    Enrollment Progress
+                  </span>
                   <span className="text-sm text-gray-600">
                     {course.enrolledStudents}/{course.maxStudents}
                   </span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-blue-600 h-2 rounded-full transition-all"
-                    style={{ width: `${(course.enrolledStudents / course.maxStudents) * 100}%` }}
+                    style={{
+                      width: `${(course.enrolledStudents / course.maxStudents) * 100}%`,
+                    }}
                   ></div>
                 </div>
               </div>
@@ -442,15 +524,15 @@ export default function CourseManagement() {
                   <Edit className="h-3 w-3 mr-1" />
                   Edit
                 </Button>
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   variant="outline"
                   onClick={() => toggleCourseStatus(course.id)}
                 >
                   {course.status === "active" ? "Deactivate" : "Activate"}
                 </Button>
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   variant="destructive"
                   onClick={() => handleDeleteCourse(course.id)}
                 >

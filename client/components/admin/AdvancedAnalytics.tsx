@@ -1,8 +1,20 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import ChartWrapper from "../dashboard/ChartWrapper";
 import {
   LineChart,
@@ -19,12 +31,12 @@ import {
   ResponsiveContainer,
   Legend,
   Area,
-  AreaChart
+  AreaChart,
 } from "recharts";
-import { 
-  TrendingUp, 
-  Users, 
-  DollarSign, 
+import {
+  TrendingUp,
+  Users,
+  DollarSign,
   BookOpen,
   Calendar,
   Download,
@@ -37,7 +49,7 @@ import {
   AlertTriangle,
   CheckCircle,
   Clock,
-  Star
+  Star,
 } from "lucide-react";
 
 export default function AdvancedAnalytics() {
@@ -60,7 +72,12 @@ export default function AdvancedAnalytics() {
     { subject: "Chemistry", avgScore: 82, students: 110, satisfaction: 4.9 },
     { subject: "Biology", avgScore: 79, students: 85, satisfaction: 4.5 },
     { subject: "English", avgScore: 88, students: 75, satisfaction: 4.7 },
-    { subject: "Computer Science", avgScore: 91, students: 60, satisfaction: 4.9 },
+    {
+      subject: "Computer Science",
+      avgScore: 91,
+      students: 60,
+      satisfaction: 4.9,
+    },
   ];
 
   const enrollmentTrends = [
@@ -73,10 +90,34 @@ export default function AdvancedAnalytics() {
   ];
 
   const teacherPerformance = [
-    { name: "Dr. Rajesh Kumar", rating: 4.9, students: 120, courses: 3, revenue: 25000 },
-    { name: "Prof. Sunita Sharma", rating: 4.8, students: 95, courses: 2, revenue: 18000 },
-    { name: "Dr. Amit Verma", rating: 4.9, students: 110, courses: 2, revenue: 22000 },
-    { name: "Dr. Priya Nair", rating: 4.5, students: 85, courses: 2, revenue: 15000 },
+    {
+      name: "Dr. Rajesh Kumar",
+      rating: 4.9,
+      students: 120,
+      courses: 3,
+      revenue: 25000,
+    },
+    {
+      name: "Prof. Sunita Sharma",
+      rating: 4.8,
+      students: 95,
+      courses: 2,
+      revenue: 18000,
+    },
+    {
+      name: "Dr. Amit Verma",
+      rating: 4.9,
+      students: 110,
+      courses: 2,
+      revenue: 22000,
+    },
+    {
+      name: "Dr. Priya Nair",
+      rating: 4.5,
+      students: 85,
+      courses: 2,
+      revenue: 15000,
+    },
   ];
 
   const coursePopularity = [
@@ -88,37 +129,37 @@ export default function AdvancedAnalytics() {
   ];
 
   const operationalMetrics = [
-    { 
-      title: "Server Uptime", 
-      value: "99.9%", 
-      trend: "+0.1%", 
+    {
+      title: "Server Uptime",
+      value: "99.9%",
+      trend: "+0.1%",
       status: "excellent",
       icon: Activity,
-      color: "text-green-600"
+      color: "text-green-600",
     },
-    { 
-      title: "Support Response", 
-      value: "2.3 hrs", 
-      trend: "-0.5 hrs", 
+    {
+      title: "Support Response",
+      value: "2.3 hrs",
+      trend: "-0.5 hrs",
       status: "good",
       icon: Clock,
-      color: "text-blue-600"
+      color: "text-blue-600",
     },
-    { 
-      title: "Payment Success", 
-      value: "98.5%", 
-      trend: "+1.2%", 
+    {
+      title: "Payment Success",
+      value: "98.5%",
+      trend: "+1.2%",
       status: "excellent",
       icon: CheckCircle,
-      color: "text-green-600"
+      color: "text-green-600",
     },
-    { 
-      title: "User Satisfaction", 
-      value: "4.7/5", 
-      trend: "+0.2", 
+    {
+      title: "User Satisfaction",
+      value: "4.7/5",
+      trend: "+0.2",
       status: "good",
       icon: Star,
-      color: "text-yellow-600"
+      color: "text-yellow-600",
     },
   ];
 
@@ -126,39 +167,48 @@ export default function AdvancedAnalytics() {
     {
       type: "opportunity",
       title: "Peak Enrollment Period",
-      description: "Based on trends, expect 40% increase in enrollments in January-February.",
+      description:
+        "Based on trends, expect 40% increase in enrollments in January-February.",
       confidence: 89,
-      action: "Prepare marketing campaigns and teacher availability"
+      action: "Prepare marketing campaigns and teacher availability",
     },
     {
-      type: "warning", 
+      type: "warning",
       title: "Teacher Capacity Alert",
-      description: "Dr. Rajesh Kumar approaching maximum student capacity (125/130).",
+      description:
+        "Dr. Rajesh Kumar approaching maximum student capacity (125/130).",
       confidence: 95,
-      action: "Consider hiring additional mathematics faculty"
+      action: "Consider hiring additional mathematics faculty",
     },
     {
       type: "info",
       title: "Revenue Projection",
-      description: "Current trajectory suggests ₹85,000 monthly revenue by March.",
+      description:
+        "Current trajectory suggests ₹85,000 monthly revenue by March.",
       confidence: 76,
-      action: "Review pricing strategy for premium courses"
+      action: "Review pricing strategy for premium courses",
     },
   ];
 
   const getInsightIcon = (type: string) => {
     switch (type) {
-      case "opportunity": return <TrendingUp className="h-4 w-4 text-green-500" />;
-      case "warning": return <AlertTriangle className="h-4 w-4 text-yellow-500" />;
-      default: return <Target className="h-4 w-4 text-blue-500" />;
+      case "opportunity":
+        return <TrendingUp className="h-4 w-4 text-green-500" />;
+      case "warning":
+        return <AlertTriangle className="h-4 w-4 text-yellow-500" />;
+      default:
+        return <Target className="h-4 w-4 text-blue-500" />;
     }
   };
 
   const getInsightColor = (type: string) => {
     switch (type) {
-      case "opportunity": return "border-l-green-500 bg-green-50";
-      case "warning": return "border-l-yellow-500 bg-yellow-50";
-      default: return "border-l-blue-500 bg-blue-50";
+      case "opportunity":
+        return "border-l-green-500 bg-green-50";
+      case "warning":
+        return "border-l-yellow-500 bg-yellow-50";
+      default:
+        return "border-l-blue-500 bg-blue-50";
     }
   };
 
@@ -168,7 +218,9 @@ export default function AdvancedAnalytics() {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold">Advanced Analytics</h2>
-          <p className="text-gray-600">Comprehensive data analysis and insights</p>
+          <p className="text-gray-600">
+            Comprehensive data analysis and insights
+          </p>
         </div>
         <div className="flex space-x-3">
           <Select value={timeRange} onValueChange={setTimeRange}>
@@ -195,7 +247,9 @@ export default function AdvancedAnalytics() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">{metric.title}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    {metric.title}
+                  </p>
                   <div className="flex items-center space-x-2">
                     <p className="text-2xl font-bold">{metric.value}</p>
                     <Badge variant="outline" className="text-xs">
@@ -230,7 +284,13 @@ export default function AdvancedAnalytics() {
                   <XAxis dataKey="month" />
                   <YAxis />
                   <Tooltip />
-                  <Area type="monotone" dataKey="revenue" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.3} />
+                  <Area
+                    type="monotone"
+                    dataKey="revenue"
+                    stroke="#3b82f6"
+                    fill="#3b82f6"
+                    fillOpacity={0.3}
+                  />
                 </AreaChart>
               </ResponsiveContainer>
             </ChartWrapper>
@@ -281,8 +341,18 @@ export default function AdvancedAnalytics() {
                   <XAxis dataKey="month" />
                   <YAxis />
                   <Tooltip />
-                  <Line type="monotone" dataKey="newEnrollments" stroke="#3b82f6" strokeWidth={2} />
-                  <Line type="monotone" dataKey="retention" stroke="#10b981" strokeWidth={2} />
+                  <Line
+                    type="monotone"
+                    dataKey="newEnrollments"
+                    stroke="#3b82f6"
+                    strokeWidth={2}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="retention"
+                    stroke="#10b981"
+                    strokeWidth={2}
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </ChartWrapper>
@@ -306,7 +376,9 @@ export default function AdvancedAnalytics() {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) =>
+                      `${name} ${(percent * 100).toFixed(0)}%`
+                    }
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
@@ -330,28 +402,41 @@ export default function AdvancedAnalytics() {
             <Star className="h-5 w-5 mr-2" />
             Teacher Performance Leaderboard
           </CardTitle>
-          <CardDescription>Top performing faculty based on ratings and engagement</CardDescription>
+          <CardDescription>
+            Top performing faculty based on ratings and engagement
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {teacherPerformance.map((teacher, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div
+                key={index}
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+              >
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="font-bold text-blue-600">#{index + 1}</span>
+                    <span className="font-bold text-blue-600">
+                      #{index + 1}
+                    </span>
                   </div>
                   <div>
                     <h4 className="font-semibold">{teacher.name}</h4>
-                    <p className="text-sm text-gray-600">{teacher.students} students • {teacher.courses} courses</p>
+                    <p className="text-sm text-gray-600">
+                      {teacher.students} students • {teacher.courses} courses
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-6">
                   <div className="text-center">
-                    <p className="text-lg font-bold text-yellow-600">{teacher.rating}</p>
+                    <p className="text-lg font-bold text-yellow-600">
+                      {teacher.rating}
+                    </p>
                     <p className="text-xs text-gray-500">Rating</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-lg font-bold text-green-600">₹{teacher.revenue.toLocaleString()}</p>
+                    <p className="text-lg font-bold text-green-600">
+                      ₹{teacher.revenue.toLocaleString()}
+                    </p>
                     <p className="text-xs text-gray-500">Revenue</p>
                   </div>
                 </div>
@@ -368,12 +453,17 @@ export default function AdvancedAnalytics() {
             <Zap className="h-5 w-5 mr-2" />
             AI-Powered Predictive Insights
           </CardTitle>
-          <CardDescription>Smart recommendations based on data analysis</CardDescription>
+          <CardDescription>
+            Smart recommendations based on data analysis
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {predictiveInsights.map((insight, index) => (
-              <div key={index} className={`p-4 border-l-4 rounded-r ${getInsightColor(insight.type)}`}>
+              <div
+                key={index}
+                className={`p-4 border-l-4 rounded-r ${getInsightColor(insight.type)}`}
+              >
                 <div className="flex items-start space-x-3">
                   {getInsightIcon(insight.type)}
                   <div className="flex-1">
@@ -383,7 +473,9 @@ export default function AdvancedAnalytics() {
                         {insight.confidence}% confidence
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-700 mb-2">{insight.description}</p>
+                    <p className="text-sm text-gray-700 mb-2">
+                      {insight.description}
+                    </p>
                     <p className="text-sm font-medium text-gray-900">
                       Recommended Action: {insight.action}
                     </p>
