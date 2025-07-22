@@ -15,6 +15,7 @@ import FloatingBooks from "@/components/3D/FloatingBooks";
 import AtomAnimation from "@/components/3D/AtomAnimation";
 import DNAHelix from "@/components/3D/DNAHelix";
 import GeometricShapes from "@/components/3D/GeometricShapes";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import {
   BookOpen,
   Users,
