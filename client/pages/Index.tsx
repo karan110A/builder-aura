@@ -100,7 +100,8 @@ export default function Index() {
 
   return (
     <div className="min-h-screen relative">
-      {/* Animated Background */}
+      {/* Animated Backgrounds */}
+      <GradientBackground />
       <AnimatedBackground />
 
       <Header />
