@@ -52,7 +52,17 @@ export default function PerformanceChart({
               tickCount={5}
               type="category"
             />
-            <YAxis axisLine={true} tickLine={true} tickMargin={5} />
+            <YAxis
+              axisLine={true}
+              tickLine={true}
+              tickMargin={5}
+              tick={true}
+              allowDecimals={true}
+              allowDuplicatedCategory={false}
+              orientation="left"
+              type="number"
+              width={60}
+            />
             <Tooltip />
             <Bar dataKey="value" fill="#3b82f6" />
           </BarChart>
