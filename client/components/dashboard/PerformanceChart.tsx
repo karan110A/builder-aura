@@ -2,14 +2,13 @@ import React from "react";
 import {
   LineChart,
   Line,
-  XAxis,
-  YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
   BarChart,
   Bar,
 } from "recharts";
+import { XAxis, YAxis } from "./RechartComponents";
 import ChartWrapper from "./ChartWrapper";
 
 interface PerformanceChartProps {
