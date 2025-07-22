@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface Particle {
   x: number;
@@ -32,7 +32,7 @@ export default function AnimatedBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const resizeCanvas = () => {
@@ -41,10 +41,21 @@ export default function AnimatedBackground() {
     };
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
 
     // Educational icons as Unicode symbols
-    const educationalIcons = ['📚', '🎓', '📝', '🧮', '⚗️', '🔬', '📐', '🖊️', '💡', '🧪'];
+    const educationalIcons = [
+      "📚",
+      "🎓",
+      "📝",
+      "🧮",
+      "⚗️",
+      "🔬",
+      "📐",
+      "🖊️",
+      "💡",
+      "🧪",
+    ];
 
     // Initialize particles
     const initParticles = () => {
@@ -75,7 +86,9 @@ export default function AnimatedBackground() {
           rotation: Math.random() * 360,
           rotationSpeed: (Math.random() - 0.5) * 2,
           opacity: Math.random() * 0.15 + 0.05,
-          icon: educationalIcons[Math.floor(Math.random() * educationalIcons.length)],
+          icon: educationalIcons[
+            Math.floor(Math.random() * educationalIcons.length)
+          ],
         });
       }
     };
@@ -130,8 +143,8 @@ export default function AnimatedBackground() {
         ctx.rotate((icon.rotation * Math.PI) / 180);
         ctx.globalAlpha = icon.opacity;
         ctx.font = `${icon.size}px Arial`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
         ctx.fillText(icon.icon, 0, 0);
         ctx.restore();
       });
@@ -147,7 +160,7 @@ export default function AnimatedBackground() {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
-            const opacity = (150 - distance) / 150 * 0.1;
+            const opacity = ((150 - distance) / 150) * 0.1;
             ctx.strokeStyle = `hsla(220, 70%, 60%, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.stroke();
@@ -161,7 +174,7 @@ export default function AnimatedBackground() {
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener("resize", resizeCanvas);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
