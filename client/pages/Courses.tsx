@@ -214,8 +214,19 @@ export default function Courses() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-20 relative overflow-hidden">
+        {/* 3D Atom Animation */}
+        <div className="absolute top-10 right-10 w-64 h-64 opacity-30">
+          <Scene3D
+            className="w-full h-full"
+            enableControls={true}
+            camera={{ position: [3, 3, 5], fov: 60 }}
+          >
+            <AtomAnimation />
+          </Scene3D>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Badge variant="secondary" className="mb-4">
             Our Courses
           </Badge>
