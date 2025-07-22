@@ -4,23 +4,22 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ChartWrapper from "../dashboard/ChartWrapper";
-import { 
-  LineChart, 
-  Line, 
-  BarChart, 
-  Bar, 
-  PieChart, 
-  Pie, 
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
   Cell,
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   Legend,
   Area,
   AreaChart
 } from "recharts";
+import { XAxis, YAxis } from "../dashboard/RechartComponents";
 import { 
   TrendingUp, 
   Users, 
