@@ -56,34 +56,8 @@ export default function PerformanceChart({
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="name"
-              axisLine={true}
-              tickLine={true}
-              tickMargin={5}
-              tick={true}
-              allowDecimals={true}
-              allowDuplicatedCategory={true}
-              angle={0}
-              height={60}
-              interval="preserveStartEnd"
-              minTickGap={5}
-              orientation="bottom"
-              reversed={false}
-              tickCount={5}
-              type="category"
-            />
-            <YAxis
-              axisLine={true}
-              tickLine={true}
-              tickMargin={5}
-              tick={true}
-              allowDecimals={true}
-              allowDuplicatedCategory={false}
-              orientation="left"
-              type="number"
-              width={60}
-            />
+            <XAxis dataKey="name" height={60} />
+            <YAxis />
             <Tooltip />
             <Line
               type="monotone"
