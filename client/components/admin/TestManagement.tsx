@@ -553,10 +553,13 @@ export default function TestManagement() {
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={() => setIsAddingQuestion(true)}
+                    onClick={() => {
+                      setSelectedTest(null);
+                      setShowQuestions(true);
+                    }}
                   >
                     <Plus className="h-4 w-4 mr-1" />
-                    Add Questions
+                    Manage Questions
                   </Button>
                 </div>
               </div>
