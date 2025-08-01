@@ -145,8 +145,14 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
+      {/* 3D Animated Background */}
+      <LoginScene3D className="absolute inset-0 z-0" interactive={true} />
+
+      {/* Overlay for better readability */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px] z-10"></div>
+
+      <div className="w-full max-w-md relative z-20">
         {/* Logo and Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center space-x-2 mb-4">
