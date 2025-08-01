@@ -196,14 +196,14 @@ export default function Login() {
               <TabsContent value="login" className="space-y-4 mt-6">
                 <form onSubmit={handleLoginSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
+                    <Label htmlFor="email" className="text-white/90 font-medium">Email Address</Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                      <Mail className="absolute left-3 top-3 h-4 w-4 text-white/60" />
                       <Input
                         id="email"
                         type="email"
                         placeholder="Enter your email"
-                        className="pl-10"
+                        className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:bg-white/15 focus:border-white/40 transition-all duration-300 backdrop-blur-sm"
                         value={loginForm.email}
                         onChange={(e) =>
                           setLoginForm({ ...loginForm, email: e.target.value })
