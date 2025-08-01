@@ -60,6 +60,10 @@ interface Test {
   duration: number; // in minutes
   totalMarks: number;
   totalQuestions: number;
+  questions1Mark: number;
+  questions2Mark: number;
+  questions3Mark: number;
+  questions4Mark: number;
   scheduledDate: string;
   scheduledTime: string;
   status: "draft" | "scheduled" | "active" | "completed" | "cancelled";
@@ -110,6 +114,10 @@ export default function TestManagement() {
       duration: 120,
       totalMarks: 100,
       totalQuestions: 20,
+      questions1Mark: 5,
+      questions2Mark: 8,
+      questions3Mark: 5,
+      questions4Mark: 2,
       scheduledDate: "2024-01-20",
       scheduledTime: "10:00",
       status: "scheduled",
@@ -129,6 +137,10 @@ export default function TestManagement() {
       duration: 60,
       totalMarks: 50,
       totalQuestions: 15,
+      questions1Mark: 10,
+      questions2Mark: 5,
+      questions3Mark: 0,
+      questions4Mark: 0,
       scheduledDate: "2024-01-18",
       scheduledTime: "14:00",
       status: "completed",
@@ -148,6 +160,10 @@ export default function TestManagement() {
       duration: 180,
       totalMarks: 150,
       totalQuestions: 30,
+      questions1Mark: 10,
+      questions2Mark: 10,
+      questions3Mark: 6,
+      questions4Mark: 4,
       scheduledDate: "2024-01-25",
       scheduledTime: "09:00",
       status: "draft",
@@ -167,6 +183,11 @@ export default function TestManagement() {
     course: "",
     duration: 60,
     totalMarks: 50,
+    totalQuestions: 0,
+    questions1Mark: 0,
+    questions2Mark: 0,
+    questions3Mark: 0,
+    questions4Mark: 0,
     scheduledDate: "",
     scheduledTime: "",
     passingMarks: 25,
@@ -212,7 +233,7 @@ export default function TestManagement() {
     const test: Test = {
       id: tests.length + 1,
       ...newTest,
-      totalQuestions: questions.length,
+      totalQuestions: newTest.questions1Mark + newTest.questions2Mark + newTest.questions3Mark + newTest.questions4Mark,
       status: "draft",
       studentsEnrolled: 0,
       studentsCompleted: 0,
@@ -229,6 +250,11 @@ export default function TestManagement() {
       course: "",
       duration: 60,
       totalMarks: 50,
+      totalQuestions: 0,
+      questions1Mark: 0,
+      questions2Mark: 0,
+      questions3Mark: 0,
+      questions4Mark: 0,
       scheduledDate: "",
       scheduledTime: "",
       passingMarks: 25,
@@ -508,18 +534,14 @@ export default function TestManagement() {
               </div>
 
               <div>
-                <Label htmlFor="totalMarks">Total Marks</Label>
+                <Label htmlFor="totalMarks">Total Marks (Auto-calculated)</Label>
                 <Input
                   id="totalMarks"
                   type="number"
                   value={newTest.totalMarks}
-                  onChange={(e) =>
-                    setNewTest({
-                      ...newTest,
-                      totalMarks: parseInt(e.target.value) || 50,
-                    })
-                  }
-                  placeholder="Total marks"
+                  readOnly
+                  className="bg-gray-50"
+                  placeholder="Calculated from question distribution"
                 />
               </div>
 
@@ -539,28 +561,88 @@ export default function TestManagement() {
                 />
               </div>
 
-              <div>
-                <Label htmlFor="totalQuestions">Number of Questions</Label>
-                <div className="flex space-x-2">
-                  <Input
-                    id="totalQuestions"
-                    type="number"
-                    value={questions.length}
-                    readOnly
-                    placeholder="Questions will be counted automatically"
-                    className="bg-gray-50"
-                  />
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => {
-                      setSelectedTest(null);
-                      setShowQuestions(true);
-                    }}
-                  >
-                    <Plus className="h-4 w-4 mr-1" />
-                    Manage Questions
-                  </Button>
+              <div className="md:col-span-2">
+                <Label>Question Distribution by Marks</Label>
+                <div className="grid grid-cols-4 gap-4 mt-2">
+                  <div>
+                    <Label htmlFor="questions1Mark" className="text-sm">1 Mark Questions</Label>
+                    <Input
+                      id="questions1Mark"
+                      type="number"
+                      min="0"
+                      value={newTest.questions1Mark}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value) || 0;
+                        setNewTest({
+                          ...newTest,
+                          questions1Mark: value,
+                          totalQuestions: value + newTest.questions2Mark + newTest.questions3Mark + newTest.questions4Mark,
+                          totalMarks: (value * 1) + (newTest.questions2Mark * 2) + (newTest.questions3Mark * 3) + (newTest.questions4Mark * 4)
+                        });
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="questions2Mark" className="text-sm">2 Mark Questions</Label>
+                    <Input
+                      id="questions2Mark"
+                      type="number"
+                      min="0"
+                      value={newTest.questions2Mark}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value) || 0;
+                        setNewTest({
+                          ...newTest,
+                          questions2Mark: value,
+                          totalQuestions: newTest.questions1Mark + value + newTest.questions3Mark + newTest.questions4Mark,
+                          totalMarks: (newTest.questions1Mark * 1) + (value * 2) + (newTest.questions3Mark * 3) + (newTest.questions4Mark * 4)
+                        });
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="questions3Mark" className="text-sm">3 Mark Questions</Label>
+                    <Input
+                      id="questions3Mark"
+                      type="number"
+                      min="0"
+                      value={newTest.questions3Mark}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value) || 0;
+                        setNewTest({
+                          ...newTest,
+                          questions3Mark: value,
+                          totalQuestions: newTest.questions1Mark + newTest.questions2Mark + value + newTest.questions4Mark,
+                          totalMarks: (newTest.questions1Mark * 1) + (newTest.questions2Mark * 2) + (value * 3) + (newTest.questions4Mark * 4)
+                        });
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="questions4Mark" className="text-sm">4 Mark Questions</Label>
+                    <Input
+                      id="questions4Mark"
+                      type="number"
+                      min="0"
+                      value={newTest.questions4Mark}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value) || 0;
+                        setNewTest({
+                          ...newTest,
+                          questions4Mark: value,
+                          totalQuestions: newTest.questions1Mark + newTest.questions2Mark + newTest.questions3Mark + value,
+                          totalMarks: (newTest.questions1Mark * 1) + (newTest.questions2Mark * 2) + (newTest.questions3Mark * 3) + (value * 4)
+                        });
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                </div>
+                <div className="mt-2 text-sm text-gray-600">
+                  Total Questions: {newTest.totalQuestions} | Auto-calculated Total Marks: {newTest.totalMarks}
                 </div>
               </div>
 
