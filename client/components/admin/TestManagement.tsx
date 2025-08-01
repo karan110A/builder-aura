@@ -17,6 +17,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -71,6 +84,18 @@ export default function TestManagement() {
   const [isCreatingTest, setIsCreatingTest] = useState(false);
   const [selectedTest, setSelectedTest] = useState<Test | null>(null);
   const [showQuestions, setShowQuestions] = useState(false);
+  const [editingTest, setEditingTest] = useState<Test | null>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [newQuestion, setNewQuestion] = useState<Partial<Question>>({
+    question: "",
+    type: "mcq",
+    options: ["", "", "", ""],
+    correctAnswer: "",
+    marks: 1,
+    difficulty: "medium",
+  });
+  const [isAddingQuestion, setIsAddingQuestion] = useState(false);
 
   // Mock test data
   const [tests, setTests] = useState<Test[]>([
@@ -232,6 +257,75 @@ export default function TestManagement() {
     toast({
       title: "Test Status Updated",
       description: `Test status has been changed to ${status}.`,
+    });
+  };
+
+  const handleEditTest = (test: Test) => {
+    setEditingTest(test);
+    setIsEditDialogOpen(true);
+  };
+
+  const handleUpdateTest = () => {
+    if (editingTest) {
+      if (!editingTest.title || !editingTest.subject || !editingTest.teacher) {
+        toast({
+          title: "Missing Information",
+          description: "Please fill in all required fields.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setTests(
+        tests.map((t) => (t.id === editingTest.id ? editingTest : t)),
+      );
+      setEditingTest(null);
+      setIsEditDialogOpen(false);
+
+      toast({
+        title: "Test Updated",
+        description: "Test information has been updated successfully.",
+      });
+    }
+  };
+
+  const handleAddQuestion = () => {
+    if (!newQuestion.question || !newQuestion.correctAnswer) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in question and correct answer.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const question: Question = {
+      id: questions.length + 1,
+      ...newQuestion as Question,
+    };
+
+    setQuestions([...questions, question]);
+    setNewQuestion({
+      question: "",
+      type: "mcq",
+      options: ["", "", "", ""],
+      correctAnswer: "",
+      marks: 1,
+      difficulty: "medium",
+    });
+    setIsAddingQuestion(false);
+
+    toast({
+      title: "Question Added",
+      description: "Question has been added to the test.",
+    });
+  };
+
+  const handleDeleteQuestion = (id: number) => {
+    setQuestions(questions.filter((q) => q.id !== id));
+    toast({
+      title: "Question Deleted",
+      description: "Question has been removed from the test.",
     });
   };
 
@@ -446,6 +540,28 @@ export default function TestManagement() {
               </div>
 
               <div>
+                <Label htmlFor="totalQuestions">Number of Questions</Label>
+                <div className="flex space-x-2">
+                  <Input
+                    id="totalQuestions"
+                    type="number"
+                    value={questions.length}
+                    readOnly
+                    placeholder="Questions will be counted automatically"
+                    className="bg-gray-50"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setIsAddingQuestion(true)}
+                  >
+                    <Plus className="h-4 w-4 mr-1" />
+                    Add Questions
+                  </Button>
+                </div>
+              </div>
+
+              <div>
                 <Label htmlFor="scheduledDate">Scheduled Date</Label>
                 <Input
                   id="scheduledDate"
@@ -589,9 +705,24 @@ export default function TestManagement() {
               )}
 
               <div className="flex flex-wrap gap-2 pt-4">
-                <Button size="sm" variant="outline">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleEditTest(test)}
+                >
                   <Edit className="h-3 w-3 mr-1" />
                   Edit
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => {
+                    setSelectedTest(test);
+                    setShowQuestions(true);
+                  }}
+                >
+                  <Plus className="h-3 w-3 mr-1" />
+                  Questions ({test.totalQuestions})
                 </Button>
 
                 {test.status === "draft" && (
@@ -642,6 +773,490 @@ export default function TestManagement() {
           </Card>
         ))}
       </div>
+
+      {/* Edit Test Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Test: {editingTest?.title}</DialogTitle>
+            <DialogDescription>
+              Update test information and settings
+            </DialogDescription>
+          </DialogHeader>
+          {editingTest && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+              <div className="md:col-span-2">
+                <Label htmlFor="edit-title">Test Title *</Label>
+                <Input
+                  id="edit-title"
+                  value={editingTest.title}
+                  onChange={(e) =>
+                    setEditingTest({ ...editingTest, title: e.target.value })
+                  }
+                  placeholder="Enter test title"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="edit-subject">Subject *</Label>
+                <Select
+                  value={editingTest.subject}
+                  onValueChange={(value) =>
+                    setEditingTest({ ...editingTest, subject: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select subject" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {subjects.map((subject) => (
+                      <SelectItem key={subject} value={subject}>
+                        {subject}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="edit-type">Test Type</Label>
+                <Select
+                  value={editingTest.type}
+                  onValueChange={(value: any) =>
+                    setEditingTest({ ...editingTest, type: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select test type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {testTypes.map((type) => (
+                      <SelectItem key={type.value} value={type.value}>
+                        {type.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="edit-teacher">Teacher *</Label>
+                <Select
+                  value={editingTest.teacher}
+                  onValueChange={(value) =>
+                    setEditingTest({ ...editingTest, teacher: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select teacher" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {teachers.map((teacher) => (
+                      <SelectItem key={teacher} value={teacher}>
+                        {teacher}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="edit-course">Course</Label>
+                <Select
+                  value={editingTest.course}
+                  onValueChange={(value) =>
+                    setEditingTest({ ...editingTest, course: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select course" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {courses.map((course) => (
+                      <SelectItem key={course} value={course}>
+                        {course}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="edit-duration">Duration (minutes)</Label>
+                <Input
+                  id="edit-duration"
+                  type="number"
+                  value={editingTest.duration}
+                  onChange={(e) =>
+                    setEditingTest({
+                      ...editingTest,
+                      duration: parseInt(e.target.value) || 60,
+                    })
+                  }
+                  placeholder="Test duration"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="edit-totalMarks">Total Marks</Label>
+                <Input
+                  id="edit-totalMarks"
+                  type="number"
+                  value={editingTest.totalMarks}
+                  onChange={(e) =>
+                    setEditingTest({
+                      ...editingTest,
+                      totalMarks: parseInt(e.target.value) || 50,
+                    })
+                  }
+                  placeholder="Total marks"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="edit-passingMarks">Passing Marks</Label>
+                <Input
+                  id="edit-passingMarks"
+                  type="number"
+                  value={editingTest.passingMarks}
+                  onChange={(e) =>
+                    setEditingTest({
+                      ...editingTest,
+                      passingMarks: parseInt(e.target.value) || 25,
+                    })
+                  }
+                  placeholder="Minimum marks to pass"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="edit-scheduledDate">Scheduled Date</Label>
+                <Input
+                  id="edit-scheduledDate"
+                  type="date"
+                  value={editingTest.scheduledDate}
+                  onChange={(e) =>
+                    setEditingTest({ ...editingTest, scheduledDate: e.target.value })
+                  }
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="edit-scheduledTime">Scheduled Time</Label>
+                <Input
+                  id="edit-scheduledTime"
+                  type="time"
+                  value={editingTest.scheduledTime}
+                  onChange={(e) =>
+                    setEditingTest({ ...editingTest, scheduledTime: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <Label htmlFor="edit-description">Test Description</Label>
+                <Textarea
+                  id="edit-description"
+                  value={editingTest.description}
+                  onChange={(e) =>
+                    setEditingTest({ ...editingTest, description: e.target.value })
+                  }
+                  placeholder="Enter test description and instructions"
+                  rows={3}
+                />
+              </div>
+            </div>
+          )}
+          <div className="flex justify-end space-x-2 pt-4">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setIsEditDialogOpen(false);
+                setEditingTest(null);
+              }}
+            >
+              <X className="h-4 w-4 mr-2" />
+              Cancel
+            </Button>
+            <Button onClick={handleUpdateTest}>
+              <Save className="h-4 w-4 mr-2" />
+              Update Test
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Questions Management Dialog */}
+      <Dialog open={showQuestions} onOpenChange={setShowQuestions}>
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-hidden">
+          <DialogHeader>
+            <DialogTitle>Manage Questions: {selectedTest?.title}</DialogTitle>
+            <DialogDescription>
+              Add and manage questions for this test
+            </DialogDescription>
+          </DialogHeader>
+
+          <Tabs defaultValue="questions" className="h-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="questions">Questions ({questions.length})</TabsTrigger>
+              <TabsTrigger value="add-question">Add Question</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="questions" className="mt-4 h-[60vh] overflow-y-auto">
+              <div className="space-y-4">
+                {questions.length === 0 ? (
+                  <div className="text-center py-8 text-gray-500">
+                    <FileText className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <p>No questions added yet</p>
+                    <p className="text-sm">Switch to "Add Question" tab to start</p>
+                  </div>
+                ) : (
+                  questions.map((question, index) => (
+                    <Card key={question.id} className="p-4">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <Badge className="text-xs">
+                              Q{index + 1}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {question.type.toUpperCase()}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {question.marks} marks
+                            </Badge>
+                            <Badge
+                              variant={question.difficulty === 'easy' ? 'default' :
+                                       question.difficulty === 'medium' ? 'secondary' : 'destructive'}
+                              className="text-xs"
+                            >
+                              {question.difficulty}
+                            </Badge>
+                          </div>
+                          <p className="font-medium mb-2">{question.question}</p>
+
+                          {question.type === 'mcq' && question.options && (
+                            <div className="grid grid-cols-2 gap-2 mt-2">
+                              {question.options.map((option, optIndex) => (
+                                <div
+                                  key={optIndex}
+                                  className={`p-2 rounded text-sm ${
+                                    option === question.correctAnswer
+                                      ? 'bg-green-100 border border-green-300'
+                                      : 'bg-gray-50'
+                                  }`}
+                                >
+                                  {String.fromCharCode(65 + optIndex)}. {option}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {question.type !== 'mcq' && (
+                            <div className="mt-2 p-2 bg-green-100 rounded text-sm">
+                              <strong>Answer:</strong> {question.correctAnswer}
+                            </div>
+                          )}
+                        </div>
+
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          onClick={() => handleDeleteQuestion(question.id)}
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </Card>
+                  ))
+                )}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="add-question" className="mt-4 h-[60vh] overflow-y-auto">
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="question-text">Question *</Label>
+                  <Textarea
+                    id="question-text"
+                    value={newQuestion.question}
+                    onChange={(e) =>
+                      setNewQuestion({ ...newQuestion, question: e.target.value })
+                    }
+                    placeholder="Enter your question here"
+                    rows={3}
+                  />
+                </div>
+
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <Label htmlFor="question-type">Question Type</Label>
+                    <Select
+                      value={newQuestion.type}
+                      onValueChange={(value: any) =>
+                        setNewQuestion({ ...newQuestion, type: value, options: value === 'mcq' ? ["", "", "", ""] : undefined })
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="mcq">Multiple Choice</SelectItem>
+                        <SelectItem value="true-false">True/False</SelectItem>
+                        <SelectItem value="short-answer">Short Answer</SelectItem>
+                        <SelectItem value="long-answer">Long Answer</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="question-marks">Marks</Label>
+                    <Input
+                      id="question-marks"
+                      type="number"
+                      value={newQuestion.marks}
+                      onChange={(e) =>
+                        setNewQuestion({ ...newQuestion, marks: parseInt(e.target.value) || 1 })
+                      }
+                      min="1"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="question-difficulty">Difficulty</Label>
+                    <Select
+                      value={newQuestion.difficulty}
+                      onValueChange={(value: any) =>
+                        setNewQuestion({ ...newQuestion, difficulty: value })
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="easy">Easy</SelectItem>
+                        <SelectItem value="medium">Medium</SelectItem>
+                        <SelectItem value="hard">Hard</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                {newQuestion.type === 'mcq' && (
+                  <div>
+                    <Label>Options *</Label>
+                    <div className="space-y-2 mt-2">
+                      {newQuestion.options?.map((option, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                          <span className="w-8 text-sm font-medium">
+                            {String.fromCharCode(65 + index)}.
+                          </span>
+                          <Input
+                            value={option}
+                            onChange={(e) => {
+                              const newOptions = [...(newQuestion.options || [])];
+                              newOptions[index] = e.target.value;
+                              setNewQuestion({ ...newQuestion, options: newOptions });
+                            }}
+                            placeholder={`Option ${String.fromCharCode(65 + index)}`}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div>
+                  <Label htmlFor="correct-answer">Correct Answer *</Label>
+                  {newQuestion.type === 'mcq' ? (
+                    <Select
+                      value={newQuestion.correctAnswer}
+                      onValueChange={(value) =>
+                        setNewQuestion({ ...newQuestion, correctAnswer: value })
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select correct option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {newQuestion.options?.map((option, index) => (
+                          option && (
+                            <SelectItem key={index} value={option}>
+                              {String.fromCharCode(65 + index)}. {option}
+                            </SelectItem>
+                          )
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  ) : newQuestion.type === 'true-false' ? (
+                    <Select
+                      value={newQuestion.correctAnswer}
+                      onValueChange={(value) =>
+                        setNewQuestion({ ...newQuestion, correctAnswer: value })
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select correct answer" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="True">True</SelectItem>
+                        <SelectItem value="False">False</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <Textarea
+                      id="correct-answer"
+                      value={newQuestion.correctAnswer}
+                      onChange={(e) =>
+                        setNewQuestion({ ...newQuestion, correctAnswer: e.target.value })
+                      }
+                      placeholder="Enter the correct answer or answer guidelines"
+                      rows={2}
+                    />
+                  )}
+                </div>
+
+                <div className="flex justify-end space-x-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setNewQuestion({
+                        question: "",
+                        type: "mcq",
+                        options: ["", "", "", ""],
+                        correctAnswer: "",
+                        marks: 1,
+                        difficulty: "medium",
+                      });
+                    }}
+                  >
+                    Clear
+                  </Button>
+                  <Button onClick={handleAddQuestion}>
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Question
+                  </Button>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+
+          <div className="flex justify-between items-center pt-4 border-t">
+            <p className="text-sm text-gray-600">
+              Total Questions: {questions.length} | Total Marks: {questions.reduce((sum, q) => sum + q.marks, 0)}
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowQuestions(false);
+                setSelectedTest(null);
+              }}
+            >
+              Close
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
