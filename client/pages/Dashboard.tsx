@@ -342,6 +342,30 @@ export default function Dashboard() {
               <StudyTimer />
             </div>
 
+            {/* Advanced To-Do List */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <TodoList />
+
+              {/* Calendar Widget */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <CalendarIcon className="h-5 w-5 mr-2" />
+                    Calendar
+                  </CardTitle>
+                  <CardDescription>View your schedule</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    className="rounded-md border"
+                  />
+                </CardContent>
+              </Card>
+            </div>
+
             {/* Quick Actions */}
             <QuickActions />
 
