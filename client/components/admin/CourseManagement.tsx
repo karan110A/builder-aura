@@ -462,6 +462,219 @@ export default function CourseManagement() {
         </Card>
       )}
 
+      {/* Edit Course Dialog */}
+      <Dialog open={isEditingCourse} onOpenChange={setIsEditingCourse}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Course</DialogTitle>
+            <DialogDescription>
+              Update course information and settings
+            </DialogDescription>
+          </DialogHeader>
+          {editingCourse && (
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="editTitle">Course Title</Label>
+                <Input
+                  id="editTitle"
+                  value={editingCourse.title}
+                  onChange={(e) =>
+                    setEditingCourse({ ...editingCourse, title: e.target.value })
+                  }
+                  placeholder="Course title"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="editSubject">Subject</Label>
+                <Select
+                  value={editingCourse.subject}
+                  onValueChange={(value) =>
+                    setEditingCourse({ ...editingCourse, subject: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Mathematics">Mathematics</SelectItem>
+                    <SelectItem value="Physics">Physics</SelectItem>
+                    <SelectItem value="Chemistry">Chemistry</SelectItem>
+                    <SelectItem value="Biology">Biology</SelectItem>
+                    <SelectItem value="English">English</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="editDescription">Description</Label>
+                <Textarea
+                  id="editDescription"
+                  value={editingCourse.description}
+                  onChange={(e) =>
+                    setEditingCourse({ ...editingCourse, description: e.target.value })
+                  }
+                  placeholder="Course description"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="editTeacher">Teacher</Label>
+                <Select
+                  value={editingCourse.teacher}
+                  onValueChange={(value) =>
+                    setEditingCourse({ ...editingCourse, teacher: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Dr. Rajesh Kumar">Dr. Rajesh Kumar</SelectItem>
+                    <SelectItem value="Prof. Sunita Sharma">Prof. Sunita Sharma</SelectItem>
+                    <SelectItem value="Dr. Amit Verma">Dr. Amit Verma</SelectItem>
+                    <SelectItem value="Dr. Priya Nair">Dr. Priya Nair</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="editDuration">Duration</Label>
+                  <Input
+                    id="editDuration"
+                    value={editingCourse.duration}
+                    onChange={(e) =>
+                      setEditingCourse({ ...editingCourse, duration: e.target.value })
+                    }
+                    placeholder="e.g., 6 months"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="editSchedule">Schedule</Label>
+                  <Input
+                    id="editSchedule"
+                    value={editingCourse.schedule}
+                    onChange={(e) =>
+                      setEditingCourse({ ...editingCourse, schedule: e.target.value })
+                    }
+                    placeholder="e.g., Mon, Wed - 10:00 AM"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="editPrice">Price (₹)</Label>
+                  <Input
+                    id="editPrice"
+                    type="number"
+                    value={editingCourse.price}
+                    onChange={(e) =>
+                      setEditingCourse({
+                        ...editingCourse,
+                        price: parseInt(e.target.value) || 0,
+                      })
+                    }
+                    placeholder="Course price"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="editMaxStudents">Maximum Students</Label>
+                  <Input
+                    id="editMaxStudents"
+                    type="number"
+                    value={editingCourse.maxStudents}
+                    onChange={(e) =>
+                      setEditingCourse({
+                        ...editingCourse,
+                        maxStudents: parseInt(e.target.value) || 0,
+                      })
+                    }
+                    placeholder="Maximum enrollment"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="editStartDate">Start Date</Label>
+                  <Input
+                    id="editStartDate"
+                    type="date"
+                    value={editingCourse.startDate}
+                    onChange={(e) =>
+                      setEditingCourse({ ...editingCourse, startDate: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="editEndDate">End Date</Label>
+                  <Input
+                    id="editEndDate"
+                    type="date"
+                    value={editingCourse.endDate}
+                    onChange={(e) =>
+                      setEditingCourse({ ...editingCourse, endDate: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="editStatus">Status</Label>
+                  <Select
+                    value={editingCourse.status}
+                    onValueChange={(value: "active" | "inactive" | "upcoming") =>
+                      setEditingCourse({ ...editingCourse, status: value })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="inactive">Inactive</SelectItem>
+                      <SelectItem value="upcoming">Upcoming</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="editLevel">Level</Label>
+                  <Select
+                    value={editingCourse.level}
+                    onValueChange={(value: "beginner" | "intermediate" | "advanced") =>
+                      setEditingCourse({ ...editingCourse, level: value })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="beginner">Beginner</SelectItem>
+                      <SelectItem value="intermediate">Intermediate</SelectItem>
+                      <SelectItem value="advanced">Advanced</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="flex justify-end space-x-2 pt-4">
+            <Button variant="outline" onClick={() => setIsEditingCourse(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleUpdateCourse}>Update Course</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Courses List */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {courses.map((course) => (
