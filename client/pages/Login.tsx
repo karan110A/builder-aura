@@ -502,9 +502,9 @@ export default function Login() {
         </Card>
 
         <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-white/70">
             Need help?{" "}
-            <Link to="/contact" className="text-blue-600 hover:text-blue-500 dark:text-blue-400">
+            <Link to="/contact" className="text-white/90 hover:text-white transition-colors duration-300 underline">
               Contact Support
             </Link>
           </p>
