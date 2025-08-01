@@ -19,7 +19,7 @@ import {
   Flag,
   BookOpen,
   Calculator,
-  Flask,
+  Beaker,
   Globe,
   Palette,
   Music,
