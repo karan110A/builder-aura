@@ -167,7 +167,8 @@ export default function Login() {
           </p>
         </div>
 
-        <Card className="shadow-2xl border border-white/20 bg-white/10 dark:bg-white/5 backdrop-blur-md">
+        <FloatingCard intensity={0.5}>
+          <Card className="shadow-2xl border border-white/20 bg-white/10 dark:bg-white/5 backdrop-blur-md">
           <CardHeader className="space-y-1 pb-4">
             <CardTitle className="text-2xl font-bold text-center text-white drop-shadow-lg">
               Welcome to PadhaiHub
@@ -500,7 +501,8 @@ export default function Login() {
               </div>
             </div>
           </CardContent>
-        </Card>
+          </Card>
+        </FloatingCard>
 
         <div className="mt-6 text-center">
           <p className="text-sm text-white/70">
