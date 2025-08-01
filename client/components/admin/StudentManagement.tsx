@@ -128,8 +128,10 @@ export default function StudentManagement() {
   const [selectedClass, setSelectedClass] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+  const [editStudent, setEditStudent] = useState<Student | null>(null);
 
   const [newStudent, setNewStudent] = useState<NewStudentForm>({
     firstName: "",
