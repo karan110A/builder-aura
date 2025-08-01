@@ -540,7 +540,11 @@ export default function CourseManagement() {
               </div>
 
               <div className="flex space-x-2 pt-4">
-                <Button size="sm" variant="outline">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleEditCourse(course)}
+                >
                   <Edit className="h-3 w-3 mr-1" />
                   Edit
                 </Button>
