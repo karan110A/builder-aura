@@ -151,6 +151,8 @@ export default function StudentManagement() {
 
   const [dobDate, setDobDate] = useState<Date>();
   const [joiningDate, setJoiningDate] = useState<Date>();
+  const [editDobDate, setEditDobDate] = useState<Date>();
+  const [editJoiningDate, setEditJoiningDate] = useState<Date>();
 
   const classes = [
     "Class 8", "Class 9", "Class 10",
