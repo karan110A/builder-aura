@@ -55,6 +55,8 @@ interface Course {
 export default function CourseManagement() {
   const { toast } = useToast();
   const [isAddingCourse, setIsAddingCourse] = useState(false);
+  const [isEditingCourse, setIsEditingCourse] = useState(false);
+  const [editingCourse, setEditingCourse] = useState<Course | null>(null);
 
   // Mock course data
   const [courses, setCourses] = useState<Course[]>([
