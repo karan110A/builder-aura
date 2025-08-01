@@ -952,11 +952,12 @@ export default function StudentManagement() {
                 <div className="grid grid-cols-3 gap-4 text-sm">
                   <p><strong>Total Fees:</strong> ₹{selectedStudent.totalFees.toLocaleString()}</p>
                   <p><strong>Paid Fees:</strong> ₹{selectedStudent.paidFees.toLocaleString()}</p>
-                  <p><strong>Status:</strong> 
+                  <div className="flex items-center">
+                    <strong>Status:</strong>
                     <Badge className={`ml-2 ${getFeeStatusColor(selectedStudent.feeStatus)}`}>
                       {selectedStudent.feeStatus}
                     </Badge>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
