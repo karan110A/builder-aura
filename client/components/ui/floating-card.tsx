@@ -6,10 +6,10 @@ interface FloatingCardProps {
   intensity?: number;
 }
 
-export default function FloatingCard({ 
-  children, 
-  className = "", 
-  intensity = 1 
+export default function FloatingCard({
+  children,
+  className = "",
+  intensity = 1,
 }: FloatingCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -26,17 +26,17 @@ export default function FloatingCard({
     const updateAnimation = () => {
       const targetX = (mouseX - window.innerWidth / 2) * 0.01 * intensity;
       const targetY = (mouseY - window.innerHeight / 2) * 0.01 * intensity;
-      
+
       currentX += (targetX - currentX) * 0.1;
       currentY += (targetY - currentY) * 0.1;
-      
+
       card.style.transform = `
         perspective(1000px) 
         rotateX(${currentY}deg) 
         rotateY(${currentX}deg) 
         translateZ(0)
       `;
-      
+
       animationId = requestAnimationFrame(updateAnimation);
     };
 
@@ -58,7 +58,7 @@ export default function FloatingCard({
     document.addEventListener("mousemove", handleMouseMove);
     card.addEventListener("mouseenter", handleMouseEnter);
     card.addEventListener("mouseleave", handleMouseLeave);
-    
+
     updateAnimation();
 
     return () => {

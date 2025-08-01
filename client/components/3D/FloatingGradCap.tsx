@@ -15,19 +15,24 @@ function GradCap({ position, scale = 1 }: GradCapProps) {
   const tasselRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
-    if (groupRef.current && capRef.current && boardRef.current && tasselRef.current) {
+    if (
+      groupRef.current &&
+      capRef.current &&
+      boardRef.current &&
+      tasselRef.current
+    ) {
       const time = state.clock.elapsedTime;
-      
+
       // Main floating motion
       groupRef.current.position.y = position[1] + Math.sin(time * 0.5) * 0.3;
       groupRef.current.rotation.y = time * 0.2;
-      
+
       // Subtle cap bobbing
       capRef.current.rotation.z = Math.sin(time * 2) * 0.05;
-      
+
       // Board gentle rotation
       boardRef.current.rotation.x = Math.sin(time * 1.5) * 0.02;
-      
+
       // Tassel swaying
       tasselRef.current.rotation.z = Math.sin(time * 3) * 0.1;
     }
@@ -36,36 +41,17 @@ function GradCap({ position, scale = 1 }: GradCapProps) {
   return (
     <group ref={groupRef} position={position} scale={scale}>
       {/* Cap Base */}
-      <Cylinder
-        ref={capRef}
-        args={[0.4, 0.5, 0.3, 16]}
-        position={[0, 0, 0]}
-      >
-        <meshStandardMaterial
-          color="#1a1a2e"
-          metalness={0.3}
-          roughness={0.7}
-        />
+      <Cylinder ref={capRef} args={[0.4, 0.5, 0.3, 16]} position={[0, 0, 0]}>
+        <meshStandardMaterial color="#1a1a2e" metalness={0.3} roughness={0.7} />
       </Cylinder>
-      
+
       {/* Board */}
-      <Box
-        ref={boardRef}
-        args={[1.2, 0.05, 1.2]}
-        position={[0, 0.2, 0]}
-      >
-        <meshStandardMaterial
-          color="#1a1a2e"
-          metalness={0.4}
-          roughness={0.6}
-        />
+      <Box ref={boardRef} args={[1.2, 0.05, 1.2]} position={[0, 0.2, 0]}>
+        <meshStandardMaterial color="#1a1a2e" metalness={0.4} roughness={0.6} />
       </Box>
-      
+
       {/* Button on top */}
-      <Cylinder
-        args={[0.05, 0.05, 0.02, 8]}
-        position={[0, 0.25, 0]}
-      >
+      <Cylinder args={[0.05, 0.05, 0.02, 8]} position={[0, 0.25, 0]}>
         <meshStandardMaterial
           color="#ffd700"
           metalness={0.8}
@@ -74,17 +60,14 @@ function GradCap({ position, scale = 1 }: GradCapProps) {
           emissiveIntensity={0.1}
         />
       </Cylinder>
-      
+
       {/* Tassel */}
       <group ref={tasselRef} position={[0.6, 0.2, 0]}>
         {/* Tassel cord */}
-        <Cylinder
-          args={[0.01, 0.01, 0.3, 4]}
-          position={[0, -0.15, 0]}
-        >
+        <Cylinder args={[0.01, 0.01, 0.3, 4]} position={[0, -0.15, 0]}>
           <meshStandardMaterial color="#ffd700" />
         </Cylinder>
-        
+
         {/* Tassel end */}
         <group position={[0, -0.3, 0]}>
           {Array.from({ length: 8 }).map((_, i) => (
@@ -119,13 +102,9 @@ export default function FloatingGradCap() {
       <ambientLight intensity={0.4} />
       <directionalLight position={[5, 5, 5]} intensity={0.8} />
       <pointLight position={[0, 0, 2]} intensity={0.3} color="#4f46e5" />
-      
+
       {caps.map((cap, index) => (
-        <GradCap
-          key={index}
-          position={cap.position}
-          scale={cap.scale}
-        />
+        <GradCap key={index} position={cap.position} scale={cap.scale} />
       ))}
     </>
   );

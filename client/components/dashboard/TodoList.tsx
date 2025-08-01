@@ -1,15 +1,38 @@
 import React, { useState, useCallback } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import {
@@ -29,14 +52,21 @@ import {
   CheckCircle2,
   Circle,
   AlertCircle,
-  Star
+  Star,
 } from "lucide-react";
 
 interface TodoItem {
   id: string;
   title: string;
   description: string;
-  category: "math" | "science" | "english" | "history" | "art" | "music" | "general";
+  category:
+    | "math"
+    | "science"
+    | "english"
+    | "history"
+    | "art"
+    | "music"
+    | "general";
   priority: "low" | "medium" | "high" | "urgent";
   dueDate?: Date;
   completed: boolean;
@@ -62,10 +92,12 @@ const categoryIcons = {
 const categoryColors = {
   math: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
   science: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-  english: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+  english:
+    "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
   history: "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300",
   art: "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300",
-  music: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300",
+  music:
+    "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300",
   general: "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300",
 };
 
@@ -125,7 +157,9 @@ export default function TodoList({ className }: TodoListProps) {
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [filter, setFilter] = useState<"all" | "pending" | "completed">("all");
-  const [sortBy, setSortBy] = useState<"dueDate" | "priority" | "created">("dueDate");
+  const [sortBy, setSortBy] = useState<"dueDate" | "priority" | "created">(
+    "dueDate",
+  );
   const [draggedItem, setDraggedItem] = useState<TodoItem | null>(null);
 
   const [newTodo, setNewTodo] = useState<Partial<TodoItem>>({
@@ -203,18 +237,21 @@ export default function TodoList({ className }: TodoListProps) {
   const toggleTodo = useCallback((id: string) => {
     setTodos((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
     );
   }, []);
 
-  const deleteTodo = useCallback((id: string) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id));
-    toast({
-      title: "Task Deleted",
-      description: "Task has been removed from your list",
-    });
-  }, [toast]);
+  const deleteTodo = useCallback(
+    (id: string) => {
+      setTodos((prev) => prev.filter((todo) => todo.id !== id));
+      toast({
+        title: "Task Deleted",
+        description: "Task has been removed from your list",
+      });
+    },
+    [toast],
+  );
 
   const handleDragStart = (e: React.DragEvent, todo: TodoItem) => {
     setDraggedItem(todo);
@@ -228,14 +265,14 @@ export default function TodoList({ className }: TodoListProps) {
 
   const handleDrop = (e: React.DragEvent, targetTodo: TodoItem) => {
     e.preventDefault();
-    
+
     if (!draggedItem || draggedItem.id === targetTodo.id) {
       setDraggedItem(null);
       return;
     }
 
-    const draggedIndex = todos.findIndex(todo => todo.id === draggedItem.id);
-    const targetIndex = todos.findIndex(todo => todo.id === targetTodo.id);
+    const draggedIndex = todos.findIndex((todo) => todo.id === draggedItem.id);
+    const targetIndex = todos.findIndex((todo) => todo.id === targetTodo.id);
 
     const newTodos = [...todos];
     const [removed] = newTodos.splice(draggedIndex, 1);
@@ -247,12 +284,14 @@ export default function TodoList({ className }: TodoListProps) {
 
   const getDaysUntilDue = (dueDate?: Date) => {
     if (!dueDate) return null;
-    const days = Math.ceil((dueDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+    const days = Math.ceil(
+      (dueDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24),
+    );
     return days;
   };
 
-  const pendingCount = todos.filter(todo => !todo.completed).length;
-  const completedCount = todos.filter(todo => todo.completed).length;
+  const pendingCount = todos.filter((todo) => !todo.completed).length;
+  const completedCount = todos.filter((todo) => todo.completed).length;
 
   return (
     <Card className={className}>
@@ -288,7 +327,9 @@ export default function TodoList({ className }: TodoListProps) {
                     id="title"
                     placeholder="Enter task title..."
                     value={newTodo.title || ""}
-                    onChange={(e) => setNewTodo({ ...newTodo, title: e.target.value })}
+                    onChange={(e) =>
+                      setNewTodo({ ...newTodo, title: e.target.value })
+                    }
                   />
                 </div>
 
@@ -298,7 +339,9 @@ export default function TodoList({ className }: TodoListProps) {
                     id="description"
                     placeholder="Add more details..."
                     value={newTodo.description || ""}
-                    onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
+                    onChange={(e) =>
+                      setNewTodo({ ...newTodo, description: e.target.value })
+                    }
                   />
                 </div>
 
@@ -307,7 +350,12 @@ export default function TodoList({ className }: TodoListProps) {
                     <Label>Category</Label>
                     <Select
                       value={newTodo.category}
-                      onValueChange={(value) => setNewTodo({ ...newTodo, category: value as TodoItem["category"] })}
+                      onValueChange={(value) =>
+                        setNewTodo({
+                          ...newTodo,
+                          category: value as TodoItem["category"],
+                        })
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />
@@ -328,7 +376,12 @@ export default function TodoList({ className }: TodoListProps) {
                     <Label>Priority</Label>
                     <Select
                       value={newTodo.priority}
-                      onValueChange={(value) => setNewTodo({ ...newTodo, priority: value as TodoItem["priority"] })}
+                      onValueChange={(value) =>
+                        setNewTodo({
+                          ...newTodo,
+                          priority: value as TodoItem["priority"],
+                        })
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />
@@ -348,9 +401,14 @@ export default function TodoList({ className }: TodoListProps) {
                     <Label>Due Date</Label>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button variant="outline" className="w-full justify-start text-left font-normal">
+                        <Button
+                          variant="outline"
+                          className="w-full justify-start text-left font-normal"
+                        >
                           <CalendarIcon className="mr-2 h-4 w-4" />
-                          {selectedDate ? format(selectedDate, "PPP") : "Pick a date"}
+                          {selectedDate
+                            ? format(selectedDate, "PPP")
+                            : "Pick a date"}
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0">
@@ -372,13 +430,21 @@ export default function TodoList({ className }: TodoListProps) {
                       min="5"
                       max="480"
                       value={newTodo.estimatedTime || 60}
-                      onChange={(e) => setNewTodo({ ...newTodo, estimatedTime: parseInt(e.target.value) || 60 })}
+                      onChange={(e) =>
+                        setNewTodo({
+                          ...newTodo,
+                          estimatedTime: parseInt(e.target.value) || 60,
+                        })
+                      }
                     />
                   </div>
                 </div>
 
                 <div className="flex justify-end space-x-2">
-                  <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsAddDialogOpen(false)}
+                  >
                     Cancel
                   </Button>
                   <Button onClick={addTodo}>Add Task</Button>
@@ -390,7 +456,10 @@ export default function TodoList({ className }: TodoListProps) {
 
         {/* Filters and Sorting */}
         <div className="flex flex-wrap gap-2 mt-4">
-          <Select value={filter} onValueChange={(value: any) => setFilter(value)}>
+          <Select
+            value={filter}
+            onValueChange={(value: any) => setFilter(value)}
+          >
             <SelectTrigger className="w-32">
               <SelectValue />
             </SelectTrigger>
@@ -401,7 +470,10 @@ export default function TodoList({ className }: TodoListProps) {
             </SelectContent>
           </Select>
 
-          <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+          <Select
+            value={sortBy}
+            onValueChange={(value: any) => setSortBy(value)}
+          >
             <SelectTrigger className="w-32">
               <SelectValue />
             </SelectTrigger>
@@ -435,8 +507,8 @@ export default function TodoList({ className }: TodoListProps) {
                   onDragOver={handleDragOver}
                   onDrop={(e) => handleDrop(e, todo)}
                   className={`group border rounded-lg p-4 transition-all hover:shadow-md cursor-move ${
-                    todo.completed 
-                      ? "bg-gray-50 dark:bg-gray-800 opacity-75" 
+                    todo.completed
+                      ? "bg-gray-50 dark:bg-gray-800 opacity-75"
                       : "bg-white dark:bg-gray-900"
                   } ${draggedItem?.id === todo.id ? "opacity-50" : ""}`}
                 >
@@ -452,15 +524,23 @@ export default function TodoList({ className }: TodoListProps) {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-2">
-                        <h4 className={`font-medium ${todo.completed ? "line-through text-gray-500" : ""}`}>
+                        <h4
+                          className={`font-medium ${todo.completed ? "line-through text-gray-500" : ""}`}
+                        >
                           {todo.title}
                         </h4>
                         <div className="flex items-center space-x-1">
-                          <Badge variant="outline" className={`text-xs ${categoryColors[todo.category]}`}>
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${categoryColors[todo.category]}`}
+                          >
                             <CategoryIcon className="h-3 w-3 mr-1" />
                             {todo.category}
                           </Badge>
-                          <Badge variant="outline" className={`text-xs ${priorityColors[todo.priority]}`}>
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${priorityColors[todo.priority]}`}
+                          >
                             <PriorityIcon className="h-3 w-3 mr-1" />
                             {todo.priority}
                           </Badge>
@@ -468,9 +548,11 @@ export default function TodoList({ className }: TodoListProps) {
                       </div>
 
                       {todo.description && (
-                        <p className={`text-sm text-gray-600 dark:text-gray-400 mb-2 ${
-                          todo.completed ? "line-through" : ""
-                        }`}>
+                        <p
+                          className={`text-sm text-gray-600 dark:text-gray-400 mb-2 ${
+                            todo.completed ? "line-through" : ""
+                          }`}
+                        >
                           {todo.description}
                         </p>
                       )}
@@ -478,22 +560,24 @@ export default function TodoList({ className }: TodoListProps) {
                       <div className="flex items-center justify-between text-xs text-gray-500">
                         <div className="flex items-center space-x-4">
                           {todo.dueDate && (
-                            <div className={`flex items-center space-x-1 ${
-                              daysUntilDue !== null && daysUntilDue < 0 
-                                ? "text-red-500" 
-                                : daysUntilDue !== null && daysUntilDue <= 1 
-                                ? "text-orange-500" 
-                                : ""
-                            }`}>
+                            <div
+                              className={`flex items-center space-x-1 ${
+                                daysUntilDue !== null && daysUntilDue < 0
+                                  ? "text-red-500"
+                                  : daysUntilDue !== null && daysUntilDue <= 1
+                                    ? "text-orange-500"
+                                    : ""
+                              }`}
+                            >
                               <CalendarIcon className="h-3 w-3" />
                               <span>
                                 {daysUntilDue !== null && daysUntilDue < 0
                                   ? `${Math.abs(daysUntilDue)} days overdue`
                                   : daysUntilDue === 0
-                                  ? "Due today"
-                                  : daysUntilDue === 1
-                                  ? "Due tomorrow"
-                                  : format(todo.dueDate, "MMM d")}
+                                    ? "Due today"
+                                    : daysUntilDue === 1
+                                      ? "Due tomorrow"
+                                      : format(todo.dueDate, "MMM d")}
                               </span>
                             </div>
                           )}
@@ -518,7 +602,11 @@ export default function TodoList({ className }: TodoListProps) {
                       {todo.tags.length > 0 && (
                         <div className="flex flex-wrap gap-1 mt-2">
                           {todo.tags.map((tag, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
+                            <Badge
+                              key={index}
+                              variant="secondary"
+                              className="text-xs"
+                            >
                               {tag}
                             </Badge>
                           ))}

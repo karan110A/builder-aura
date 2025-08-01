@@ -1,6 +1,12 @@
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Sphere, Box, Octahedron, Torus, MeshDistortMaterial } from "@react-three/drei";
+import {
+  Sphere,
+  Box,
+  Octahedron,
+  Torus,
+  MeshDistortMaterial,
+} from "@react-three/drei";
 import * as THREE from "three";
 
 interface ShapeProps {
@@ -17,16 +23,16 @@ function MorphingShape({ position, scale = 1, color, type }: ShapeProps) {
   useFrame((state) => {
     if (meshRef.current && materialRef.current) {
       const time = state.clock.elapsedTime;
-      
+
       // Gentle rotation
       meshRef.current.rotation.x = time * 0.2;
       meshRef.current.rotation.y = time * 0.3;
       meshRef.current.rotation.z = time * 0.1;
-      
+
       // Pulsing scale
       const pulseFactor = 1 + Math.sin(time * 2) * 0.1;
       meshRef.current.scale.setScalar(scale * pulseFactor);
-      
+
       // Distortion animation
       materialRef.current.distort = 0.3 + Math.sin(time) * 0.2;
       materialRef.current.speed = 2;
@@ -131,7 +137,7 @@ export default function MorphingShapes() {
       <ambientLight intensity={0.3} />
       <directionalLight position={[10, 10, 5]} intensity={1} />
       <pointLight position={[0, 0, 0]} intensity={0.5} color="#ffffff" />
-      
+
       {shapes.map((shape, index) => (
         <MorphingShape
           key={index}

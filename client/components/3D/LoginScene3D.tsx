@@ -17,22 +17,22 @@ function Scene({ mousePosition }: { mousePosition: { x: number; y: number } }) {
       {/* Environment and lighting */}
       <Environment preset="night" />
       <fog attach="fog" args={["#0a0a1e", 10, 50]} />
-      
+
       {/* Interactive particle system */}
       <LoginParticles count={800} mousePosition={mousePosition} />
-      
+
       {/* Animated geometric shapes */}
       <MorphingShapes />
-      
+
       {/* Educational elements */}
       <Float speed={1} rotationIntensity={0.1} floatIntensity={0.2}>
         <FloatingGradCap />
       </Float>
-      
+
       <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
         <FloatingBooks />
       </Float>
-      
+
       {/* Additional atmospheric elements */}
       <ambientLight intensity={0.2} color="#4f46e5" />
       <directionalLight
@@ -57,7 +57,10 @@ function LoadingFallback() {
   );
 }
 
-export default function LoginScene3D({ className, interactive = true }: LoginScene3DProps) {
+export default function LoginScene3D({
+  className,
+  interactive = true,
+}: LoginScene3DProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
 
   useEffect(() => {
@@ -84,7 +87,8 @@ export default function LoginScene3D({ className, interactive = true }: LoginSce
           far: 100,
         }}
         style={{
-          background: "linear-gradient(135deg, #0f0c29 0%, #24243e 50%, #2d1b69 100%)",
+          background:
+            "linear-gradient(135deg, #0f0c29 0%, #24243e 50%, #2d1b69 100%)",
         }}
         gl={{
           antialias: true,
