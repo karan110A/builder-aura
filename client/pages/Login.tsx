@@ -303,10 +303,11 @@ export default function Login() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
+                      <Label htmlFor="lastName" className="text-white/90 font-medium">Last Name</Label>
                       <Input
                         id="lastName"
                         placeholder="Last name"
+                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:bg-white/15 focus:border-white/40 transition-all duration-300 backdrop-blur-sm"
                         value={signupForm.lastName}
                         onChange={(e) =>
                           setSignupForm({ ...signupForm, lastName: e.target.value })
