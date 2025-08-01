@@ -393,32 +393,7 @@ export default function AdminDashboard() {
 
           {/* Teachers Tab */}
           <TabsContent value="teachers">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <CardTitle>Teacher Management</CardTitle>
-                    <CardDescription>
-                      Manage faculty profiles and assignments
-                    </CardDescription>
-                  </div>
-                  <Button>
-                    <UserPlus className="h-4 w-4 mr-2" />
-                    Add Teacher
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-gray-500">
-                  <GraduationCap className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                  <p>Teacher management interface will be implemented here</p>
-                  <p className="text-sm">
-                    Features: Profile Management, Subject Assignment, Schedule
-                    Management
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <TeacherManagement />
           </TabsContent>
 
           {/* Courses Tab */}
