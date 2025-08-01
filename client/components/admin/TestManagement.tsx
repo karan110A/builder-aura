@@ -212,7 +212,7 @@ export default function TestManagement() {
     const test: Test = {
       id: tests.length + 1,
       ...newTest,
-      totalQuestions: 0,
+      totalQuestions: questions.length,
       status: "draft",
       studentsEnrolled: 0,
       studentsCompleted: 0,
