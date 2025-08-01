@@ -24,12 +24,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -233,7 +228,11 @@ export default function TestManagement() {
     const test: Test = {
       id: tests.length + 1,
       ...newTest,
-      totalQuestions: newTest.questions1Mark + newTest.questions2Mark + newTest.questions3Mark + newTest.questions4Mark,
+      totalQuestions:
+        newTest.questions1Mark +
+        newTest.questions2Mark +
+        newTest.questions3Mark +
+        newTest.questions4Mark,
       status: "draft",
       studentsEnrolled: 0,
       studentsCompleted: 0,
@@ -302,9 +301,7 @@ export default function TestManagement() {
         return;
       }
 
-      setTests(
-        tests.map((t) => (t.id === editingTest.id ? editingTest : t)),
-      );
+      setTests(tests.map((t) => (t.id === editingTest.id ? editingTest : t)));
       setEditingTest(null);
       setIsEditDialogOpen(false);
 
@@ -327,7 +324,7 @@ export default function TestManagement() {
 
     const question: Question = {
       id: questions.length + 1,
-      ...newQuestion as Question,
+      ...(newQuestion as Question),
     };
 
     setQuestions([...questions, question]);
@@ -534,7 +531,9 @@ export default function TestManagement() {
               </div>
 
               <div>
-                <Label htmlFor="totalMarks">Total Marks (Auto-calculated)</Label>
+                <Label htmlFor="totalMarks">
+                  Total Marks (Auto-calculated)
+                </Label>
                 <Input
                   id="totalMarks"
                   type="number"
@@ -565,7 +564,9 @@ export default function TestManagement() {
                 <Label>Question Distribution by Marks</Label>
                 <div className="grid grid-cols-4 gap-4 mt-2">
                   <div>
-                    <Label htmlFor="questions1Mark" className="text-sm">1 Mark Questions</Label>
+                    <Label htmlFor="questions1Mark" className="text-sm">
+                      1 Mark Questions
+                    </Label>
                     <Input
                       id="questions1Mark"
                       type="number"
@@ -576,15 +577,25 @@ export default function TestManagement() {
                         setNewTest({
                           ...newTest,
                           questions1Mark: value,
-                          totalQuestions: value + newTest.questions2Mark + newTest.questions3Mark + newTest.questions4Mark,
-                          totalMarks: (value * 1) + (newTest.questions2Mark * 2) + (newTest.questions3Mark * 3) + (newTest.questions4Mark * 4)
+                          totalQuestions:
+                            value +
+                            newTest.questions2Mark +
+                            newTest.questions3Mark +
+                            newTest.questions4Mark,
+                          totalMarks:
+                            value * 1 +
+                            newTest.questions2Mark * 2 +
+                            newTest.questions3Mark * 3 +
+                            newTest.questions4Mark * 4,
                         });
                       }}
                       placeholder="0"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="questions2Mark" className="text-sm">2 Mark Questions</Label>
+                    <Label htmlFor="questions2Mark" className="text-sm">
+                      2 Mark Questions
+                    </Label>
                     <Input
                       id="questions2Mark"
                       type="number"
@@ -595,15 +606,25 @@ export default function TestManagement() {
                         setNewTest({
                           ...newTest,
                           questions2Mark: value,
-                          totalQuestions: newTest.questions1Mark + value + newTest.questions3Mark + newTest.questions4Mark,
-                          totalMarks: (newTest.questions1Mark * 1) + (value * 2) + (newTest.questions3Mark * 3) + (newTest.questions4Mark * 4)
+                          totalQuestions:
+                            newTest.questions1Mark +
+                            value +
+                            newTest.questions3Mark +
+                            newTest.questions4Mark,
+                          totalMarks:
+                            newTest.questions1Mark * 1 +
+                            value * 2 +
+                            newTest.questions3Mark * 3 +
+                            newTest.questions4Mark * 4,
                         });
                       }}
                       placeholder="0"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="questions3Mark" className="text-sm">3 Mark Questions</Label>
+                    <Label htmlFor="questions3Mark" className="text-sm">
+                      3 Mark Questions
+                    </Label>
                     <Input
                       id="questions3Mark"
                       type="number"
@@ -614,15 +635,25 @@ export default function TestManagement() {
                         setNewTest({
                           ...newTest,
                           questions3Mark: value,
-                          totalQuestions: newTest.questions1Mark + newTest.questions2Mark + value + newTest.questions4Mark,
-                          totalMarks: (newTest.questions1Mark * 1) + (newTest.questions2Mark * 2) + (value * 3) + (newTest.questions4Mark * 4)
+                          totalQuestions:
+                            newTest.questions1Mark +
+                            newTest.questions2Mark +
+                            value +
+                            newTest.questions4Mark,
+                          totalMarks:
+                            newTest.questions1Mark * 1 +
+                            newTest.questions2Mark * 2 +
+                            value * 3 +
+                            newTest.questions4Mark * 4,
                         });
                       }}
                       placeholder="0"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="questions4Mark" className="text-sm">4 Mark Questions</Label>
+                    <Label htmlFor="questions4Mark" className="text-sm">
+                      4 Mark Questions
+                    </Label>
                     <Input
                       id="questions4Mark"
                       type="number"
@@ -633,8 +664,16 @@ export default function TestManagement() {
                         setNewTest({
                           ...newTest,
                           questions4Mark: value,
-                          totalQuestions: newTest.questions1Mark + newTest.questions2Mark + newTest.questions3Mark + value,
-                          totalMarks: (newTest.questions1Mark * 1) + (newTest.questions2Mark * 2) + (newTest.questions3Mark * 3) + (value * 4)
+                          totalQuestions:
+                            newTest.questions1Mark +
+                            newTest.questions2Mark +
+                            newTest.questions3Mark +
+                            value,
+                          totalMarks:
+                            newTest.questions1Mark * 1 +
+                            newTest.questions2Mark * 2 +
+                            newTest.questions3Mark * 3 +
+                            value * 4,
                         });
                       }}
                       placeholder="0"
@@ -642,7 +681,8 @@ export default function TestManagement() {
                   </div>
                 </div>
                 <div className="mt-2 text-sm text-gray-600">
-                  Total Questions: {newTest.totalQuestions} | Auto-calculated Total Marks: {newTest.totalMarks}
+                  Total Questions: {newTest.totalQuestions} | Auto-calculated
+                  Total Marks: {newTest.totalMarks}
                 </div>
               </div>
 
@@ -762,22 +802,32 @@ export default function TestManagement() {
 
               {/* Question Distribution */}
               <div className="pt-4 border-t">
-                <p className="text-sm font-medium text-gray-700 mb-2">Question Distribution:</p>
+                <p className="text-sm font-medium text-gray-700 mb-2">
+                  Question Distribution:
+                </p>
                 <div className="grid grid-cols-4 gap-2 text-xs">
                   <div className="text-center p-2 bg-blue-50 rounded">
-                    <p className="font-bold text-blue-600">{test.questions1Mark}</p>
+                    <p className="font-bold text-blue-600">
+                      {test.questions1Mark}
+                    </p>
                     <p className="text-gray-600">1 Mark</p>
                   </div>
                   <div className="text-center p-2 bg-green-50 rounded">
-                    <p className="font-bold text-green-600">{test.questions2Mark}</p>
+                    <p className="font-bold text-green-600">
+                      {test.questions2Mark}
+                    </p>
                     <p className="text-gray-600">2 Marks</p>
                   </div>
                   <div className="text-center p-2 bg-yellow-50 rounded">
-                    <p className="font-bold text-yellow-600">{test.questions3Mark}</p>
+                    <p className="font-bold text-yellow-600">
+                      {test.questions3Mark}
+                    </p>
                     <p className="text-gray-600">3 Marks</p>
                   </div>
                   <div className="text-center p-2 bg-red-50 rounded">
-                    <p className="font-bold text-red-600">{test.questions4Mark}</p>
+                    <p className="font-bold text-red-600">
+                      {test.questions4Mark}
+                    </p>
                     <p className="text-gray-600">4 Marks</p>
                   </div>
                 </div>
@@ -1009,7 +1059,9 @@ export default function TestManagement() {
                 <Label>Question Distribution by Marks</Label>
                 <div className="grid grid-cols-4 gap-4 mt-2">
                   <div>
-                    <Label htmlFor="edit-questions1Mark" className="text-sm">1 Mark Questions</Label>
+                    <Label htmlFor="edit-questions1Mark" className="text-sm">
+                      1 Mark Questions
+                    </Label>
                     <Input
                       id="edit-questions1Mark"
                       type="number"
@@ -1020,15 +1072,25 @@ export default function TestManagement() {
                         setEditingTest({
                           ...editingTest,
                           questions1Mark: value,
-                          totalQuestions: value + editingTest.questions2Mark + editingTest.questions3Mark + editingTest.questions4Mark,
-                          totalMarks: (value * 1) + (editingTest.questions2Mark * 2) + (editingTest.questions3Mark * 3) + (editingTest.questions4Mark * 4)
+                          totalQuestions:
+                            value +
+                            editingTest.questions2Mark +
+                            editingTest.questions3Mark +
+                            editingTest.questions4Mark,
+                          totalMarks:
+                            value * 1 +
+                            editingTest.questions2Mark * 2 +
+                            editingTest.questions3Mark * 3 +
+                            editingTest.questions4Mark * 4,
                         });
                       }}
                       placeholder="0"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="edit-questions2Mark" className="text-sm">2 Mark Questions</Label>
+                    <Label htmlFor="edit-questions2Mark" className="text-sm">
+                      2 Mark Questions
+                    </Label>
                     <Input
                       id="edit-questions2Mark"
                       type="number"
@@ -1039,15 +1101,25 @@ export default function TestManagement() {
                         setEditingTest({
                           ...editingTest,
                           questions2Mark: value,
-                          totalQuestions: editingTest.questions1Mark + value + editingTest.questions3Mark + editingTest.questions4Mark,
-                          totalMarks: (editingTest.questions1Mark * 1) + (value * 2) + (editingTest.questions3Mark * 3) + (editingTest.questions4Mark * 4)
+                          totalQuestions:
+                            editingTest.questions1Mark +
+                            value +
+                            editingTest.questions3Mark +
+                            editingTest.questions4Mark,
+                          totalMarks:
+                            editingTest.questions1Mark * 1 +
+                            value * 2 +
+                            editingTest.questions3Mark * 3 +
+                            editingTest.questions4Mark * 4,
                         });
                       }}
                       placeholder="0"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="edit-questions3Mark" className="text-sm">3 Mark Questions</Label>
+                    <Label htmlFor="edit-questions3Mark" className="text-sm">
+                      3 Mark Questions
+                    </Label>
                     <Input
                       id="edit-questions3Mark"
                       type="number"
@@ -1058,15 +1130,25 @@ export default function TestManagement() {
                         setEditingTest({
                           ...editingTest,
                           questions3Mark: value,
-                          totalQuestions: editingTest.questions1Mark + editingTest.questions2Mark + value + editingTest.questions4Mark,
-                          totalMarks: (editingTest.questions1Mark * 1) + (editingTest.questions2Mark * 2) + (value * 3) + (editingTest.questions4Mark * 4)
+                          totalQuestions:
+                            editingTest.questions1Mark +
+                            editingTest.questions2Mark +
+                            value +
+                            editingTest.questions4Mark,
+                          totalMarks:
+                            editingTest.questions1Mark * 1 +
+                            editingTest.questions2Mark * 2 +
+                            value * 3 +
+                            editingTest.questions4Mark * 4,
                         });
                       }}
                       placeholder="0"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="edit-questions4Mark" className="text-sm">4 Mark Questions</Label>
+                    <Label htmlFor="edit-questions4Mark" className="text-sm">
+                      4 Mark Questions
+                    </Label>
                     <Input
                       id="edit-questions4Mark"
                       type="number"
@@ -1077,8 +1159,16 @@ export default function TestManagement() {
                         setEditingTest({
                           ...editingTest,
                           questions4Mark: value,
-                          totalQuestions: editingTest.questions1Mark + editingTest.questions2Mark + editingTest.questions3Mark + value,
-                          totalMarks: (editingTest.questions1Mark * 1) + (editingTest.questions2Mark * 2) + (editingTest.questions3Mark * 3) + (value * 4)
+                          totalQuestions:
+                            editingTest.questions1Mark +
+                            editingTest.questions2Mark +
+                            editingTest.questions3Mark +
+                            value,
+                          totalMarks:
+                            editingTest.questions1Mark * 1 +
+                            editingTest.questions2Mark * 2 +
+                            editingTest.questions3Mark * 3 +
+                            value * 4,
                         });
                       }}
                       placeholder="0"
@@ -1086,12 +1176,15 @@ export default function TestManagement() {
                   </div>
                 </div>
                 <div className="mt-2 text-sm text-gray-600">
-                  Total Questions: {editingTest.totalQuestions} | Auto-calculated Total Marks: {editingTest.totalMarks}
+                  Total Questions: {editingTest.totalQuestions} |
+                  Auto-calculated Total Marks: {editingTest.totalMarks}
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="edit-totalMarks">Total Marks (Auto-calculated)</Label>
+                <Label htmlFor="edit-totalMarks">
+                  Total Marks (Auto-calculated)
+                </Label>
                 <Input
                   id="edit-totalMarks"
                   type="number"
@@ -1125,7 +1218,10 @@ export default function TestManagement() {
                   type="date"
                   value={editingTest.scheduledDate}
                   onChange={(e) =>
-                    setEditingTest({ ...editingTest, scheduledDate: e.target.value })
+                    setEditingTest({
+                      ...editingTest,
+                      scheduledDate: e.target.value,
+                    })
                   }
                 />
               </div>
@@ -1137,7 +1233,10 @@ export default function TestManagement() {
                   type="time"
                   value={editingTest.scheduledTime}
                   onChange={(e) =>
-                    setEditingTest({ ...editingTest, scheduledTime: e.target.value })
+                    setEditingTest({
+                      ...editingTest,
+                      scheduledTime: e.target.value,
+                    })
                   }
                 />
               </div>
@@ -1148,7 +1247,10 @@ export default function TestManagement() {
                   id="edit-description"
                   value={editingTest.description}
                   onChange={(e) =>
-                    setEditingTest({ ...editingTest, description: e.target.value })
+                    setEditingTest({
+                      ...editingTest,
+                      description: e.target.value,
+                    })
                   }
                   placeholder="Enter test description and instructions"
                   rows={3}
@@ -1187,17 +1289,24 @@ export default function TestManagement() {
 
           <Tabs defaultValue="questions" className="h-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="questions">Questions ({questions.length})</TabsTrigger>
+              <TabsTrigger value="questions">
+                Questions ({questions.length})
+              </TabsTrigger>
               <TabsTrigger value="add-question">Add Question</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="questions" className="mt-4 h-[60vh] overflow-y-auto">
+            <TabsContent
+              value="questions"
+              className="mt-4 h-[60vh] overflow-y-auto"
+            >
               <div className="space-y-4">
                 {questions.length === 0 ? (
                   <div className="text-center py-8 text-gray-500">
                     <FileText className="h-12 w-12 mx-auto mb-4 opacity-50" />
                     <p>No questions added yet</p>
-                    <p className="text-sm">Switch to "Add Question" tab to start</p>
+                    <p className="text-sm">
+                      Switch to "Add Question" tab to start
+                    </p>
                   </div>
                 ) : (
                   questions.map((question, index) => (
@@ -1205,9 +1314,7 @@ export default function TestManagement() {
                       <div className="flex justify-between items-start mb-2">
                         <div className="flex-1">
                           <div className="flex items-center space-x-2 mb-2">
-                            <Badge className="text-xs">
-                              Q{index + 1}
-                            </Badge>
+                            <Badge className="text-xs">Q{index + 1}</Badge>
                             <Badge variant="outline" className="text-xs">
                               {question.type.toUpperCase()}
                             </Badge>
@@ -1215,24 +1322,31 @@ export default function TestManagement() {
                               {question.marks} marks
                             </Badge>
                             <Badge
-                              variant={question.difficulty === 'easy' ? 'default' :
-                                       question.difficulty === 'medium' ? 'secondary' : 'destructive'}
+                              variant={
+                                question.difficulty === "easy"
+                                  ? "default"
+                                  : question.difficulty === "medium"
+                                    ? "secondary"
+                                    : "destructive"
+                              }
                               className="text-xs"
                             >
                               {question.difficulty}
                             </Badge>
                           </div>
-                          <p className="font-medium mb-2">{question.question}</p>
+                          <p className="font-medium mb-2">
+                            {question.question}
+                          </p>
 
-                          {question.type === 'mcq' && question.options && (
+                          {question.type === "mcq" && question.options && (
                             <div className="grid grid-cols-2 gap-2 mt-2">
                               {question.options.map((option, optIndex) => (
                                 <div
                                   key={optIndex}
                                   className={`p-2 rounded text-sm ${
                                     option === question.correctAnswer
-                                      ? 'bg-green-100 border border-green-300'
-                                      : 'bg-gray-50'
+                                      ? "bg-green-100 border border-green-300"
+                                      : "bg-gray-50"
                                   }`}
                                 >
                                   {String.fromCharCode(65 + optIndex)}. {option}
@@ -1241,7 +1355,7 @@ export default function TestManagement() {
                             </div>
                           )}
 
-                          {question.type !== 'mcq' && (
+                          {question.type !== "mcq" && (
                             <div className="mt-2 p-2 bg-green-100 rounded text-sm">
                               <strong>Answer:</strong> {question.correctAnswer}
                             </div>
@@ -1262,7 +1376,10 @@ export default function TestManagement() {
               </div>
             </TabsContent>
 
-            <TabsContent value="add-question" className="mt-4 h-[60vh] overflow-y-auto">
+            <TabsContent
+              value="add-question"
+              className="mt-4 h-[60vh] overflow-y-auto"
+            >
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="question-text">Question *</Label>
@@ -1270,7 +1387,10 @@ export default function TestManagement() {
                     id="question-text"
                     value={newQuestion.question}
                     onChange={(e) =>
-                      setNewQuestion({ ...newQuestion, question: e.target.value })
+                      setNewQuestion({
+                        ...newQuestion,
+                        question: e.target.value,
+                      })
                     }
                     placeholder="Enter your question here"
                     rows={3}
@@ -1283,7 +1403,12 @@ export default function TestManagement() {
                     <Select
                       value={newQuestion.type}
                       onValueChange={(value: any) =>
-                        setNewQuestion({ ...newQuestion, type: value, options: value === 'mcq' ? ["", "", "", ""] : undefined })
+                        setNewQuestion({
+                          ...newQuestion,
+                          type: value,
+                          options:
+                            value === "mcq" ? ["", "", "", ""] : undefined,
+                        })
                       }
                     >
                       <SelectTrigger>
@@ -1292,7 +1417,9 @@ export default function TestManagement() {
                       <SelectContent>
                         <SelectItem value="mcq">Multiple Choice</SelectItem>
                         <SelectItem value="true-false">True/False</SelectItem>
-                        <SelectItem value="short-answer">Short Answer</SelectItem>
+                        <SelectItem value="short-answer">
+                          Short Answer
+                        </SelectItem>
                         <SelectItem value="long-answer">Long Answer</SelectItem>
                       </SelectContent>
                     </Select>
@@ -1305,7 +1432,10 @@ export default function TestManagement() {
                       type="number"
                       value={newQuestion.marks}
                       onChange={(e) =>
-                        setNewQuestion({ ...newQuestion, marks: parseInt(e.target.value) || 1 })
+                        setNewQuestion({
+                          ...newQuestion,
+                          marks: parseInt(e.target.value) || 1,
+                        })
                       }
                       min="1"
                     />
@@ -1331,21 +1461,29 @@ export default function TestManagement() {
                   </div>
                 </div>
 
-                {newQuestion.type === 'mcq' && (
+                {newQuestion.type === "mcq" && (
                   <div>
                     <Label>Options *</Label>
                     <div className="space-y-2 mt-2">
                       {newQuestion.options?.map((option, index) => (
-                        <div key={index} className="flex items-center space-x-2">
+                        <div
+                          key={index}
+                          className="flex items-center space-x-2"
+                        >
                           <span className="w-8 text-sm font-medium">
                             {String.fromCharCode(65 + index)}.
                           </span>
                           <Input
                             value={option}
                             onChange={(e) => {
-                              const newOptions = [...(newQuestion.options || [])];
+                              const newOptions = [
+                                ...(newQuestion.options || []),
+                              ];
                               newOptions[index] = e.target.value;
-                              setNewQuestion({ ...newQuestion, options: newOptions });
+                              setNewQuestion({
+                                ...newQuestion,
+                                options: newOptions,
+                              });
                             }}
                             placeholder={`Option ${String.fromCharCode(65 + index)}`}
                           />
@@ -1357,7 +1495,7 @@ export default function TestManagement() {
 
                 <div>
                   <Label htmlFor="correct-answer">Correct Answer *</Label>
-                  {newQuestion.type === 'mcq' ? (
+                  {newQuestion.type === "mcq" ? (
                     <Select
                       value={newQuestion.correctAnswer}
                       onValueChange={(value) =>
@@ -1368,16 +1506,17 @@ export default function TestManagement() {
                         <SelectValue placeholder="Select correct option" />
                       </SelectTrigger>
                       <SelectContent>
-                        {newQuestion.options?.map((option, index) => (
-                          option && (
-                            <SelectItem key={index} value={option}>
-                              {String.fromCharCode(65 + index)}. {option}
-                            </SelectItem>
-                          )
-                        ))}
+                        {newQuestion.options?.map(
+                          (option, index) =>
+                            option && (
+                              <SelectItem key={index} value={option}>
+                                {String.fromCharCode(65 + index)}. {option}
+                              </SelectItem>
+                            ),
+                        )}
                       </SelectContent>
                     </Select>
-                  ) : newQuestion.type === 'true-false' ? (
+                  ) : newQuestion.type === "true-false" ? (
                     <Select
                       value={newQuestion.correctAnswer}
                       onValueChange={(value) =>
@@ -1397,7 +1536,10 @@ export default function TestManagement() {
                       id="correct-answer"
                       value={newQuestion.correctAnswer}
                       onChange={(e) =>
-                        setNewQuestion({ ...newQuestion, correctAnswer: e.target.value })
+                        setNewQuestion({
+                          ...newQuestion,
+                          correctAnswer: e.target.value,
+                        })
                       }
                       placeholder="Enter the correct answer or answer guidelines"
                       rows={2}
@@ -1432,7 +1574,8 @@ export default function TestManagement() {
 
           <div className="flex justify-between items-center pt-4 border-t">
             <p className="text-sm text-gray-600">
-              Total Questions: {questions.length} | Total Marks: {questions.reduce((sum, q) => sum + q.marks, 0)}
+              Total Questions: {questions.length} | Total Marks:{" "}
+              {questions.reduce((sum, q) => sum + q.marks, 0)}
             </p>
             <Button
               variant="outline"

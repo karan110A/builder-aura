@@ -10,17 +10,17 @@ if (typeof window !== "undefined" && !window.__rechartsSuppressionActive) {
 
   console.warn = function (...args: any[]) {
     // Convert all arguments to strings for checking
-    const allArgsString = args.map(arg => String(arg)).join(" ");
+    const allArgsString = args.map((arg) => String(arg)).join(" ");
 
     // Check for Recharts defaultProps warnings with multiple patterns
     if (
       allArgsString.includes("Support for defaultProps will be removed") &&
       (allArgsString.includes("XAxis") ||
-       allArgsString.includes("YAxis") ||
-       allArgsString.includes("CartesianGrid") ||
-       allArgsString.includes("Tooltip") ||
-       allArgsString.includes("ResponsiveContainer") ||
-       allArgsString.includes("Legend"))
+        allArgsString.includes("YAxis") ||
+        allArgsString.includes("CartesianGrid") ||
+        allArgsString.includes("Tooltip") ||
+        allArgsString.includes("ResponsiveContainer") ||
+        allArgsString.includes("Legend"))
     ) {
       // Completely suppress these warnings
       return;
@@ -35,12 +35,15 @@ if (typeof window !== "undefined" && !window.__rechartsSuppressionActive) {
 }
 
 // Ensure suppression is applied in development
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === "development") {
   // Additional suppression for React development warnings
   const originalConsoleWarn = console.warn;
-  console.warn = function(...args) {
-    const warningText = args.join(' ');
-    if (warningText.includes('defaultProps') && (warningText.includes('XAxis') || warningText.includes('YAxis'))) {
+  console.warn = function (...args) {
+    const warningText = args.join(" ");
+    if (
+      warningText.includes("defaultProps") &&
+      (warningText.includes("XAxis") || warningText.includes("YAxis"))
+    ) {
       return;
     }
     originalConsoleWarn.apply(console, args);

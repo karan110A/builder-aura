@@ -1,14 +1,37 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import {
@@ -30,7 +53,7 @@ import {
   BookOpen,
   CreditCard,
   AlertCircle,
-  CheckCircle
+  CheckCircle,
 } from "lucide-react";
 
 interface Student {
@@ -155,26 +178,42 @@ export default function StudentManagement() {
   const [editJoiningDate, setEditJoiningDate] = useState<Date>();
 
   const classes = [
-    "Class 8", "Class 9", "Class 10",
-    "Class 11 - PCM", "Class 11 - PCB", "Class 11 - Commerce",
-    "Class 12 - PCM", "Class 12 - PCB", "Class 12 - Commerce"
+    "Class 8",
+    "Class 9",
+    "Class 10",
+    "Class 11 - PCM",
+    "Class 11 - PCB",
+    "Class 11 - Commerce",
+    "Class 12 - PCM",
+    "Class 12 - PCB",
+    "Class 12 - Commerce",
   ];
 
   const subjects = [
-    "Mathematics", "Physics", "Chemistry", "Biology",
-    "English", "Hindi", "History", "Geography",
-    "Economics", "Accountancy", "Business Studies"
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "English",
+    "Hindi",
+    "History",
+    "Geography",
+    "Economics",
+    "Accountancy",
+    "Business Studies",
   ];
 
-  const filteredStudents = students.filter(student => {
-    const matchesSearch = 
+  const filteredStudents = students.filter((student) => {
+    const matchesSearch =
       student.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.email.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesClass = selectedClass === "all" || student.class === selectedClass;
-    const matchesStatus = selectedStatus === "all" || student.status === selectedStatus;
-    
+
+    const matchesClass =
+      selectedClass === "all" || student.class === selectedClass;
+    const matchesStatus =
+      selectedStatus === "all" || student.status === selectedStatus;
+
     return matchesSearch && matchesClass && matchesStatus;
   });
 
@@ -201,9 +240,19 @@ export default function StudentManagement() {
 
     setStudents([...students, student]);
     setNewStudent({
-      firstName: "", lastName: "", email: "", phone: "", address: "",
-      city: "", state: "", pincode: "", parentName: "", parentPhone: "",
-      parentEmail: "", class: "", subjects: [],
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      city: "",
+      state: "",
+      pincode: "",
+      parentName: "",
+      parentPhone: "",
+      parentEmail: "",
+      class: "",
+      subjects: [],
     });
     setDobDate(undefined);
     setJoiningDate(undefined);
@@ -231,7 +280,9 @@ export default function StudentManagement() {
       joiningDate: editJoiningDate || editStudent.joiningDate,
     };
 
-    setStudents(students.map(s => s.id === editStudent.id ? updatedStudent : s));
+    setStudents(
+      students.map((s) => (s.id === editStudent.id ? updatedStudent : s)),
+    );
     setIsEditDialogOpen(false);
     setEditStudent(null);
     setEditDobDate(undefined);
@@ -244,7 +295,7 @@ export default function StudentManagement() {
   };
 
   const handleDeleteStudent = (id: string) => {
-    setStudents(students.filter(s => s.id !== id));
+    setStudents(students.filter((s) => s.id !== id));
     toast({
       title: "Student Removed",
       description: "Student has been removed from the system.",
@@ -253,19 +304,27 @@ export default function StudentManagement() {
 
   const getFeeStatusColor = (status: string) => {
     switch (status) {
-      case "paid": return "bg-green-100 text-green-800";
-      case "pending": return "bg-yellow-100 text-yellow-800";
-      case "overdue": return "bg-red-100 text-red-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "paid":
+        return "bg-green-100 text-green-800";
+      case "pending":
+        return "bg-yellow-100 text-yellow-800";
+      case "overdue":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active": return "bg-green-100 text-green-800";
-      case "inactive": return "bg-gray-100 text-gray-800";
-      case "graduated": return "bg-blue-100 text-blue-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "active":
+        return "bg-green-100 text-green-800";
+      case "inactive":
+        return "bg-gray-100 text-gray-800";
+      case "graduated":
+        return "bg-blue-100 text-blue-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
@@ -295,15 +354,22 @@ export default function StudentManagement() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Personal Information */}
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-lg">Personal Information</h3>
-                  
+                  <h3 className="font-semibold text-lg">
+                    Personal Information
+                  </h3>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name *</Label>
                       <Input
                         id="firstName"
                         value={newStudent.firstName}
-                        onChange={(e) => setNewStudent({...newStudent, firstName: e.target.value})}
+                        onChange={(e) =>
+                          setNewStudent({
+                            ...newStudent,
+                            firstName: e.target.value,
+                          })
+                        }
                         placeholder="Enter first name"
                       />
                     </div>
@@ -312,7 +378,12 @@ export default function StudentManagement() {
                       <Input
                         id="lastName"
                         value={newStudent.lastName}
-                        onChange={(e) => setNewStudent({...newStudent, lastName: e.target.value})}
+                        onChange={(e) =>
+                          setNewStudent({
+                            ...newStudent,
+                            lastName: e.target.value,
+                          })
+                        }
                         placeholder="Enter last name"
                       />
                     </div>
@@ -324,7 +395,9 @@ export default function StudentManagement() {
                       id="email"
                       type="email"
                       value={newStudent.email}
-                      onChange={(e) => setNewStudent({...newStudent, email: e.target.value})}
+                      onChange={(e) =>
+                        setNewStudent({ ...newStudent, email: e.target.value })
+                      }
                       placeholder="student@email.com"
                     />
                   </div>
@@ -334,7 +407,9 @@ export default function StudentManagement() {
                     <Input
                       id="phone"
                       value={newStudent.phone}
-                      onChange={(e) => setNewStudent({...newStudent, phone: e.target.value})}
+                      onChange={(e) =>
+                        setNewStudent({ ...newStudent, phone: e.target.value })
+                      }
                       placeholder="+91 9876543210"
                     />
                   </div>
@@ -343,13 +418,21 @@ export default function StudentManagement() {
                     <Label>Date of Birth</Label>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button variant="outline" className="w-full justify-start text-left">
+                        <Button
+                          variant="outline"
+                          className="w-full justify-start text-left"
+                        >
                           <CalendarIcon className="mr-2 h-4 w-4" />
                           {dobDate ? format(dobDate, "PPP") : "Pick a date"}
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0">
-                        <Calendar mode="single" selected={dobDate} onSelect={setDobDate} initialFocus />
+                        <Calendar
+                          mode="single"
+                          selected={dobDate}
+                          onSelect={setDobDate}
+                          initialFocus
+                        />
                       </PopoverContent>
                     </Popover>
                   </div>
@@ -359,7 +442,12 @@ export default function StudentManagement() {
                     <Textarea
                       id="address"
                       value={newStudent.address}
-                      onChange={(e) => setNewStudent({...newStudent, address: e.target.value})}
+                      onChange={(e) =>
+                        setNewStudent({
+                          ...newStudent,
+                          address: e.target.value,
+                        })
+                      }
                       placeholder="Enter complete address"
                     />
                   </div>
@@ -370,7 +458,9 @@ export default function StudentManagement() {
                       <Input
                         id="city"
                         value={newStudent.city}
-                        onChange={(e) => setNewStudent({...newStudent, city: e.target.value})}
+                        onChange={(e) =>
+                          setNewStudent({ ...newStudent, city: e.target.value })
+                        }
                         placeholder="City"
                       />
                     </div>
@@ -379,7 +469,12 @@ export default function StudentManagement() {
                       <Input
                         id="state"
                         value={newStudent.state}
-                        onChange={(e) => setNewStudent({...newStudent, state: e.target.value})}
+                        onChange={(e) =>
+                          setNewStudent({
+                            ...newStudent,
+                            state: e.target.value,
+                          })
+                        }
                         placeholder="State"
                       />
                     </div>
@@ -388,7 +483,12 @@ export default function StudentManagement() {
                       <Input
                         id="pincode"
                         value={newStudent.pincode}
-                        onChange={(e) => setNewStudent({...newStudent, pincode: e.target.value})}
+                        onChange={(e) =>
+                          setNewStudent({
+                            ...newStudent,
+                            pincode: e.target.value,
+                          })
+                        }
                         placeholder="000000"
                       />
                     </div>
@@ -397,14 +497,21 @@ export default function StudentManagement() {
 
                 {/* Parent/Guardian & Academic Information */}
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-lg">Parent/Guardian Information</h3>
-                  
+                  <h3 className="font-semibold text-lg">
+                    Parent/Guardian Information
+                  </h3>
+
                   <div className="space-y-2">
                     <Label htmlFor="parentName">Parent/Guardian Name</Label>
                     <Input
                       id="parentName"
                       value={newStudent.parentName}
-                      onChange={(e) => setNewStudent({...newStudent, parentName: e.target.value})}
+                      onChange={(e) =>
+                        setNewStudent({
+                          ...newStudent,
+                          parentName: e.target.value,
+                        })
+                      }
                       placeholder="Enter parent name"
                     />
                   </div>
@@ -414,7 +521,12 @@ export default function StudentManagement() {
                     <Input
                       id="parentPhone"
                       value={newStudent.parentPhone}
-                      onChange={(e) => setNewStudent({...newStudent, parentPhone: e.target.value})}
+                      onChange={(e) =>
+                        setNewStudent({
+                          ...newStudent,
+                          parentPhone: e.target.value,
+                        })
+                      }
                       placeholder="+91 9876543210"
                     />
                   </div>
@@ -425,22 +537,36 @@ export default function StudentManagement() {
                       id="parentEmail"
                       type="email"
                       value={newStudent.parentEmail}
-                      onChange={(e) => setNewStudent({...newStudent, parentEmail: e.target.value})}
+                      onChange={(e) =>
+                        setNewStudent({
+                          ...newStudent,
+                          parentEmail: e.target.value,
+                        })
+                      }
                       placeholder="parent@email.com"
                     />
                   </div>
 
-                  <h3 className="font-semibold text-lg pt-4">Academic Information</h3>
+                  <h3 className="font-semibold text-lg pt-4">
+                    Academic Information
+                  </h3>
 
                   <div className="space-y-2">
                     <Label>Class</Label>
-                    <Select value={newStudent.class} onValueChange={(value) => setNewStudent({...newStudent, class: value})}>
+                    <Select
+                      value={newStudent.class}
+                      onValueChange={(value) =>
+                        setNewStudent({ ...newStudent, class: value })
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select class" />
                       </SelectTrigger>
                       <SelectContent>
                         {classes.map((cls) => (
-                          <SelectItem key={cls} value={cls}>{cls}</SelectItem>
+                          <SelectItem key={cls} value={cls}>
+                            {cls}
+                          </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -450,7 +576,10 @@ export default function StudentManagement() {
                     <Label>Subjects</Label>
                     <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto border rounded-md p-2">
                       {subjects.map((subject) => (
-                        <label key={subject} className="flex items-center space-x-2 cursor-pointer">
+                        <label
+                          key={subject}
+                          className="flex items-center space-x-2 cursor-pointer"
+                        >
                           <input
                             type="checkbox"
                             checked={newStudent.subjects.includes(subject)}
@@ -458,12 +587,14 @@ export default function StudentManagement() {
                               if (e.target.checked) {
                                 setNewStudent({
                                   ...newStudent,
-                                  subjects: [...newStudent.subjects, subject]
+                                  subjects: [...newStudent.subjects, subject],
                                 });
                               } else {
                                 setNewStudent({
                                   ...newStudent,
-                                  subjects: newStudent.subjects.filter(s => s !== subject)
+                                  subjects: newStudent.subjects.filter(
+                                    (s) => s !== subject,
+                                  ),
                                 });
                               }
                             }}
@@ -479,13 +610,23 @@ export default function StudentManagement() {
                     <Label>Joining Date</Label>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button variant="outline" className="w-full justify-start text-left">
+                        <Button
+                          variant="outline"
+                          className="w-full justify-start text-left"
+                        >
                           <CalendarIcon className="mr-2 h-4 w-4" />
-                          {joiningDate ? format(joiningDate, "PPP") : "Pick joining date"}
+                          {joiningDate
+                            ? format(joiningDate, "PPP")
+                            : "Pick joining date"}
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0">
-                        <Calendar mode="single" selected={joiningDate} onSelect={setJoiningDate} initialFocus />
+                        <Calendar
+                          mode="single"
+                          selected={joiningDate}
+                          onSelect={setJoiningDate}
+                          initialFocus
+                        />
                       </PopoverContent>
                     </Popover>
                   </div>
@@ -493,7 +634,10 @@ export default function StudentManagement() {
               </div>
 
               <div className="flex justify-end space-x-2 pt-4">
-                <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsAddDialogOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button onClick={handleAddStudent}>Add Student</Button>
@@ -514,7 +658,9 @@ export default function StudentManagement() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Personal Information */}
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-lg">Personal Information</h3>
+                    <h3 className="font-semibold text-lg">
+                      Personal Information
+                    </h3>
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -522,7 +668,12 @@ export default function StudentManagement() {
                         <Input
                           id="editFirstName"
                           value={editStudent.firstName}
-                          onChange={(e) => setEditStudent({...editStudent, firstName: e.target.value})}
+                          onChange={(e) =>
+                            setEditStudent({
+                              ...editStudent,
+                              firstName: e.target.value,
+                            })
+                          }
                           placeholder="Enter first name"
                         />
                       </div>
@@ -531,7 +682,12 @@ export default function StudentManagement() {
                         <Input
                           id="editLastName"
                           value={editStudent.lastName}
-                          onChange={(e) => setEditStudent({...editStudent, lastName: e.target.value})}
+                          onChange={(e) =>
+                            setEditStudent({
+                              ...editStudent,
+                              lastName: e.target.value,
+                            })
+                          }
                           placeholder="Enter last name"
                         />
                       </div>
@@ -543,7 +699,12 @@ export default function StudentManagement() {
                         id="editEmail"
                         type="email"
                         value={editStudent.email}
-                        onChange={(e) => setEditStudent({...editStudent, email: e.target.value})}
+                        onChange={(e) =>
+                          setEditStudent({
+                            ...editStudent,
+                            email: e.target.value,
+                          })
+                        }
                         placeholder="student@email.com"
                       />
                     </div>
@@ -553,7 +714,12 @@ export default function StudentManagement() {
                       <Input
                         id="editPhone"
                         value={editStudent.phone}
-                        onChange={(e) => setEditStudent({...editStudent, phone: e.target.value})}
+                        onChange={(e) =>
+                          setEditStudent({
+                            ...editStudent,
+                            phone: e.target.value,
+                          })
+                        }
                         placeholder="+91 9876543210"
                       />
                     </div>
@@ -562,13 +728,23 @@ export default function StudentManagement() {
                       <Label>Date of Birth</Label>
                       <Popover>
                         <PopoverTrigger asChild>
-                          <Button variant="outline" className="w-full justify-start text-left">
+                          <Button
+                            variant="outline"
+                            className="w-full justify-start text-left"
+                          >
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            {editDobDate ? format(editDobDate, "PPP") : "Pick a date"}
+                            {editDobDate
+                              ? format(editDobDate, "PPP")
+                              : "Pick a date"}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                          <Calendar mode="single" selected={editDobDate} onSelect={setEditDobDate} initialFocus />
+                          <Calendar
+                            mode="single"
+                            selected={editDobDate}
+                            onSelect={setEditDobDate}
+                            initialFocus
+                          />
                         </PopoverContent>
                       </Popover>
                     </div>
@@ -578,7 +754,12 @@ export default function StudentManagement() {
                       <Textarea
                         id="editAddress"
                         value={editStudent.address}
-                        onChange={(e) => setEditStudent({...editStudent, address: e.target.value})}
+                        onChange={(e) =>
+                          setEditStudent({
+                            ...editStudent,
+                            address: e.target.value,
+                          })
+                        }
                         placeholder="Enter complete address"
                       />
                     </div>
@@ -589,7 +770,12 @@ export default function StudentManagement() {
                         <Input
                           id="editCity"
                           value={editStudent.city}
-                          onChange={(e) => setEditStudent({...editStudent, city: e.target.value})}
+                          onChange={(e) =>
+                            setEditStudent({
+                              ...editStudent,
+                              city: e.target.value,
+                            })
+                          }
                           placeholder="City"
                         />
                       </div>
@@ -598,7 +784,12 @@ export default function StudentManagement() {
                         <Input
                           id="editState"
                           value={editStudent.state}
-                          onChange={(e) => setEditStudent({...editStudent, state: e.target.value})}
+                          onChange={(e) =>
+                            setEditStudent({
+                              ...editStudent,
+                              state: e.target.value,
+                            })
+                          }
                           placeholder="State"
                         />
                       </div>
@@ -607,7 +798,12 @@ export default function StudentManagement() {
                         <Input
                           id="editPincode"
                           value={editStudent.pincode}
-                          onChange={(e) => setEditStudent({...editStudent, pincode: e.target.value})}
+                          onChange={(e) =>
+                            setEditStudent({
+                              ...editStudent,
+                              pincode: e.target.value,
+                            })
+                          }
                           placeholder="000000"
                         />
                       </div>
@@ -616,14 +812,23 @@ export default function StudentManagement() {
 
                   {/* Parent/Guardian & Academic Information */}
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-lg">Parent/Guardian Information</h3>
+                    <h3 className="font-semibold text-lg">
+                      Parent/Guardian Information
+                    </h3>
 
                     <div className="space-y-2">
-                      <Label htmlFor="editParentName">Parent/Guardian Name</Label>
+                      <Label htmlFor="editParentName">
+                        Parent/Guardian Name
+                      </Label>
                       <Input
                         id="editParentName"
                         value={editStudent.parentName}
-                        onChange={(e) => setEditStudent({...editStudent, parentName: e.target.value})}
+                        onChange={(e) =>
+                          setEditStudent({
+                            ...editStudent,
+                            parentName: e.target.value,
+                          })
+                        }
                         placeholder="Enter parent name"
                       />
                     </div>
@@ -633,7 +838,12 @@ export default function StudentManagement() {
                       <Input
                         id="editParentPhone"
                         value={editStudent.parentPhone}
-                        onChange={(e) => setEditStudent({...editStudent, parentPhone: e.target.value})}
+                        onChange={(e) =>
+                          setEditStudent({
+                            ...editStudent,
+                            parentPhone: e.target.value,
+                          })
+                        }
                         placeholder="+91 9876543210"
                       />
                     </div>
@@ -644,22 +854,36 @@ export default function StudentManagement() {
                         id="editParentEmail"
                         type="email"
                         value={editStudent.parentEmail}
-                        onChange={(e) => setEditStudent({...editStudent, parentEmail: e.target.value})}
+                        onChange={(e) =>
+                          setEditStudent({
+                            ...editStudent,
+                            parentEmail: e.target.value,
+                          })
+                        }
                         placeholder="parent@email.com"
                       />
                     </div>
 
-                    <h3 className="font-semibold text-lg pt-4">Academic Information</h3>
+                    <h3 className="font-semibold text-lg pt-4">
+                      Academic Information
+                    </h3>
 
                     <div className="space-y-2">
                       <Label>Class</Label>
-                      <Select value={editStudent.class} onValueChange={(value) => setEditStudent({...editStudent, class: value})}>
+                      <Select
+                        value={editStudent.class}
+                        onValueChange={(value) =>
+                          setEditStudent({ ...editStudent, class: value })
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select class" />
                         </SelectTrigger>
                         <SelectContent>
                           {classes.map((cls) => (
-                            <SelectItem key={cls} value={cls}>{cls}</SelectItem>
+                            <SelectItem key={cls} value={cls}>
+                              {cls}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -669,7 +893,10 @@ export default function StudentManagement() {
                       <Label>Subjects</Label>
                       <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto border rounded-md p-2">
                         {subjects.map((subject) => (
-                          <label key={subject} className="flex items-center space-x-2 cursor-pointer">
+                          <label
+                            key={subject}
+                            className="flex items-center space-x-2 cursor-pointer"
+                          >
                             <input
                               type="checkbox"
                               checked={editStudent.subjects.includes(subject)}
@@ -677,12 +904,17 @@ export default function StudentManagement() {
                                 if (e.target.checked) {
                                   setEditStudent({
                                     ...editStudent,
-                                    subjects: [...editStudent.subjects, subject]
+                                    subjects: [
+                                      ...editStudent.subjects,
+                                      subject,
+                                    ],
                                   });
                                 } else {
                                   setEditStudent({
                                     ...editStudent,
-                                    subjects: editStudent.subjects.filter(s => s !== subject)
+                                    subjects: editStudent.subjects.filter(
+                                      (s) => s !== subject,
+                                    ),
                                   });
                                 }
                               }}
@@ -698,20 +930,35 @@ export default function StudentManagement() {
                       <Label>Joining Date</Label>
                       <Popover>
                         <PopoverTrigger asChild>
-                          <Button variant="outline" className="w-full justify-start text-left">
+                          <Button
+                            variant="outline"
+                            className="w-full justify-start text-left"
+                          >
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            {editJoiningDate ? format(editJoiningDate, "PPP") : "Pick joining date"}
+                            {editJoiningDate
+                              ? format(editJoiningDate, "PPP")
+                              : "Pick joining date"}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                          <Calendar mode="single" selected={editJoiningDate} onSelect={setEditJoiningDate} initialFocus />
+                          <Calendar
+                            mode="single"
+                            selected={editJoiningDate}
+                            onSelect={setEditJoiningDate}
+                            initialFocus
+                          />
                         </PopoverContent>
                       </Popover>
                     </div>
 
                     <div className="space-y-2">
                       <Label>Status</Label>
-                      <Select value={editStudent.status} onValueChange={(value: "active" | "inactive" | "graduated") => setEditStudent({...editStudent, status: value})}>
+                      <Select
+                        value={editStudent.status}
+                        onValueChange={(
+                          value: "active" | "inactive" | "graduated",
+                        ) => setEditStudent({ ...editStudent, status: value })}
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select status" />
                         </SelectTrigger>
@@ -725,7 +972,14 @@ export default function StudentManagement() {
 
                     <div className="space-y-2">
                       <Label>Fee Status</Label>
-                      <Select value={editStudent.feeStatus} onValueChange={(value: "paid" | "pending" | "overdue") => setEditStudent({...editStudent, feeStatus: value})}>
+                      <Select
+                        value={editStudent.feeStatus}
+                        onValueChange={(
+                          value: "paid" | "pending" | "overdue",
+                        ) =>
+                          setEditStudent({ ...editStudent, feeStatus: value })
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select fee status" />
                         </SelectTrigger>
@@ -744,7 +998,12 @@ export default function StudentManagement() {
                           id="editTotalFees"
                           type="number"
                           value={editStudent.totalFees}
-                          onChange={(e) => setEditStudent({...editStudent, totalFees: parseInt(e.target.value) || 0})}
+                          onChange={(e) =>
+                            setEditStudent({
+                              ...editStudent,
+                              totalFees: parseInt(e.target.value) || 0,
+                            })
+                          }
                           placeholder="45000"
                         />
                       </div>
@@ -754,7 +1013,12 @@ export default function StudentManagement() {
                           id="editPaidFees"
                           type="number"
                           value={editStudent.paidFees}
-                          onChange={(e) => setEditStudent({...editStudent, paidFees: parseInt(e.target.value) || 0})}
+                          onChange={(e) =>
+                            setEditStudent({
+                              ...editStudent,
+                              paidFees: parseInt(e.target.value) || 0,
+                            })
+                          }
                           placeholder="30000"
                         />
                       </div>
@@ -764,7 +1028,10 @@ export default function StudentManagement() {
               )}
 
               <div className="flex justify-end space-x-2 pt-4">
-                <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsEditDialogOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button onClick={handleUpdateStudent}>Update Student</Button>
@@ -801,7 +1068,9 @@ export default function StudentManagement() {
               <SelectContent>
                 <SelectItem value="all">All Classes</SelectItem>
                 {classes.map((cls) => (
-                  <SelectItem key={cls} value={cls}>{cls}</SelectItem>
+                  <SelectItem key={cls} value={cls}>
+                    {cls}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -854,7 +1123,7 @@ export default function StudentManagement() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="text-right">
                     <div className="flex space-x-2 mb-2">
@@ -866,10 +1135,11 @@ export default function StudentManagement() {
                       </Badge>
                     </div>
                     <p className="text-sm text-gray-600">
-                      Fees: ₹{student.paidFees.toLocaleString()} / ₹{student.totalFees.toLocaleString()}
+                      Fees: ₹{student.paidFees.toLocaleString()} / ₹
+                      {student.totalFees.toLocaleString()}
                     </p>
                   </div>
-                  
+
                   <div className="flex space-x-2">
                     <Button
                       variant="outline"
@@ -915,46 +1185,86 @@ export default function StudentManagement() {
                 <div>
                   <h3 className="font-semibold mb-3">Personal Information</h3>
                   <div className="space-y-2 text-sm">
-                    <p><strong>Name:</strong> {selectedStudent.firstName} {selectedStudent.lastName}</p>
-                    <p><strong>Email:</strong> {selectedStudent.email}</p>
-                    <p><strong>Phone:</strong> {selectedStudent.phone}</p>
-                    <p><strong>Date of Birth:</strong> {format(selectedStudent.dateOfBirth, "PPP")}</p>
-                    <p><strong>Address:</strong> {selectedStudent.address}, {selectedStudent.city}, {selectedStudent.state} - {selectedStudent.pincode}</p>
+                    <p>
+                      <strong>Name:</strong> {selectedStudent.firstName}{" "}
+                      {selectedStudent.lastName}
+                    </p>
+                    <p>
+                      <strong>Email:</strong> {selectedStudent.email}
+                    </p>
+                    <p>
+                      <strong>Phone:</strong> {selectedStudent.phone}
+                    </p>
+                    <p>
+                      <strong>Date of Birth:</strong>{" "}
+                      {format(selectedStudent.dateOfBirth, "PPP")}
+                    </p>
+                    <p>
+                      <strong>Address:</strong> {selectedStudent.address},{" "}
+                      {selectedStudent.city}, {selectedStudent.state} -{" "}
+                      {selectedStudent.pincode}
+                    </p>
                   </div>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-3">Academic Information</h3>
                   <div className="space-y-2 text-sm">
-                    <p><strong>Class:</strong> {selectedStudent.class}</p>
-                    <p><strong>Subjects:</strong> {selectedStudent.subjects.join(", ")}</p>
-                    <p><strong>Joining Date:</strong> {format(selectedStudent.joiningDate, "PPP")}</p>
+                    <p>
+                      <strong>Class:</strong> {selectedStudent.class}
+                    </p>
+                    <p>
+                      <strong>Subjects:</strong>{" "}
+                      {selectedStudent.subjects.join(", ")}
+                    </p>
+                    <p>
+                      <strong>Joining Date:</strong>{" "}
+                      {format(selectedStudent.joiningDate, "PPP")}
+                    </p>
                     <div className="flex items-center">
                       <strong>Status:</strong>
-                      <Badge className={`ml-2 ${getStatusColor(selectedStudent.status)}`}>
+                      <Badge
+                        className={`ml-2 ${getStatusColor(selectedStudent.status)}`}
+                      >
                         {selectedStudent.status}
                       </Badge>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <div>
-                <h3 className="font-semibold mb-3">Parent/Guardian Information</h3>
+                <h3 className="font-semibold mb-3">
+                  Parent/Guardian Information
+                </h3>
                 <div className="grid grid-cols-3 gap-4 text-sm">
-                  <p><strong>Name:</strong> {selectedStudent.parentName}</p>
-                  <p><strong>Phone:</strong> {selectedStudent.parentPhone}</p>
-                  <p><strong>Email:</strong> {selectedStudent.parentEmail}</p>
+                  <p>
+                    <strong>Name:</strong> {selectedStudent.parentName}
+                  </p>
+                  <p>
+                    <strong>Phone:</strong> {selectedStudent.parentPhone}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {selectedStudent.parentEmail}
+                  </p>
                 </div>
               </div>
 
               <div>
                 <h3 className="font-semibold mb-3">Fee Information</h3>
                 <div className="grid grid-cols-3 gap-4 text-sm">
-                  <p><strong>Total Fees:</strong> ₹{selectedStudent.totalFees.toLocaleString()}</p>
-                  <p><strong>Paid Fees:</strong> ₹{selectedStudent.paidFees.toLocaleString()}</p>
+                  <p>
+                    <strong>Total Fees:</strong> ₹
+                    {selectedStudent.totalFees.toLocaleString()}
+                  </p>
+                  <p>
+                    <strong>Paid Fees:</strong> ₹
+                    {selectedStudent.paidFees.toLocaleString()}
+                  </p>
                   <div className="flex items-center">
                     <strong>Status:</strong>
-                    <Badge className={`ml-2 ${getFeeStatusColor(selectedStudent.feeStatus)}`}>
+                    <Badge
+                      className={`ml-2 ${getFeeStatusColor(selectedStudent.feeStatus)}`}
+                    >
                       {selectedStudent.feeStatus}
                     </Badge>
                   </div>

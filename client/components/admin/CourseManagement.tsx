@@ -10,7 +10,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -205,7 +211,9 @@ export default function CourseManagement() {
   const handleUpdateCourse = () => {
     if (!editingCourse) return;
 
-    setCourses(courses.map((c) => c.id === editingCourse.id ? editingCourse : c));
+    setCourses(
+      courses.map((c) => (c.id === editingCourse.id ? editingCourse : c)),
+    );
     setIsEditingCourse(false);
     setEditingCourse(null);
 
@@ -479,7 +487,10 @@ export default function CourseManagement() {
                   id="editTitle"
                   value={editingCourse.title}
                   onChange={(e) =>
-                    setEditingCourse({ ...editingCourse, title: e.target.value })
+                    setEditingCourse({
+                      ...editingCourse,
+                      title: e.target.value,
+                    })
                   }
                   placeholder="Course title"
                 />
@@ -512,7 +523,10 @@ export default function CourseManagement() {
                   id="editDescription"
                   value={editingCourse.description}
                   onChange={(e) =>
-                    setEditingCourse({ ...editingCourse, description: e.target.value })
+                    setEditingCourse({
+                      ...editingCourse,
+                      description: e.target.value,
+                    })
                   }
                   placeholder="Course description"
                 />
@@ -530,10 +544,18 @@ export default function CourseManagement() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Dr. Rajesh Kumar">Dr. Rajesh Kumar</SelectItem>
-                    <SelectItem value="Prof. Sunita Sharma">Prof. Sunita Sharma</SelectItem>
-                    <SelectItem value="Dr. Amit Verma">Dr. Amit Verma</SelectItem>
-                    <SelectItem value="Dr. Priya Nair">Dr. Priya Nair</SelectItem>
+                    <SelectItem value="Dr. Rajesh Kumar">
+                      Dr. Rajesh Kumar
+                    </SelectItem>
+                    <SelectItem value="Prof. Sunita Sharma">
+                      Prof. Sunita Sharma
+                    </SelectItem>
+                    <SelectItem value="Dr. Amit Verma">
+                      Dr. Amit Verma
+                    </SelectItem>
+                    <SelectItem value="Dr. Priya Nair">
+                      Dr. Priya Nair
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -545,7 +567,10 @@ export default function CourseManagement() {
                     id="editDuration"
                     value={editingCourse.duration}
                     onChange={(e) =>
-                      setEditingCourse({ ...editingCourse, duration: e.target.value })
+                      setEditingCourse({
+                        ...editingCourse,
+                        duration: e.target.value,
+                      })
                     }
                     placeholder="e.g., 6 months"
                   />
@@ -557,7 +582,10 @@ export default function CourseManagement() {
                     id="editSchedule"
                     value={editingCourse.schedule}
                     onChange={(e) =>
-                      setEditingCourse({ ...editingCourse, schedule: e.target.value })
+                      setEditingCourse({
+                        ...editingCourse,
+                        schedule: e.target.value,
+                      })
                     }
                     placeholder="e.g., Mon, Wed - 10:00 AM"
                   />
@@ -606,7 +634,10 @@ export default function CourseManagement() {
                     type="date"
                     value={editingCourse.startDate}
                     onChange={(e) =>
-                      setEditingCourse({ ...editingCourse, startDate: e.target.value })
+                      setEditingCourse({
+                        ...editingCourse,
+                        startDate: e.target.value,
+                      })
                     }
                   />
                 </div>
@@ -618,7 +649,10 @@ export default function CourseManagement() {
                     type="date"
                     value={editingCourse.endDate}
                     onChange={(e) =>
-                      setEditingCourse({ ...editingCourse, endDate: e.target.value })
+                      setEditingCourse({
+                        ...editingCourse,
+                        endDate: e.target.value,
+                      })
                     }
                   />
                 </div>
@@ -629,9 +663,9 @@ export default function CourseManagement() {
                   <Label htmlFor="editStatus">Status</Label>
                   <Select
                     value={editingCourse.status}
-                    onValueChange={(value: "active" | "inactive" | "upcoming") =>
-                      setEditingCourse({ ...editingCourse, status: value })
-                    }
+                    onValueChange={(
+                      value: "active" | "inactive" | "upcoming",
+                    ) => setEditingCourse({ ...editingCourse, status: value })}
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -648,9 +682,9 @@ export default function CourseManagement() {
                   <Label htmlFor="editLevel">Level</Label>
                   <Select
                     value={editingCourse.level}
-                    onValueChange={(value: "beginner" | "intermediate" | "advanced") =>
-                      setEditingCourse({ ...editingCourse, level: value })
-                    }
+                    onValueChange={(
+                      value: "beginner" | "intermediate" | "advanced",
+                    ) => setEditingCourse({ ...editingCourse, level: value })}
                   >
                     <SelectTrigger>
                       <SelectValue />

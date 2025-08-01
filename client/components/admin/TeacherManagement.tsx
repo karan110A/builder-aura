@@ -169,7 +169,11 @@ export default function TeacherManagement() {
 
   const handleUpdateTeacher = () => {
     if (editingTeacher) {
-      if (!editingTeacher.name || !editingTeacher.email || !editingTeacher.subject) {
+      if (
+        !editingTeacher.name ||
+        !editingTeacher.email ||
+        !editingTeacher.subject
+      ) {
         toast({
           title: "Missing Information",
           description: "Please fill in all required fields.",
@@ -465,7 +469,10 @@ export default function TeacherManagement() {
                   id="edit-name"
                   value={editingTeacher.name}
                   onChange={(e) =>
-                    setEditingTeacher({ ...editingTeacher, name: e.target.value })
+                    setEditingTeacher({
+                      ...editingTeacher,
+                      name: e.target.value,
+                    })
                   }
                   placeholder="Enter full name"
                 />
@@ -477,7 +484,10 @@ export default function TeacherManagement() {
                   type="email"
                   value={editingTeacher.email}
                   onChange={(e) =>
-                    setEditingTeacher({ ...editingTeacher, email: e.target.value })
+                    setEditingTeacher({
+                      ...editingTeacher,
+                      email: e.target.value,
+                    })
                   }
                   placeholder="Enter email address"
                 />
@@ -488,7 +498,10 @@ export default function TeacherManagement() {
                   id="edit-phone"
                   value={editingTeacher.phone}
                   onChange={(e) =>
-                    setEditingTeacher({ ...editingTeacher, phone: e.target.value })
+                    setEditingTeacher({
+                      ...editingTeacher,
+                      phone: e.target.value,
+                    })
                   }
                   placeholder="Enter phone number"
                 />

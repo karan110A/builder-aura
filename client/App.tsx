@@ -6,7 +6,7 @@ if (typeof window !== "undefined" && !window.__rechartsSuppressionActive) {
   const originalWarn = console.warn;
   console.warn = (...args) => {
     // Join all arguments into a single string for comprehensive checking
-    const fullMessage = args.map(arg => String(arg || '')).join(' ');
+    const fullMessage = args.map((arg) => String(arg || "")).join(" ");
 
     if (
       fullMessage.includes("Support for defaultProps will be removed") &&
