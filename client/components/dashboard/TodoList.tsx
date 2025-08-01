@@ -51,7 +51,7 @@ interface TodoListProps {
 
 const categoryIcons = {
   math: Calculator,
-  science: Flask,
+  science: Beaker,
   english: BookOpen,
   history: Globe,
   art: Palette,
