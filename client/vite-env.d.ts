@@ -3,5 +3,6 @@
 declare global {
   interface Window {
     __rechartsWarningsSuppressed?: boolean;
+    __rechartsSuppressionActive?: boolean;
   }
 }
