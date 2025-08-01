@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StudentManagement from "@/components/admin/StudentManagement";
+import TeacherManagement from "@/components/admin/TeacherManagement";
+import CourseManagement from "@/components/admin/CourseManagement";
+import TestManagement from "@/components/admin/TestManagement";
+import AdvancedAnalytics from "@/components/admin/AdvancedAnalytics";
 import {
   Card,
   CardContent,
