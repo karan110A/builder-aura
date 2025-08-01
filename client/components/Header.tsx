@@ -94,7 +94,7 @@ export default function Header() {
               ))}
               <div className="pt-2">
                 <Button asChild className="w-full">
-                  <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
                     Enroll Now
                   </Link>
                 </Button>
