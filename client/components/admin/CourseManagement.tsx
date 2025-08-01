@@ -196,6 +196,24 @@ export default function CourseManagement() {
     });
   };
 
+  const handleEditCourse = (course: Course) => {
+    setEditingCourse(course);
+    setIsEditingCourse(true);
+  };
+
+  const handleUpdateCourse = () => {
+    if (!editingCourse) return;
+
+    setCourses(courses.map((c) => c.id === editingCourse.id ? editingCourse : c));
+    setIsEditingCourse(false);
+    setEditingCourse(null);
+
+    toast({
+      title: "Course Updated Successfully",
+      description: `${editingCourse.title} has been updated.`,
+    });
+  };
+
   const toggleCourseStatus = (id: number) => {
     setCourses(
       courses.map((c) =>
