@@ -500,7 +500,278 @@ export default function StudentManagement() {
               </div>
             </DialogContent>
           </Dialog>
-          
+
+          {/* Edit Student Dialog */}
+          <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>Edit Student</DialogTitle>
+                <DialogDescription>
+                  Update student details and information
+                </DialogDescription>
+              </DialogHeader>
+              {editStudent && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Personal Information */}
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg">Personal Information</h3>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="editFirstName">First Name *</Label>
+                        <Input
+                          id="editFirstName"
+                          value={editStudent.firstName}
+                          onChange={(e) => setEditStudent({...editStudent, firstName: e.target.value})}
+                          placeholder="Enter first name"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="editLastName">Last Name *</Label>
+                        <Input
+                          id="editLastName"
+                          value={editStudent.lastName}
+                          onChange={(e) => setEditStudent({...editStudent, lastName: e.target.value})}
+                          placeholder="Enter last name"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="editEmail">Email Address *</Label>
+                      <Input
+                        id="editEmail"
+                        type="email"
+                        value={editStudent.email}
+                        onChange={(e) => setEditStudent({...editStudent, email: e.target.value})}
+                        placeholder="student@email.com"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="editPhone">Phone Number</Label>
+                      <Input
+                        id="editPhone"
+                        value={editStudent.phone}
+                        onChange={(e) => setEditStudent({...editStudent, phone: e.target.value})}
+                        placeholder="+91 9876543210"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Date of Birth</Label>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button variant="outline" className="w-full justify-start text-left">
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {editDobDate ? format(editDobDate, "PPP") : "Pick a date"}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0">
+                          <Calendar mode="single" selected={editDobDate} onSelect={setEditDobDate} initialFocus />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="editAddress">Address</Label>
+                      <Textarea
+                        id="editAddress"
+                        value={editStudent.address}
+                        onChange={(e) => setEditStudent({...editStudent, address: e.target.value})}
+                        placeholder="Enter complete address"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="editCity">City</Label>
+                        <Input
+                          id="editCity"
+                          value={editStudent.city}
+                          onChange={(e) => setEditStudent({...editStudent, city: e.target.value})}
+                          placeholder="City"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="editState">State</Label>
+                        <Input
+                          id="editState"
+                          value={editStudent.state}
+                          onChange={(e) => setEditStudent({...editStudent, state: e.target.value})}
+                          placeholder="State"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="editPincode">Pincode</Label>
+                        <Input
+                          id="editPincode"
+                          value={editStudent.pincode}
+                          onChange={(e) => setEditStudent({...editStudent, pincode: e.target.value})}
+                          placeholder="000000"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Parent/Guardian & Academic Information */}
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg">Parent/Guardian Information</h3>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="editParentName">Parent/Guardian Name</Label>
+                      <Input
+                        id="editParentName"
+                        value={editStudent.parentName}
+                        onChange={(e) => setEditStudent({...editStudent, parentName: e.target.value})}
+                        placeholder="Enter parent name"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="editParentPhone">Parent Phone</Label>
+                      <Input
+                        id="editParentPhone"
+                        value={editStudent.parentPhone}
+                        onChange={(e) => setEditStudent({...editStudent, parentPhone: e.target.value})}
+                        placeholder="+91 9876543210"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="editParentEmail">Parent Email</Label>
+                      <Input
+                        id="editParentEmail"
+                        type="email"
+                        value={editStudent.parentEmail}
+                        onChange={(e) => setEditStudent({...editStudent, parentEmail: e.target.value})}
+                        placeholder="parent@email.com"
+                      />
+                    </div>
+
+                    <h3 className="font-semibold text-lg pt-4">Academic Information</h3>
+
+                    <div className="space-y-2">
+                      <Label>Class</Label>
+                      <Select value={editStudent.class} onValueChange={(value) => setEditStudent({...editStudent, class: value})}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select class" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {classes.map((cls) => (
+                            <SelectItem key={cls} value={cls}>{cls}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Subjects</Label>
+                      <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto border rounded-md p-2">
+                        {subjects.map((subject) => (
+                          <label key={subject} className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={editStudent.subjects.includes(subject)}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setEditStudent({
+                                    ...editStudent,
+                                    subjects: [...editStudent.subjects, subject]
+                                  });
+                                } else {
+                                  setEditStudent({
+                                    ...editStudent,
+                                    subjects: editStudent.subjects.filter(s => s !== subject)
+                                  });
+                                }
+                              }}
+                              className="rounded"
+                            />
+                            <span className="text-sm">{subject}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Joining Date</Label>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button variant="outline" className="w-full justify-start text-left">
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {editJoiningDate ? format(editJoiningDate, "PPP") : "Pick joining date"}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0">
+                          <Calendar mode="single" selected={editJoiningDate} onSelect={setEditJoiningDate} initialFocus />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Status</Label>
+                      <Select value={editStudent.status} onValueChange={(value: "active" | "inactive" | "graduated") => setEditStudent({...editStudent, status: value})}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="active">Active</SelectItem>
+                          <SelectItem value="inactive">Inactive</SelectItem>
+                          <SelectItem value="graduated">Graduated</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Fee Status</Label>
+                      <Select value={editStudent.feeStatus} onValueChange={(value: "paid" | "pending" | "overdue") => setEditStudent({...editStudent, feeStatus: value})}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select fee status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="paid">Paid</SelectItem>
+                          <SelectItem value="pending">Pending</SelectItem>
+                          <SelectItem value="overdue">Overdue</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="editTotalFees">Total Fees</Label>
+                        <Input
+                          id="editTotalFees"
+                          type="number"
+                          value={editStudent.totalFees}
+                          onChange={(e) => setEditStudent({...editStudent, totalFees: parseInt(e.target.value) || 0})}
+                          placeholder="45000"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="editPaidFees">Paid Fees</Label>
+                        <Input
+                          id="editPaidFees"
+                          type="number"
+                          value={editStudent.paidFees}
+                          onChange={(e) => setEditStudent({...editStudent, paidFees: parseInt(e.target.value) || 0})}
+                          placeholder="30000"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex justify-end space-x-2 pt-4">
+                <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button onClick={handleUpdateStudent}>Update Student</Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+
           <Button variant="outline">
             <Upload className="h-4 w-4 mr-2" />
             Bulk Import
