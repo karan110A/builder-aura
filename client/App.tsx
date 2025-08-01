@@ -1,26 +1,27 @@
 import "./global.css";
 import React from "react";
 
-// Suppress Recharts defaultProps warnings globally at app startup
-if (typeof window !== "undefined" && !window.__rechartsWarningsSuppressed) {
+// Ultra-robust Recharts warning suppression at app startup
+if (typeof window !== "undefined" && !window.__rechartsSuppressionActive) {
   const originalWarn = console.warn;
   console.warn = (...args) => {
-    const message = args[0]?.toString?.() || "";
+    // Join all arguments into a single string for comprehensive checking
+    const fullMessage = args.map(arg => String(arg || '')).join(' ');
+
     if (
-      message.includes("Support for defaultProps will be removed") &&
-      (message.includes("XAxis") ||
-        message.includes("YAxis") ||
-        message.includes("CartesianGrid") ||
-        message.includes("Tooltip") ||
-        message.includes("Legend") ||
-        message.includes("ResponsiveContainer") ||
-        message.includes("Recharts"))
+      fullMessage.includes("Support for defaultProps will be removed") &&
+      (fullMessage.includes("XAxis") ||
+        fullMessage.includes("YAxis") ||
+        fullMessage.includes("CartesianGrid") ||
+        fullMessage.includes("Tooltip") ||
+        fullMessage.includes("Legend") ||
+        fullMessage.includes("ResponsiveContainer"))
     ) {
-      return; // Suppress these specific warnings
+      return; // Completely suppress these warnings
     }
-    originalWarn(...args);
+    originalWarn.apply(console, args);
   };
-  window.__rechartsWarningsSuppressed = true;
+  window.__rechartsSuppressionActive = true;
 }
 
 import { Toaster } from "@/components/ui/toaster";
