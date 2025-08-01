@@ -215,6 +215,34 @@ export default function StudentManagement() {
     });
   };
 
+  const handleEditStudent = (student: Student) => {
+    setEditStudent(student);
+    setEditDobDate(student.dateOfBirth);
+    setEditJoiningDate(student.joiningDate);
+    setIsEditDialogOpen(true);
+  };
+
+  const handleUpdateStudent = () => {
+    if (!editStudent) return;
+
+    const updatedStudent: Student = {
+      ...editStudent,
+      dateOfBirth: editDobDate || editStudent.dateOfBirth,
+      joiningDate: editJoiningDate || editStudent.joiningDate,
+    };
+
+    setStudents(students.map(s => s.id === editStudent.id ? updatedStudent : s));
+    setIsEditDialogOpen(false);
+    setEditStudent(null);
+    setEditDobDate(undefined);
+    setEditJoiningDate(undefined);
+
+    toast({
+      title: "Student Updated",
+      description: `${updatedStudent.firstName} ${updatedStudent.lastName} has been updated successfully.`,
+    });
+  };
+
   const handleDeleteStudent = (id: string) => {
     setStudents(students.filter(s => s.id !== id));
     toast({
