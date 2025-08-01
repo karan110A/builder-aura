@@ -760,6 +760,29 @@ export default function TestManagement() {
                 </div>
               </div>
 
+              {/* Question Distribution */}
+              <div className="pt-4 border-t">
+                <p className="text-sm font-medium text-gray-700 mb-2">Question Distribution:</p>
+                <div className="grid grid-cols-4 gap-2 text-xs">
+                  <div className="text-center p-2 bg-blue-50 rounded">
+                    <p className="font-bold text-blue-600">{test.questions1Mark}</p>
+                    <p className="text-gray-600">1 Mark</p>
+                  </div>
+                  <div className="text-center p-2 bg-green-50 rounded">
+                    <p className="font-bold text-green-600">{test.questions2Mark}</p>
+                    <p className="text-gray-600">2 Marks</p>
+                  </div>
+                  <div className="text-center p-2 bg-yellow-50 rounded">
+                    <p className="font-bold text-yellow-600">{test.questions3Mark}</p>
+                    <p className="text-gray-600">3 Marks</p>
+                  </div>
+                  <div className="text-center p-2 bg-red-50 rounded">
+                    <p className="font-bold text-red-600">{test.questions4Mark}</p>
+                    <p className="text-gray-600">4 Marks</p>
+                  </div>
+                </div>
+              </div>
+
               {test.status === "completed" && (
                 <div className="pt-4 border-t">
                   <div className="grid grid-cols-3 gap-4 text-center">
@@ -982,19 +1005,100 @@ export default function TestManagement() {
                 />
               </div>
 
+              <div className="md:col-span-2">
+                <Label>Question Distribution by Marks</Label>
+                <div className="grid grid-cols-4 gap-4 mt-2">
+                  <div>
+                    <Label htmlFor="edit-questions1Mark" className="text-sm">1 Mark Questions</Label>
+                    <Input
+                      id="edit-questions1Mark"
+                      type="number"
+                      min="0"
+                      value={editingTest.questions1Mark}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value) || 0;
+                        setEditingTest({
+                          ...editingTest,
+                          questions1Mark: value,
+                          totalQuestions: value + editingTest.questions2Mark + editingTest.questions3Mark + editingTest.questions4Mark,
+                          totalMarks: (value * 1) + (editingTest.questions2Mark * 2) + (editingTest.questions3Mark * 3) + (editingTest.questions4Mark * 4)
+                        });
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-questions2Mark" className="text-sm">2 Mark Questions</Label>
+                    <Input
+                      id="edit-questions2Mark"
+                      type="number"
+                      min="0"
+                      value={editingTest.questions2Mark}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value) || 0;
+                        setEditingTest({
+                          ...editingTest,
+                          questions2Mark: value,
+                          totalQuestions: editingTest.questions1Mark + value + editingTest.questions3Mark + editingTest.questions4Mark,
+                          totalMarks: (editingTest.questions1Mark * 1) + (value * 2) + (editingTest.questions3Mark * 3) + (editingTest.questions4Mark * 4)
+                        });
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-questions3Mark" className="text-sm">3 Mark Questions</Label>
+                    <Input
+                      id="edit-questions3Mark"
+                      type="number"
+                      min="0"
+                      value={editingTest.questions3Mark}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value) || 0;
+                        setEditingTest({
+                          ...editingTest,
+                          questions3Mark: value,
+                          totalQuestions: editingTest.questions1Mark + editingTest.questions2Mark + value + editingTest.questions4Mark,
+                          totalMarks: (editingTest.questions1Mark * 1) + (editingTest.questions2Mark * 2) + (value * 3) + (editingTest.questions4Mark * 4)
+                        });
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-questions4Mark" className="text-sm">4 Mark Questions</Label>
+                    <Input
+                      id="edit-questions4Mark"
+                      type="number"
+                      min="0"
+                      value={editingTest.questions4Mark}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value) || 0;
+                        setEditingTest({
+                          ...editingTest,
+                          questions4Mark: value,
+                          totalQuestions: editingTest.questions1Mark + editingTest.questions2Mark + editingTest.questions3Mark + value,
+                          totalMarks: (editingTest.questions1Mark * 1) + (editingTest.questions2Mark * 2) + (editingTest.questions3Mark * 3) + (value * 4)
+                        });
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                </div>
+                <div className="mt-2 text-sm text-gray-600">
+                  Total Questions: {editingTest.totalQuestions} | Auto-calculated Total Marks: {editingTest.totalMarks}
+                </div>
+              </div>
+
               <div>
-                <Label htmlFor="edit-totalMarks">Total Marks</Label>
+                <Label htmlFor="edit-totalMarks">Total Marks (Auto-calculated)</Label>
                 <Input
                   id="edit-totalMarks"
                   type="number"
                   value={editingTest.totalMarks}
-                  onChange={(e) =>
-                    setEditingTest({
-                      ...editingTest,
-                      totalMarks: parseInt(e.target.value) || 50,
-                    })
-                  }
-                  placeholder="Total marks"
+                  readOnly
+                  className="bg-gray-50"
+                  placeholder="Calculated from question distribution"
                 />
               </div>
 
