@@ -271,7 +271,7 @@ export default function Login() {
 
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
                     disabled={isLoading}
                   >
                     {isLoading ? "Signing In..." : "Sign In"}
