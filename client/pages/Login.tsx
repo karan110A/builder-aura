@@ -166,7 +166,7 @@ export default function Login() {
           </p>
         </div>
 
-        <Card className="shadow-xl border-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm">
+        <Card className="shadow-2xl border border-white/20 bg-white/10 dark:bg-white/5 backdrop-blur-md">
           <CardHeader className="space-y-1 pb-4">
             <CardTitle className="text-2xl font-bold text-center">
               Welcome to PadhaiHub
