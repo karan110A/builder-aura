@@ -10,6 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 import { GraduationCap, Eye, EyeOff, Mail, Lock, User, Phone, Calendar } from "lucide-react";
 import LoginScene3D from "@/components/3D/LoginScene3D";
+import FloatingCard from "@/components/ui/floating-card";
 
 interface LoginForm {
   email: string;
