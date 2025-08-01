@@ -17,6 +17,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -51,6 +58,7 @@ export default function TeacherManagement() {
   const { toast } = useToast();
   const [isAddingTeacher, setIsAddingTeacher] = useState(false);
   const [editingTeacher, setEditingTeacher] = useState<Teacher | null>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   // Mock teacher data
   const [teachers, setTeachers] = useState<Teacher[]>([
@@ -156,14 +164,25 @@ export default function TeacherManagement() {
 
   const handleEditTeacher = (teacher: Teacher) => {
     setEditingTeacher(teacher);
+    setIsEditDialogOpen(true);
   };
 
   const handleUpdateTeacher = () => {
     if (editingTeacher) {
+      if (!editingTeacher.name || !editingTeacher.email || !editingTeacher.subject) {
+        toast({
+          title: "Missing Information",
+          description: "Please fill in all required fields.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       setTeachers(
         teachers.map((t) => (t.id === editingTeacher.id ? editingTeacher : t)),
       );
       setEditingTeacher(null);
+      setIsEditDialogOpen(false);
 
       toast({
         title: "Teacher Updated",
@@ -429,22 +448,153 @@ export default function TeacherManagement() {
         ))}
       </div>
 
-      {/* Edit Teacher Modal would go here - simplified for now */}
-      {editingTeacher && (
-        <Card className="fixed inset-4 z-50 bg-white shadow-2xl">
-          <CardHeader>
-            <CardTitle>Edit Teacher: {editingTeacher.name}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex justify-end space-x-2">
-              <Button variant="outline" onClick={() => setEditingTeacher(null)}>
-                Cancel
-              </Button>
-              <Button onClick={handleUpdateTeacher}>Update Teacher</Button>
+      {/* Edit Teacher Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Teacher: {editingTeacher?.name}</DialogTitle>
+            <DialogDescription>
+              Update teacher information and details
+            </DialogDescription>
+          </DialogHeader>
+          {editingTeacher && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+              <div>
+                <Label htmlFor="edit-name">Full Name *</Label>
+                <Input
+                  id="edit-name"
+                  value={editingTeacher.name}
+                  onChange={(e) =>
+                    setEditingTeacher({ ...editingTeacher, name: e.target.value })
+                  }
+                  placeholder="Enter full name"
+                />
+              </div>
+              <div>
+                <Label htmlFor="edit-email">Email Address *</Label>
+                <Input
+                  id="edit-email"
+                  type="email"
+                  value={editingTeacher.email}
+                  onChange={(e) =>
+                    setEditingTeacher({ ...editingTeacher, email: e.target.value })
+                  }
+                  placeholder="Enter email address"
+                />
+              </div>
+              <div>
+                <Label htmlFor="edit-phone">Phone Number</Label>
+                <Input
+                  id="edit-phone"
+                  value={editingTeacher.phone}
+                  onChange={(e) =>
+                    setEditingTeacher({ ...editingTeacher, phone: e.target.value })
+                  }
+                  placeholder="Enter phone number"
+                />
+              </div>
+              <div>
+                <Label htmlFor="edit-subject">Subject *</Label>
+                <Select
+                  value={editingTeacher.subject}
+                  onValueChange={(value) =>
+                    setEditingTeacher({ ...editingTeacher, subject: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select subject" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {subjects.map((subject) => (
+                      <SelectItem key={subject} value={subject}>
+                        {subject}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="edit-experience">Experience (Years)</Label>
+                <Input
+                  id="edit-experience"
+                  type="number"
+                  value={editingTeacher.experience}
+                  onChange={(e) =>
+                    setEditingTeacher({
+                      ...editingTeacher,
+                      experience: parseInt(e.target.value) || 0,
+                    })
+                  }
+                  placeholder="Years of experience"
+                />
+              </div>
+              <div>
+                <Label htmlFor="edit-salary">Monthly Salary (₹)</Label>
+                <Input
+                  id="edit-salary"
+                  type="number"
+                  value={editingTeacher.salary}
+                  onChange={(e) =>
+                    setEditingTeacher({
+                      ...editingTeacher,
+                      salary: parseInt(e.target.value) || 0,
+                    })
+                  }
+                  placeholder="Monthly salary"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <Label htmlFor="edit-qualification">Qualification</Label>
+                <Textarea
+                  id="edit-qualification"
+                  value={editingTeacher.qualification}
+                  onChange={(e) =>
+                    setEditingTeacher({
+                      ...editingTeacher,
+                      qualification: e.target.value,
+                    })
+                  }
+                  placeholder="Enter educational qualifications"
+                  rows={3}
+                />
+              </div>
+              <div>
+                <Label htmlFor="edit-status">Status</Label>
+                <Select
+                  value={editingTeacher.status}
+                  onValueChange={(value: "active" | "inactive") =>
+                    setEditingTeacher({ ...editingTeacher, status: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="active">Active</SelectItem>
+                    <SelectItem value="inactive">Inactive</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-          </CardContent>
-        </Card>
-      )}
+          )}
+          <div className="flex justify-end space-x-2 pt-4">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setIsEditDialogOpen(false);
+                setEditingTeacher(null);
+              }}
+            >
+              <X className="h-4 w-4 mr-2" />
+              Cancel
+            </Button>
+            <Button onClick={handleUpdateTeacher}>
+              <Save className="h-4 w-4 mr-2" />
+              Update Teacher
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
