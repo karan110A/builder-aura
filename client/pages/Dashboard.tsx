@@ -358,8 +358,8 @@ export default function Dashboard() {
                 <CardContent>
                   <Calendar
                     mode="single"
-                    selected={date}
-                    onSelect={setDate}
+                    selected={selectedDate}
+                    onSelect={setSelectedDate}
                     className="rounded-md border"
                   />
                 </CardContent>
