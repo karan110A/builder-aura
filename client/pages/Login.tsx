@@ -168,10 +168,10 @@ export default function Login() {
 
         <Card className="shadow-2xl border border-white/20 bg-white/10 dark:bg-white/5 backdrop-blur-md">
           <CardHeader className="space-y-1 pb-4">
-            <CardTitle className="text-2xl font-bold text-center">
+            <CardTitle className="text-2xl font-bold text-center text-white drop-shadow-lg">
               Welcome to PadhaiHub
             </CardTitle>
-            <CardDescription className="text-center">
+            <CardDescription className="text-center text-white/80 drop-shadow-md">
               Sign in to your account or create a new one
             </CardDescription>
           </CardHeader>
