@@ -388,56 +388,7 @@ export default function AdminDashboard() {
 
           {/* Students Tab */}
           <TabsContent value="students">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <CardTitle>Student Management</CardTitle>
-                    <CardDescription>
-                      Manage all student data and enrollments
-                    </CardDescription>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Button>
-                      <UserPlus className="h-4 w-4 mr-2" />
-                      Add Student
-                    </Button>
-                    <Button variant="outline">
-                      <Upload className="h-4 w-4 mr-2" />
-                      Bulk Import
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="flex space-x-4 mb-6">
-                  <div className="flex-1">
-                    <Input
-                      placeholder="Search students..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full"
-                    />
-                  </div>
-                  <Button variant="outline">
-                    <Filter className="h-4 w-4 mr-2" />
-                    Filter
-                  </Button>
-                  <Button variant="outline">
-                    <Download className="h-4 w-4 mr-2" />
-                    Export
-                  </Button>
-                </div>
-                <div className="text-center py-8 text-gray-500">
-                  <Database className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                  <p>Student management interface will be implemented here</p>
-                  <p className="text-sm">
-                    Features: Add, Edit, Delete, Bulk Operations, Enrollment
-                    Management
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <StudentManagement />
           </TabsContent>
 
           {/* Teachers Tab */}
