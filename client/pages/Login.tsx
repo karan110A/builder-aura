@@ -257,13 +257,13 @@ export default function Login() {
                           setLoginForm({ ...loginForm, rememberMe: checked as boolean })
                         }
                       />
-                      <Label htmlFor="remember" className="text-sm">
+                      <Label htmlFor="remember" className="text-sm text-white/80">
                         Remember me
                       </Label>
                     </div>
                     <Link
                       to="/forgot-password"
-                      className="text-sm text-blue-600 hover:text-blue-500 dark:text-blue-400"
+                      className="text-sm text-white/70 hover:text-white transition-colors duration-300"
                     >
                       Forgot password?
                     </Link>
