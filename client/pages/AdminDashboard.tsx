@@ -408,24 +408,7 @@ export default function AdminDashboard() {
 
           {/* Analytics Tab */}
           <TabsContent value="analytics">
-            <Card>
-              <CardHeader>
-                <CardTitle>Analytics & Reports</CardTitle>
-                <CardDescription>
-                  Comprehensive data analysis and reporting
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-gray-500">
-                  <BarChart3 className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                  <p>Analytics dashboard will be implemented here</p>
-                  <p className="text-sm">
-                    Features: Performance Analytics, Revenue Reports, User
-                    Engagement Metrics
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <AdvancedAnalytics />
           </TabsContent>
         </Tabs>
       </div>
