@@ -403,32 +403,7 @@ export default function AdminDashboard() {
 
           {/* Tests Tab */}
           <TabsContent value="tests">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <CardTitle>Test & Assessment Management</CardTitle>
-                    <CardDescription>
-                      Create, schedule and manage tests
-                    </CardDescription>
-                  </div>
-                  <Button>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create Test
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-gray-500">
-                  <FileText className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                  <p>Test management interface will be implemented here</p>
-                  <p className="text-sm">
-                    Features: Test Creation, Scheduling, Auto-grading, Results
-                    Analysis
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <TestManagement />
           </TabsContent>
 
           {/* Analytics Tab */}
