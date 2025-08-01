@@ -398,32 +398,7 @@ export default function AdminDashboard() {
 
           {/* Courses Tab */}
           <TabsContent value="courses">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <CardTitle>Course Management</CardTitle>
-                    <CardDescription>
-                      Create and manage course offerings
-                    </CardDescription>
-                  </div>
-                  <Button>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create Course
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-gray-500">
-                  <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-400" />
-                  <p>Course management interface will be implemented here</p>
-                  <p className="text-sm">
-                    Features: Course Creation, Curriculum Design, Resource
-                    Management
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <CourseManagement />
           </TabsContent>
 
           {/* Tests Tab */}
