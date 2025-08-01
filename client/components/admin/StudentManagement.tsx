@@ -928,11 +928,12 @@ export default function StudentManagement() {
                     <p><strong>Class:</strong> {selectedStudent.class}</p>
                     <p><strong>Subjects:</strong> {selectedStudent.subjects.join(", ")}</p>
                     <p><strong>Joining Date:</strong> {format(selectedStudent.joiningDate, "PPP")}</p>
-                    <p><strong>Status:</strong> 
+                    <div className="flex items-center">
+                      <strong>Status:</strong>
                       <Badge className={`ml-2 ${getStatusColor(selectedStudent.status)}`}>
                         {selectedStudent.status}
                       </Badge>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
