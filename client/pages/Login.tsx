@@ -284,13 +284,13 @@ export default function Login() {
                 <form onSubmit={handleSignupSubmit} className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
+                      <Label htmlFor="firstName" className="text-white/90 font-medium">First Name</Label>
                       <div className="relative">
-                        <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <User className="absolute left-3 top-3 h-4 w-4 text-white/60" />
                         <Input
                           id="firstName"
                           placeholder="First name"
-                          className="pl-10"
+                          className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:bg-white/15 focus:border-white/40 transition-all duration-300 backdrop-blur-sm"
                           value={signupForm.firstName}
                           onChange={(e) =>
                             setSignupForm({ ...signupForm, firstName: e.target.value })
