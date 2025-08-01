@@ -216,14 +216,14 @@ export default function Login() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password" className="text-white/90 font-medium">Password</Label>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                      <Lock className="absolute left-3 top-3 h-4 w-4 text-white/60" />
                       <Input
                         id="password"
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
-                        className="pl-10 pr-10"
+                        className="pl-10 pr-10 bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:bg-white/15 focus:border-white/40 transition-all duration-300 backdrop-blur-sm"
                         value={loginForm.password}
                         onChange={(e) =>
                           setLoginForm({ ...loginForm, password: e.target.value })
@@ -233,7 +233,7 @@ export default function Login() {
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute right-1 top-1 h-8 w-8 p-0"
+                        className="absolute right-1 top-1 h-8 w-8 p-0 text-white/60 hover:text-white/80 hover:bg-white/10 transition-all duration-300"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
