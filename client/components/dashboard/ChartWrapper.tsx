@@ -4,61 +4,48 @@ interface ChartWrapperProps {
   children: React.ReactNode;
 }
 
-// Global console override to suppress Recharts warnings
-(function suppressRechartsWarnings() {
-  if (typeof window === "undefined") return;
-
-  // Store original methods
+// Aggressive global console suppression for Recharts warnings
+if (typeof window !== "undefined" && !window.__rechartsSuppressionActive) {
   const originalWarn = console.warn;
-  const originalError = console.error;
 
-  // Override console.warn
   console.warn = function (...args: any[]) {
-    const message = String(args[0] || "");
-    const formatString = String(args[1] || "");
+    // Convert all arguments to strings for checking
+    const allArgsString = args.map(arg => String(arg)).join(" ");
 
-    // Check if this is a Recharts defaultProps warning
+    // Check for Recharts defaultProps warnings with multiple patterns
     if (
-      message.includes("Support for defaultProps will be removed") &&
-      (formatString.includes("XAxis") ||
-       formatString.includes("YAxis") ||
-       formatString.includes("CartesianGrid") ||
-       formatString.includes("Tooltip") ||
-       formatString.includes("Legend") ||
-       formatString.includes("ResponsiveContainer") ||
-       args.some((arg: any) =>
-         String(arg).includes("XAxis") ||
-         String(arg).includes("YAxis") ||
-         String(arg).includes("Recharts")
-       ))
+      allArgsString.includes("Support for defaultProps will be removed") &&
+      (allArgsString.includes("XAxis") ||
+       allArgsString.includes("YAxis") ||
+       allArgsString.includes("CartesianGrid") ||
+       allArgsString.includes("Tooltip") ||
+       allArgsString.includes("ResponsiveContainer") ||
+       allArgsString.includes("Legend"))
     ) {
-      return; // Suppress this warning
+      // Completely suppress these warnings
+      return;
     }
 
     // Call original warn for all other warnings
     originalWarn.apply(console, args);
   };
 
-  // Override console.error as well for safety
-  console.error = function (...args: any[]) {
-    const message = String(args[0] || "");
-    const formatString = String(args[1] || "");
+  // Mark suppression as active
+  window.__rechartsSuppressionActive = true;
+}
 
-    if (
-      message.includes("Support for defaultProps will be removed") &&
-      (formatString.includes("XAxis") ||
-       formatString.includes("YAxis") ||
-       args.some((arg: any) =>
-         String(arg).includes("XAxis") ||
-         String(arg).includes("YAxis")
-       ))
-    ) {
-      return; // Suppress this error
+// Ensure suppression is applied in development
+if (process.env.NODE_ENV === 'development') {
+  // Additional suppression for React development warnings
+  const originalConsoleWarn = console.warn;
+  console.warn = function(...args) {
+    const warningText = args.join(' ');
+    if (warningText.includes('defaultProps') && (warningText.includes('XAxis') || warningText.includes('YAxis'))) {
+      return;
     }
-
-    originalError.apply(console, args);
+    originalConsoleWarn.apply(console, args);
   };
-})();
+}
 
 export default function ChartWrapper({ children }: ChartWrapperProps) {
   return <div className="recharts-wrapper">{children}</div>;
