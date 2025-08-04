@@ -14,14 +14,14 @@ interface ChartWrapperProps {
       // Comprehensive Recharts warning suppression
       if (
         (allArgsString.includes("Support for defaultProps will be removed") ||
-         allArgsString.includes("defaultProps")) &&
+          allArgsString.includes("defaultProps")) &&
         (allArgsString.includes("XAxis") ||
-         allArgsString.includes("YAxis") ||
-         allArgsString.includes("CartesianGrid") ||
-         allArgsString.includes("Tooltip") ||
-         allArgsString.includes("ResponsiveContainer") ||
-         allArgsString.includes("Legend") ||
-         allArgsString.includes("function components"))
+          allArgsString.includes("YAxis") ||
+          allArgsString.includes("CartesianGrid") ||
+          allArgsString.includes("Tooltip") ||
+          allArgsString.includes("ResponsiveContainer") ||
+          allArgsString.includes("Legend") ||
+          allArgsString.includes("function components"))
       ) {
         return;
       }
@@ -38,11 +38,13 @@ export default function ChartWrapper({ children }: ChartWrapperProps) {
     if (typeof window !== "undefined") {
       const originalWarn = console.warn;
       console.warn = (...args: any[]) => {
-        const message = args.map(arg => String(arg || "")).join(" ");
+        const message = args.map((arg) => String(arg || "")).join(" ");
         if (
           message.includes("defaultProps") &&
-          (message.includes("XAxis") || message.includes("YAxis") ||
-           message.includes("CartesianGrid") || message.includes("Tooltip"))
+          (message.includes("XAxis") ||
+            message.includes("YAxis") ||
+            message.includes("CartesianGrid") ||
+            message.includes("Tooltip"))
         ) {
           return;
         }

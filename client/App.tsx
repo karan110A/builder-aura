@@ -23,9 +23,19 @@ import React from "react";
       }
 
       // Also suppress any Recharts component warnings
-      if (fullMessage.includes("defaultProps") && fullMessage.includes("function components")) {
-        const componentNames = ["XAxis", "YAxis", "CartesianGrid", "Tooltip", "Legend", "ResponsiveContainer"];
-        if (componentNames.some(name => fullMessage.includes(name))) {
+      if (
+        fullMessage.includes("defaultProps") &&
+        fullMessage.includes("function components")
+      ) {
+        const componentNames = [
+          "XAxis",
+          "YAxis",
+          "CartesianGrid",
+          "Tooltip",
+          "Legend",
+          "ResponsiveContainer",
+        ];
+        if (componentNames.some((name) => fullMessage.includes(name))) {
           return;
         }
       }
