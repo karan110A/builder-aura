@@ -33,5 +33,23 @@ interface ChartWrapperProps {
 })();
 
 export default function ChartWrapper({ children }: ChartWrapperProps) {
+  useEffect(() => {
+    // Runtime suppression as backup
+    if (typeof window !== "undefined") {
+      const originalWarn = console.warn;
+      console.warn = (...args: any[]) => {
+        const message = args.map(arg => String(arg || "")).join(" ");
+        if (
+          message.includes("defaultProps") &&
+          (message.includes("XAxis") || message.includes("YAxis") ||
+           message.includes("CartesianGrid") || message.includes("Tooltip"))
+        ) {
+          return;
+        }
+        originalWarn.apply(console, args);
+      };
+    }
+  }, []);
+
   return <div className="recharts-wrapper">{children}</div>;
 }
