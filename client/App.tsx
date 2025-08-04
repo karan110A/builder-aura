@@ -1,28 +1,40 @@
 import "./global.css";
 import React from "react";
 
-// Ultra-robust Recharts warning suppression at app startup
-if (typeof window !== "undefined" && !window.__rechartsSuppressionActive) {
-  const originalWarn = console.warn;
-  console.warn = (...args) => {
-    // Join all arguments into a single string for comprehensive checking
-    const fullMessage = args.map((arg) => String(arg || "")).join(" ");
+// Immediate global Recharts warning suppression
+(() => {
+  if (typeof window !== "undefined") {
+    const originalWarn = console.warn;
+    console.warn = (...args) => {
+      const fullMessage = args.map((arg) => String(arg || "")).join(" ");
 
-    if (
-      fullMessage.includes("Support for defaultProps will be removed") &&
-      (fullMessage.includes("XAxis") ||
-        fullMessage.includes("YAxis") ||
-        fullMessage.includes("CartesianGrid") ||
-        fullMessage.includes("Tooltip") ||
-        fullMessage.includes("Legend") ||
-        fullMessage.includes("ResponsiveContainer"))
-    ) {
-      return; // Completely suppress these warnings
-    }
-    originalWarn.apply(console, args);
-  };
-  window.__rechartsSuppressionActive = true;
-}
+      // Suppress all Recharts defaultProps warnings
+      if (
+        fullMessage.includes("Support for defaultProps will be removed") &&
+        (fullMessage.includes("XAxis") ||
+          fullMessage.includes("YAxis") ||
+          fullMessage.includes("CartesianGrid") ||
+          fullMessage.includes("Tooltip") ||
+          fullMessage.includes("Legend") ||
+          fullMessage.includes("ResponsiveContainer") ||
+          fullMessage.includes("Recharts"))
+      ) {
+        return;
+      }
+
+      // Also suppress any Recharts component warnings
+      if (fullMessage.includes("defaultProps") && fullMessage.includes("function components")) {
+        const componentNames = ["XAxis", "YAxis", "CartesianGrid", "Tooltip", "Legend", "ResponsiveContainer"];
+        if (componentNames.some(name => fullMessage.includes(name))) {
+          return;
+        }
+      }
+
+      originalWarn.apply(console, args);
+    };
+    window.__rechartsSuppressionActive = true;
+  }
+})();
 
 import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
