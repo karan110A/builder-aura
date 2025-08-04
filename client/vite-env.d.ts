@@ -5,4 +5,7 @@ declare global {
     __rechartsWarningsSuppressed?: boolean;
     __rechartsSuppressionActive?: boolean;
   }
+
+  // Ensure globalThis has the react root
+  var __reactRoot: any;
 }
